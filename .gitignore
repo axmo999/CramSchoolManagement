@@ -1,0 +1,5 @@
+CramSchoolManagement.Tests/bin/
+CramSchoolManagement.Tests/obj/
+CramSchoolManagement/bin/
+CramSchoolManagement/obj/
+!.gitignore

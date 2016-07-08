@@ -1,0 +1,23 @@
+﻿
+@using Microsoft.AspNet.Identity
+@using CramSchoolManagement.Commons
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Login", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a>こんにちは、@(Utility.GetDisplayName())さん</a>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">ログオフ</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("ログイン", "Login", "Login", new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
