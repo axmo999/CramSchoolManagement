@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_attendance>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.students_m.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.attendance_day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.create_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.create_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.update_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.update_date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.students_m.last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.attendance_day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.create_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.create_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.update_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.update_date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.students_attendance_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.students_attendance_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.students_attendance_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -8,14 +8,6 @@ namespace CramSchoolManagement.Areas.Settings.Models
 
     public partial class schools_m
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public schools_m()
-        {
-            students_m = new HashSet<students_m>();
-            students_m1 = new HashSet<students_m>();
-            students_m2 = new HashSet<students_m>();
-        }
-
         [Key]
         [Display(Name = "äwçZä«óùî‘çÜ")]
         public long school_id { get; set; }
@@ -48,14 +40,5 @@ namespace CramSchoolManagement.Areas.Settings.Models
         public string update_date { get; set; }
 
         public virtual divisions_m divisions_m { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<students_m> students_m { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<students_m> students_m1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<students_m> students_m2 { get; set; }
     }
 }
