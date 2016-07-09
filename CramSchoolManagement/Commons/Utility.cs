@@ -20,5 +20,29 @@ namespace CramSchoolManagement.Commons
             var displayName = currentUser.last_name + currentUser.middle_name + currentUser.first_name;
             return displayName;
         }
+
+        internal static dynamic GetStudentName(int? students_id)
+        {
+            CramSchoolManagement.Models.Students_mModel studentdb = new CramSchoolManagement.Models.Students_mModel();
+            var student_person = studentdb.students_m.Single(students_m => students_m.students_id == students_id);
+            string studentName = string.Empty;
+            if (student_person.last_name != null)
+            {
+                studentName = student_person.last_name.ToString();
+            }
+
+            if (student_person.middle_name != null)
+            {
+                studentName += " " + student_person.middle_name.ToString();
+            }
+
+            if (student_person.first_name != null)
+            {
+                studentName += " " + student_person.first_name.ToString();
+            }
+
+            return studentName;
+        }
+
     }
 }

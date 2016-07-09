@@ -199,6 +199,21 @@
     <Content Include="Areas\Settings\Views\teachers_m\Index.cshtml" />
     <Content Include="Areas\Students\Views\web.config" />
     <Content Include="Areas\Students\Views\Shared\_Students.cshtml" />
+    <Content Include="Views\students_m\Create.cshtml" />
+    <Content Include="Views\students_m\Delete.cshtml" />
+    <Content Include="Views\students_m\Details.cshtml" />
+    <Content Include="Views\students_m\Edit.cshtml" />
+    <Content Include="Views\students_m\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_grade\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_grade\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_grade\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_grade\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_grade\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_attendance\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_attendance\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_attendance\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_attendance\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_attendance\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -225,9 +240,18 @@
     <Compile Include="Areas\Settings\Models\exams_m.cs" />
     <Compile Include="Areas\Settings\Models\MastersModel.cs" />
     <Compile Include="Areas\Settings\Models\schools_m.cs" />
-    <Compile Include="Areas\Settings\Models\students_m.cs" />
     <Compile Include="Areas\Settings\Models\teachers_m.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
+    <Compile Include="Areas\Students\Controllers\students_attendanceController.cs" />
+    <Compile Include="Areas\Students\Controllers\students_gradeController.cs" />
+    <Compile Include="Controllers\students_mController.cs" />
+    <Compile Include="Areas\Students\Models\StudentsModel.cs" />
+    <Compile Include="Areas\Students\Models\students_attendance.cs" />
+    <Compile Include="Areas\Students\Models\students_grade.cs" />
+    <Compile Include="Areas\Students\Models\students_guide.cs" />
+    <Compile Include="Areas\Students\Models\students_like_dislike.cs" />
+    <Compile Include="Models\Students_mModel.cs" />
+    <Compile Include="Models\students_m.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
     <Compile Include="Areas\Users\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Users\Models\teachers_m.cs" />
@@ -273,8 +297,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Students\Controllers\" />
-    <Folder Include="Areas\Students\Models\" />
     <Folder Include="Areas\Users\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>

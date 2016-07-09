@@ -1,0 +1,97 @@
+﻿@model CramSchoolManagement.Areas.Students.Models.students_grade
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>students_grade</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.students_m.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.students_m.last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exams_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exams_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.classes_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classes_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_scores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_scores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

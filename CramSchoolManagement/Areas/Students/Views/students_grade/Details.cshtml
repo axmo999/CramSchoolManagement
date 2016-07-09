@@ -1,0 +1,91 @@
+﻿@model CramSchoolManagement.Areas.Students.Models.students_grade
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>students_grade</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.students_m.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.students_m.last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exams_m.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exams_m.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.classes_m.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classes_m.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_scores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_scores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.students_grade_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
