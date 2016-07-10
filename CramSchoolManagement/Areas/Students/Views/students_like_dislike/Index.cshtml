@@ -1,9 +1,11 @@
-﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_grade>
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_like_dislike>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
+
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -14,16 +16,10 @@
             @Html.DisplayNameFor(model => model.students_m.last_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.exam_date)
+            @Html.DisplayNameFor(model => model.class_id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.exams_m.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.classes_m.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.exam_scores)
+            @Html.DisplayNameFor(model => model.like_dislike)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.create_user)
@@ -46,16 +42,10 @@
             @Html.DisplayFor(modelItem => item.students_m.last_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.exam_date)
+            @Html.DisplayFor(modelItem => item.class_id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.exams_m.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.classes_m.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.exam_scores)
+            @Html.DisplayFor(modelItem => item.like_dislike)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.create_user)
@@ -70,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.update_date)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.students_grade_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.students_grade_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.students_grade_id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.students_like_dislike_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.students_like_dislike_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.students_like_dislike_id })
         </td>
     </tr>
 }

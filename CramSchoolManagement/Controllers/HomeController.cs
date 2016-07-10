@@ -14,22 +14,9 @@ namespace CramSchoolManagement.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.Name = GetDisplayName();
             return View();
         }
 
-        public string GetDisplayName()
-        {
-            var manager = new UserManager<teachers_m>(new TeacherUserStore());
-            var currentUser = manager.FindById(HttpContext.User.Identity.GetUserId());
-            var displayName = string.Empty; 
-            if (currentUser != null)
-            {
-                displayName = currentUser.last_name + currentUser.middle_name + currentUser.first_name;
-            }
-
-            return displayName;
-        }
     }
 
 }
