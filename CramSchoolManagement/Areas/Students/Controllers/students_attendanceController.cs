@@ -18,12 +18,14 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         public ActionResult Index(int? students_id)
         {
             var students_attendance_list = db.students_attendance.Where(students_attendance => students_attendance.students_id == students_id).Include(s => s.students_m);
-            //var student_attendance_person = students_attendance_list.Where(students_attendance => students_attendance.students_id == students_id);
+
+            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+
             return View(students_attendance_list.ToList());
         }
 
         // GET: Students/students_attendance/Details/5
-        public ActionResult Details(long? id)
+        public ActionResult Details(int? students_id, long? id)
         {
             if (id == null)
             {
@@ -34,6 +36,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
             return View(students_attendance);
         }
 
@@ -41,6 +44,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         public ActionResult Create(int? students_id)
         {
             ViewBag.students_id = students_id;
+            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
             return View();
         }
 
@@ -60,12 +64,11 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.students_id = new SelectList(db.students_m, "students_id", "last_name", students_attendance.students_id);
             return View(students_attendance);
         }
 
         // GET: Students/students_attendance/Edit/5
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(long? students_id, long? id)
         {
             if (id == null)
             {
@@ -76,7 +79,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.students_id = new SelectList(db.students_m, "students_id", "last_name", students_attendance.students_id);
+            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
             return View(students_attendance);
         }
 
@@ -95,7 +98,6 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.students_id = new SelectList(db.students_m, "students_id", "last_name", students_attendance.students_id);
             return View(students_attendance);
         }
 

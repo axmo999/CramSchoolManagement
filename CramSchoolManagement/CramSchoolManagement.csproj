@@ -214,6 +214,16 @@
     <Content Include="Areas\Students\Views\students_attendance\Details.cshtml" />
     <Content Include="Areas\Students\Views\students_attendance\Edit.cshtml" />
     <Content Include="Areas\Students\Views\students_attendance\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_guide\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_guide\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_guide\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_guide\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_guide\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_like_dislike\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_like_dislike\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_like_dislike\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_like_dislike\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_like_dislike\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -244,6 +254,8 @@
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Students\Controllers\students_attendanceController.cs" />
     <Compile Include="Areas\Students\Controllers\students_gradeController.cs" />
+    <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
+    <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
     <Compile Include="Controllers\students_mController.cs" />
     <Compile Include="Areas\Students\Models\StudentsModel.cs" />
     <Compile Include="Areas\Students\Models\students_attendance.cs" />
@@ -253,18 +265,12 @@
     <Compile Include="Models\Students_mModel.cs" />
     <Compile Include="Models\students_m.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
-    <Compile Include="Areas\Users\Controllers\TeacherController.cs" />
-    <Compile Include="Areas\Users\Models\teachers_m.cs" />
-    <Compile Include="Areas\Users\Models\UserModel.cs" />
-    <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Commons\Utility.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\teachers_m.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
@@ -275,12 +281,6 @@
     <Content Include="packages.config" />
     <Content Include="App_Data\csm.db" />
     <Content Include="Areas\Settings\Views\web.config" />
-    <Content Include="Areas\Users\Views\web.config" />
-    <Content Include="Areas\Users\Views\Teacher\Create.cshtml" />
-    <Content Include="Areas\Users\Views\Teacher\Delete.cshtml" />
-    <Content Include="Areas\Users\Views\Teacher\Details.cshtml" />
-    <Content Include="Areas\Users\Views\Teacher\Edit.cshtml" />
-    <Content Include="Areas\Users\Views\Teacher\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_Honoka.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -296,9 +296,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Users\Views\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
