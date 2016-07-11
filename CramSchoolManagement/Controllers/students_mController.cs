@@ -30,7 +30,7 @@ namespace CramSchoolManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_m students_m = db.students_m.Find(id);
+            students_m students_m = db.students_m.Include(s => s.students_face).SingleOrDefault(s => s.students_id == id);
             if (students_m == null)
             {
                 return HttpNotFound();
@@ -51,14 +51,37 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,face,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m)
+        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
-                students_m.create_user = User.Identity.Name.ToString();
-                students_m.create_date = DateTime.Now.ToString();
-                db.students_m.Add(students_m);
-                db.SaveChanges();
+                try
+                {
+                    if (face_img != null && face_img.ContentLength > 0 && face_img.ContentType.StartsWith("image/"))
+                    {
+                        var face = new students_face
+                        {
+                            FileName = System.IO.Path.GetFileName(face_img.FileName),
+                            FileType = "Image",
+                            ContentType = face_img.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(face_img.InputStream))
+                        {
+                            face.Content = reader.ReadBytes(face_img.ContentLength);
+                        }
+                        students_m.students_face = new List<students_face> { face };
+                    }
+
+                    students_m.create_user = User.Identity.Name.ToString();
+                    students_m.create_date = DateTime.Now.ToString();
+                    db.students_m.Add(students_m);
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +97,7 @@ namespace CramSchoolManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_m students_m = db.students_m.Find(id);
+            students_m students_m = db.students_m.Include(s => s.students_face).SingleOrDefault(s => s.students_id == id);
             if (students_m == null)
             {
                 return HttpNotFound();
@@ -89,14 +112,45 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,face,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,face_img,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, long id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
-                students_m.update_user = User.Identity.Name.ToString();
-                students_m.update_date = DateTime.Now.ToString();
-                db.Entry(students_m).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    var studentToUpdate = db.students_m.Find(id);
+
+                    if (face_img != null && face_img.ContentLength > 0 && face_img.ContentType.StartsWith("image/"))
+                    {
+                        if (studentToUpdate.students_face.Any(f => f.FileType == "Image"))
+                        {
+                            db.students_face.Remove(studentToUpdate.students_face.First(f => f.FileType == "Image"));
+                        }
+
+                        var face = new students_face
+                        {
+                            FileName = System.IO.Path.GetFileName(face_img.FileName),
+                            FileType = "Image",
+                            ContentType = face_img.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(face_img.InputStream))
+                        {
+                            face.Content = reader.ReadBytes(face_img.ContentLength);
+                        }
+                        students_m.students_face = new List<students_face> { face };
+                    }
+
+                    students_m.update_user = User.Identity.Name.ToString();
+                    students_m.update_date = DateTime.Now.ToString();
+                    db.Entry(students_m).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);

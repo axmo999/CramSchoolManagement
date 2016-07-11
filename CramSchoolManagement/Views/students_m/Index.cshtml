@@ -1,131 +1,44 @@
 ﻿@model IEnumerable<CramSchoolManagement.Models.students_m>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+    ViewBag.Title = "生徒一覧";
+    Layout = "~/Views/Shared/_Honoka.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("生徒新規登録", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.last_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.middle_name)
+            @Html.DisplayNameFor(model => model.display_name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.schools_m.name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender_m.gender_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthday)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.face)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.postal_code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone_number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hope_school)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enter_school)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_date)
-        </th>
-        <th></th>
+        <th>情報選択</th>
+        <th>生徒編集</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.last_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.first_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.middle_name)
+            @Html.DisplayFor(modelItem => item.display_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.schools_m.name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.gender_m.gender_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthday)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.face)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.postal_code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone_number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.schools_m.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.schools_m.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.create_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.create_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.students_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.students_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.students_id })
-        </td>
-        <td>
+            @Html.RouteLink("出席", "Students_id_route", new { controller = "students_attendance", students_id = item.students_id }) |
+            @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }) |
             @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id })
+        </td>
+        <td>
+            @Html.ActionLink("詳細", "Details", new { id = item.students_id }) |
+            @Html.ActionLink("編集", "Edit", new { id=item.students_id }) |
+            @Html.ActionLink("削除", "Delete", new { id=item.students_id })
         </td>
     </tr>
 }

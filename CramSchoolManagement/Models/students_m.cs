@@ -49,6 +49,7 @@ namespace CramSchoolManagement.Models
 
         [MaxLength(2147483647)]
         [Display(Name = "äÁé ê^")]
+        [DataType(DataType.Upload)]
         public byte[] face { get; set; }
 
         [StringLength(2147483647)]
@@ -97,5 +98,36 @@ namespace CramSchoolManagement.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
+
+        [Display(Name = "ï\é¶ñº")]
+        public string display_name
+        {
+            get
+            {
+                return studentName();
+            }
+        }
+
+        public string studentName()
+        {
+            string studentName = string.Empty;
+            if (last_name != null)
+            {
+                studentName = last_name.ToString();
+            }
+
+            if (middle_name != null)
+            {
+                studentName += " " + middle_name.ToString();
+            }
+
+            if (first_name != null)
+            {
+                studentName += " " + first_name.ToString();
+            }
+            return studentName;
+        }
+
+        public virtual ICollection<students_face> students_face { get; set; }
     }
 }

@@ -15,6 +15,8 @@ namespace CramSchoolManagement.Models
 
         public virtual DbSet<students_m> students_m { get; set; }
 
+        public virtual DbSet<students_face> students_face { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<students_m>()
