@@ -3,3 +3,4 @@ CramSchoolManagement.Tests/obj/
 CramSchoolManagement/bin/
 CramSchoolManagement/obj/
 !.gitignore
+*.suo
