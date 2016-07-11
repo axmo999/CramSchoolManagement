@@ -224,6 +224,7 @@
     <Content Include="Areas\Students\Views\students_like_dislike\Details.cshtml" />
     <Content Include="Areas\Students\Views\students_like_dislike\Edit.cshtml" />
     <Content Include="Areas\Students\Views\students_like_dislike\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\Settings\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -242,6 +243,7 @@
     <Compile Include="Areas\Settings\Controllers\divisions_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\exams_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\gender_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Settings\Controllers\schools_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\teachers_mController.cs" />
     <Compile Include="Areas\Settings\Models\classes_m.cs" />
@@ -256,12 +258,14 @@
     <Compile Include="Areas\Students\Controllers\students_gradeController.cs" />
     <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
     <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
+    <Compile Include="Controllers\students_faceController.cs" />
     <Compile Include="Controllers\students_mController.cs" />
     <Compile Include="Areas\Students\Models\StudentsModel.cs" />
     <Compile Include="Areas\Students\Models\students_attendance.cs" />
     <Compile Include="Areas\Students\Models\students_grade.cs" />
     <Compile Include="Areas\Students\Models\students_guide.cs" />
     <Compile Include="Areas\Students\Models\students_like_dislike.cs" />
+    <Compile Include="Models\students_face.cs" />
     <Compile Include="Models\Students_mModel.cs" />
     <Compile Include="Models\students_m.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
@@ -296,7 +300,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\students_face\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

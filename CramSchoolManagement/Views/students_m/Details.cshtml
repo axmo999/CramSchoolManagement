@@ -64,7 +64,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.face)
+            @if (Model.students_face.Any(f => f.FileType == "Image"))
+            {
+                <img src="~/students_face?id=@Model.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" />
+            }
         </dd>
 
         <dt>
