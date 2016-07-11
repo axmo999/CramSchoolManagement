@@ -14,6 +14,7 @@ namespace CramSchoolManagement.Controllers
     {
         private Students_mModel db = new Students_mModel();
         private CramSchoolManagement.Areas.Settings.Models.MastersModel setdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+        private CramSchoolManagement.Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
 
         // GET: /students_m
         public ActionResult Index()
@@ -112,46 +113,49 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,face_img,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, long id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, long id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
-                try
+                var studentToUpdate = db.students_m.Find(id);
+                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id","last_name","first_name","middle_name","school_id","gender_id","birthday","postal_code","address","phone_number","hope_school","enter_school","note","create_user","create_date","update_user","update_date" }))
                 {
-                    var studentToUpdate = db.students_m.Find(id);
-
-                    if (face_img != null && face_img.ContentLength > 0 && face_img.ContentType.StartsWith("image/"))
+                    try
                     {
-                        if (studentToUpdate.students_face.Any(f => f.FileType == "Image"))
+                        if (face_img != null && face_img.ContentLength > 0 && face_img.ContentType.StartsWith("image/"))
                         {
-                            db.students_face.Remove(studentToUpdate.students_face.First(f => f.FileType == "Image"));
+                            if (studentToUpdate.students_face.Any(f => f.FileType == "Image"))
+                            {
+                                db.students_face.Remove(studentToUpdate.students_face.First(f => f.FileType == "Image"));
+                            }
+
+                            var face = new students_face
+                            {
+                                FileName = System.IO.Path.GetFileName(face_img.FileName),
+                                FileType = "Image",
+                                ContentType = face_img.ContentType
+                            };
+                            using (var reader = new System.IO.BinaryReader(face_img.InputStream))
+                            {
+                                face.Content = reader.ReadBytes(face_img.ContentLength);
+                            }
+                            studentToUpdate.students_face = new List<students_face> { face };
                         }
 
-                        var face = new students_face
-                        {
-                            FileName = System.IO.Path.GetFileName(face_img.FileName),
-                            FileType = "Image",
-                            ContentType = face_img.ContentType
-                        };
-                        using (var reader = new System.IO.BinaryReader(face_img.InputStream))
-                        {
-                            face.Content = reader.ReadBytes(face_img.ContentLength);
-                        }
-                        students_m.students_face = new List<students_face> { face };
+                        studentToUpdate.update_user = User.Identity.Name.ToString();
+                        studentToUpdate.update_date = DateTime.Now.ToString();
+                        db.Entry(studentToUpdate).State = EntityState.Modified;
+                        //db.Entry(students_m).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    catch (System.Data.Entity.Infrastructure.RetryLimitExceededException /* dex */)
+                    {
+                        //Log the error (uncomment dex variable name and add a line here to write a log.
+                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                     }
 
-                    students_m.update_user = User.Identity.Name.ToString();
-                    students_m.update_date = DateTime.Now.ToString();
-                    db.Entry(students_m).State = EntityState.Modified;
-                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                catch (System.Data.Entity.Infrastructure.RetryLimitExceededException /* dex */)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-                }
-
-                return RedirectToAction("Index");
             }
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.gender_id);
@@ -178,8 +182,17 @@ namespace CramSchoolManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
+            //生徒情報削除
             students_m students_m = db.students_m.Find(id);
             db.students_m.Remove(students_m);
+            
+            //生徒関連情報削除
+            db.students_face.RemoveRange(db.students_face.Where(x => x.students_id == id));
+            studentdb.students_attendance.RemoveRange(studentdb.students_attendance.Where(x => x.students_id == id));
+            studentdb.students_grade.RemoveRange(studentdb.students_grade.Where(x => x.students_id == id));
+            studentdb.students_guide.RemoveRange(studentdb.students_guide.Where(x => x.students_id == id));
+            studentdb.students_like_dislike.RemoveRange(studentdb.students_like_dislike.Where(x => x.students_id == id));
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
