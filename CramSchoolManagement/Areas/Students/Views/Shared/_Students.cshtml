@@ -33,34 +33,29 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        @*<li>@Html.ActionLink("トップに戻る", "Home/Index", new { area = "" })</li>*@
-                        <li>@Html.ActionLink("学校一覧", "Index", "schools_m")</li>
-                        <li>@Html.ActionLink("学校区分一覧", "Index", "divisions_m")</li>
-                        <li>@Html.ActionLink("テスト区分一覧", "Index", "exams_m")</li>
-                        <li>@Html.ActionLink("教科一覧", "Index", "classes_m")</li>
-                        <li>@Html.ActionLink("講師一覧", "Index", "teachers_m")</li>
-                        <li>@Html.ActionLink("性別一覧", "Index", "gender_m")</li>
+                        <li>@Html.ActionLink("生徒一覧", "Index", "students_m")</li>
+                        <li>@Html.ActionLink("設定", "Index", "Settings", new { area = "Settings" }, new { })</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
-                </div>
-                <div>
-                    <h2>@ViewBag.StudentName</h2>
                 </div>
             </div>
         </nav>
     </header>
 
     <div id="body">
-        @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
-            @RenderBody()
-        </section>
+        <div class="container">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
     </div>
-
     <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - CramSchoolManagement</p>
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - CramSchoolManagement</p>
+                </div>
             </div>
         </div>
     </footer>
