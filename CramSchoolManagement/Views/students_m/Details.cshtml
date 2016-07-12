@@ -23,164 +23,96 @@
     
     <hr />
 
-<div class="row">
-    <div class="col-md-12">
-        @Html.DisplayFor(model => model.postal_code)
-    </div>
-
-    <div class="col-md-12">
-        @Html.DisplayFor(model => model.address)
-    </div>
-
-    <div class="col-md-12">
-        @Html.DisplayFor(model => model.phone_number)
-    </div>
-
-    
-
-    <div>
-
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.last_name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.last_name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.first_name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.first_name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.middle_name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.middle_name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.schools_m.name)
-            </dt>
-
-            <dd>
-
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.gender_m.gender_name)
-            </dt>
-
-            <dd>
-
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.birthday)
-            </dt>
-
-            <dd>
-
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.face)
-            </dt>
-
-            <dd>
-
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.postal_code)
-            </dt>
-
-            <dd>
-                
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.address)
-            </dt>
-
-            <dd>
-                
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.phone_number)
-            </dt>
-
-            <dd>
-                
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.hope_school)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.schools_m.name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.enter_school)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.schools_m.name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.note)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.note)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.create_user)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.create_user)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.create_date)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.create_date)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.update_user)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.update_user)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.update_date)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.update_date)
-            </dd>
-
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.students_id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.postal_code)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">〒@Html.DisplayFor(model => model.postal_code)</p>
 </div>
+
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.address)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.address)</p>
+</div>
+
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.phone_number)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.phone_number)</p>
+</div>
+
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.hope_school)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.schools_m.name)</p>
+</div>
+
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.enter_school)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.schools_m.name)</p>
+</div>
+
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.note)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.note)</p>
+</div>
+
+<div class="row row-eq-height">
+    <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">好きな科目</p></div>
+
+    @foreach (var x in Model.students_like_dislike.Where(s => s.like_dislike == 1))
+    {
+        <div class="col col-xs-2 col-sm-1 col-md-1">
+            <p class="btn btn-success">
+                @x.class_id
+            </p>
+        </div>
+    }
+        <div class="col col-xs-2 col-sm-1 col-md-1"><p class="btn btn-success">理科</p></div>
+
+    </div>
+
+<div class="row row-eq-height" style="margin-top: 10px;">
+    <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">苦手な科目</p></div>
+
+    <div class="col col-xs-1 col-sm-1 col-md-1"><p class="btn btn-warning">英語</p></div>
+</div>
+
+    <hr />
+        <div>
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.create_user)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.create_user)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.create_date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.create_date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.update_user)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.update_user)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.update_date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.update_date)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("編集する", "Edit", new { id = Model.students_id }, new { @class = "btn btn-danger" }) |
+            @Html.ActionLink("一覧へ戻る", "Index", null, new { @class = "btn btn-primary" })
+        </p>
