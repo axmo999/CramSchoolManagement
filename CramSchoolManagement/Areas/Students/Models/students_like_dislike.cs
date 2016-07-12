@@ -30,5 +30,7 @@ namespace CramSchoolManagement.Areas.Students.Models
         public string update_date { get; set; }
 
         public virtual CramSchoolManagement.Models.students_m students_m { get; set; }
+
+        public virtual CramSchoolManagement.Areas.Settings.Models.classes_m classes_m { get; set; }
     }
 }

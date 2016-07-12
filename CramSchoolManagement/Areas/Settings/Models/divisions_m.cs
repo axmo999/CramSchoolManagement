@@ -12,6 +12,7 @@ namespace CramSchoolManagement.Areas.Settings.Models
         public divisions_m()
         {
             schools_m = new HashSet<schools_m>();
+            classes_m = new HashSet<classes_m>();
         }
 
         [Key]
@@ -33,5 +34,8 @@ namespace CramSchoolManagement.Areas.Settings.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<schools_m> schools_m { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<classes_m> classes_m { get; set; }
     }
 }

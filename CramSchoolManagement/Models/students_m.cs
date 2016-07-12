@@ -94,13 +94,22 @@ using System.Data.Entity.Spatial;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
-
+        
         [Display(Name = "•\Ž¦–¼")]
         public string display_name
         {
             get
             {
                 return studentName();
+            }
+        }
+
+        [Display(Name = "Šw”N")]
+        public string grade
+        {
+            get
+            {
+                return CramSchoolManagement.Commons.Utility.GradeCal(birthday);
             }
         }
 
@@ -126,6 +135,6 @@ using System.Data.Entity.Spatial;
 
         public virtual ICollection<students_face> students_face { get; set; }
 
-        //public virtual ICollection<students_like_dislike>
+        //public virtual ICollection<CramSchoolManagement.Areas.Settings.Models.age_m> age_m { get; set; }
     }
 }

@@ -17,6 +17,8 @@
         <div class="row">
             <h4 class="col-xs-6">@Html.DisplayFor(model => model.gender_m.gender_name)</h4>
             <h4 class="col-xs-6">@Html.DisplayFor(model => model.birthday)</h4>
+            <h4 class="col-xs-6">@CramSchoolManagement.Commons.Utility.AgeCal((Model.birthday))</h4>
+            <h4 class="col-xs-6">@Html.DisplayFor(model => model.grade)</h4>
         </div>
     </div>
 </div>
@@ -55,23 +57,26 @@
 
 <div class="row row-eq-height">
     <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">好きな科目</p></div>
-
-    @foreach (var x in Model.students_like_dislike.Where(s => s.like_dislike == 1))
+    @foreach (var x in Model.students_like_dislike.Where(s => s.like_dislike == CramSchoolManagement.Commons.Utility.likedislike_items["好き"]))
     {
         <div class="col col-xs-2 col-sm-1 col-md-1">
             <p class="btn btn-success">
-                @x.class_id
+                @CramSchoolManagement.Commons.Utility.GetClassName(x.class_id)
             </p>
         </div>
     }
-        <div class="col col-xs-2 col-sm-1 col-md-1"><p class="btn btn-success">理科</p></div>
-
     </div>
 
 <div class="row row-eq-height" style="margin-top: 10px;">
     <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">苦手な科目</p></div>
-
-    <div class="col col-xs-1 col-sm-1 col-md-1"><p class="btn btn-warning">英語</p></div>
+    @foreach (var x in Model.students_like_dislike.Where(s => s.like_dislike == CramSchoolManagement.Commons.Utility.likedislike_items["苦手"]))
+    {
+        <div class="col col-xs-2 col-sm-1 col-md-1">
+            <p class="btn btn-warning">
+                @CramSchoolManagement.Commons.Utility.GetClassName(x.class_id)
+            </p>
+        </div>
+    }
 </div>
 
     <hr />

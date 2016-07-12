@@ -225,6 +225,11 @@
     <Content Include="Areas\Students\Views\students_like_dislike\Edit.cshtml" />
     <Content Include="Areas\Students\Views\students_like_dislike\Index.cshtml" />
     <Content Include="Areas\Settings\Views\Settings\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\age_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\age_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\age_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\age_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\age_m\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -239,6 +244,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Settings\Controllers\age_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\classes_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\divisions_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\exams_mController.cs" />
@@ -246,6 +252,7 @@
     <Compile Include="Areas\Settings\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Settings\Controllers\schools_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\teachers_mController.cs" />
+    <Compile Include="Areas\Settings\Models\age_m.cs" />
     <Compile Include="Areas\Settings\Models\classes_m.cs" />
     <Compile Include="Areas\Settings\Models\divisions_m.cs" />
     <Compile Include="Areas\Settings\Models\gender_m.cs" />
