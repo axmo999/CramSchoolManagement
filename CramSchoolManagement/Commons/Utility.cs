@@ -86,9 +86,69 @@ namespace CramSchoolManagement.Commons
             return studentName;
         }
 
+        /// <summary>
+        /// 教科管理番号から教科名を表示します。
+        /// </summary>
+        /// <param name="class_id">教科管理番号</param>
+        /// <returns>教科名</returns>
+        public static string GetClassName(long? class_id)
+        {
+            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+            string className = masterdb.classes_m.Single(x => x.class_id == class_id).name.ToString();
+            return className;
+        }
+
+        /// <summary>
+        /// 該当日付の年度を返します
+        /// </summary>
+        /// <param name="dt">DateTime</param>
+        /// <param name="startingMonth">int? : 年度の開始月</param>
+        /// <returns>int</returns>
+        //public static int FiscalYear(this DateTime dt, int? startingMonth = null)
+        //{
+        //    return (dt.Month >= (startingMonth ?? 4)) ? dt.Year : dt.Year - 1;
+        //}
+
+        public static int AgeCal(string stringbirthDay)
+        {
+            int age;
+            DateTime birthDay = Convert.ToDateTime(stringbirthDay);
+            DateTime today = DateTime.Today;
+            age = today.Year - birthDay.Year;
+            age -= birthDay > today.AddYears(-age) ? 1 : 0;
+            return age;
+        }
+
+        public static string GradeCal(string stringbirthDay)
+        {
+            int age;
+            DateTime birthDay = Convert.ToDateTime(stringbirthDay);
+            DateTime today = DateTime.Today.AddDays(1);
+            DateTime gradeage = Convert.ToDateTime(today.Year + "-04-01");
+            age = gradeage.Year - birthDay.Year;
+            if (gradeage.Month < birthDay.Month ||
+                (gradeage.Month == birthDay.Month &&
+                gradeage.Day < birthDay.Day))
+            {
+                age--;
+            }
+            if (age < 6)
+            {
+                age = 0;
+            }
+
+            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+            var grade = masterdb.age_m.SingleOrDefault(x => x.age == age);
+            return grade.divisions_m.name + grade.grade;
+        }
+
+        /// <summary>
+        /// 好き苦手マスタ
+        /// </summary>
         public static Dictionary<string, long> likedislike_items = new Dictionary<string, long>{
                 { "好き", 1 },
                 { "苦手", 2 }
         };
+
     }
 }

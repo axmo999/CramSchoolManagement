@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.classes_m>
+﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.age_m>
 
 @{
     ViewBag.Title = "Index";
@@ -13,16 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.class_id)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.divisions_m.name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayNameFor(model => model.age)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.eng_name)
+            @Html.DisplayNameFor(model => model.grade)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.create_user)
@@ -42,16 +39,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.class_id)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.divisions_m.name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            @Html.DisplayFor(modelItem => item.age)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.eng_name)
+            @Html.DisplayFor(modelItem => item.grade)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.create_user)
@@ -66,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.update_date)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.class_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.class_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.class_id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.age_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.age_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.age_id })
         </td>
     </tr>
 }
