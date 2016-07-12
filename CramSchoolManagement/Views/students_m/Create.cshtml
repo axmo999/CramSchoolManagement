@@ -5,14 +5,13 @@
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
-<h2>Create</h2>
+<h2>新規作成</h2>
 
 @using (Html.BeginForm("Create", "students_m", null, FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>students_m</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -41,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.school_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.schools_m.name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.school_id, new { htmlAttributes = new { @class = "form-control" } })*@
@@ -127,12 +126,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="作成する" class="btn btn-danger btn-lg" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("一覧へ戻る", "Index", null, new { @class = "btn btn-primary" })
 </div>

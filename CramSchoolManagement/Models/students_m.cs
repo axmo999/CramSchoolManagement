@@ -1,10 +1,11 @@
 namespace CramSchoolManagement.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+//using CramSchoolManagement.Areas.Students.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 
     public partial class students_m
     {
@@ -46,11 +47,6 @@ namespace CramSchoolManagement.Models
         [Display(Name = "íaê∂ì˙")]
         [DataType(DataType.Date)]
         public string birthday { get; set; }
-
-        [MaxLength(2147483647)]
-        [Display(Name = "äÁé ê^")]
-        [DataType(DataType.Upload)]
-        public byte[] face { get; set; }
 
         [StringLength(2147483647)]
         [Display(Name = "óXï÷î‘çÜ")]
@@ -129,5 +125,7 @@ namespace CramSchoolManagement.Models
         }
 
         public virtual ICollection<students_face> students_face { get; set; }
+
+        //public virtual ICollection<students_like_dislike>
     }
 }
