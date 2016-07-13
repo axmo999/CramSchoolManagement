@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     public class age_m
     {
@@ -35,6 +36,22 @@
         public string update_date { get; set; }
 
         public virtual divisions_m divisions_m { get; set; }
+
+        [Display(Name = "表示名")]
+        public string display_name
+        {
+            get
+            {
+                return GetGradeDisplay();
+            }
+        }
+
+        public string GetGradeDisplay()
+        {
+            CramSchoolManagement.Areas.Settings.Models.MastersModel MasterDB = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+            string divisionName = MasterDB.divisions_m.Single(x => x.division_id == division_id).name.ToString();
+            return divisionName + grade;
+        }
 
     }
 }

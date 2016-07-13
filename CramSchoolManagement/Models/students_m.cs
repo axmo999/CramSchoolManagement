@@ -1,11 +1,11 @@
 namespace CramSchoolManagement.Models
 {
-//using CramSchoolManagement.Areas.Students.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
+using CramSchoolManagement.Commons;
 
     public partial class students_m
     {
@@ -109,7 +109,16 @@ using System.Data.Entity.Spatial;
         {
             get
             {
-                return CramSchoolManagement.Commons.Utility.GradeCal(birthday);
+                return Utility.GradeCal(Utility.AgeManCal(birthday));
+            }
+        }
+
+        [Display(Name = "4/1‚Ì–”N—î 5ÎˆÈ‰º‚Í0")]
+        public long gradeint
+        {
+            get
+            {
+                return Utility.AgeManCal(birthday);
             }
         }
 
