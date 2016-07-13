@@ -17,11 +17,24 @@ namespace CramSchoolManagement.Controllers
         private CramSchoolManagement.Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
 
         // GET: /students_m
-        public ActionResult Index()
+        public ActionResult Index(long? school_id, long? school_grade)
         {
+            var student_list = db.students_m.AsEnumerable();
+
+            if (school_id != null)
+            {
+                student_list = student_list.Where(s => s.school_id == school_id);
+            }
+            if (school_grade != null)
+            {
+                student_list = student_list.Where(s => s.gradeint == school_grade);
+            }
+
             var students_m_gender = db.students_m.Include(s => s.gender_m);
             var students_m_school = db.students_m.Include(s => s.schools_m);
-            return View(db.students_m.ToList());
+            ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name");
+            ViewBag.school_grade = new SelectList(setdb.age_m, "age", "display_name");
+            return View(student_list);
         }
 
         // GET: /students_m/Details/5

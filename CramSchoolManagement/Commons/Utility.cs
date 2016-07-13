@@ -99,16 +99,10 @@ namespace CramSchoolManagement.Commons
         }
 
         /// <summary>
-        /// 該当日付の年度を返します
+        /// 年齢を計算します。
         /// </summary>
-        /// <param name="dt">DateTime</param>
-        /// <param name="startingMonth">int? : 年度の開始月</param>
-        /// <returns>int</returns>
-        //public static int FiscalYear(this DateTime dt, int? startingMonth = null)
-        //{
-        //    return (dt.Month >= (startingMonth ?? 4)) ? dt.Year : dt.Year - 1;
-        //}
-
+        /// <param name="stringbirthDay">誕生日</param>
+        /// <returns>年齢</returns>
         public static int AgeCal(string stringbirthDay)
         {
             int age;
@@ -119,7 +113,12 @@ namespace CramSchoolManagement.Commons
             return age;
         }
 
-        public static string GradeCal(string stringbirthDay)
+        /// <summary>
+        /// 就学可能な満年齢を計算します。5歳以下は0歳
+        /// </summary>
+        /// <param name="stringbirthDay">誕生日</param>
+        /// <returns>年齢：5歳以下は0歳</returns>
+        public static int AgeManCal(string stringbirthDay)
         {
             int age;
             DateTime birthDay = Convert.ToDateTime(stringbirthDay);
@@ -137,6 +136,16 @@ namespace CramSchoolManagement.Commons
                 age = 0;
             }
 
+            return age;
+        }
+
+        /// <summary>
+        /// 就学可能満年齢より現在の学年を取得します。
+        /// </summary>
+        /// <param name="age">就学可能満年齢</param>
+        /// <returns>学年</returns>
+        public static string GradeCal(int age)
+        {
             CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
             var grade = masterdb.age_m.SingleOrDefault(x => x.age == age);
             return grade.divisions_m.name + grade.grade;
