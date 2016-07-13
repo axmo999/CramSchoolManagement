@@ -117,7 +117,8 @@ namespace CramSchoolManagement.Controllers
                 return HttpNotFound();
             }
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
-            ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.gender_id);
+            ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.school_id);
+            ViewBag.likedislikeclass_id = new SelectList(setdb.classes_m, "class_id", "name");
             return View(students_m);
         }
 
