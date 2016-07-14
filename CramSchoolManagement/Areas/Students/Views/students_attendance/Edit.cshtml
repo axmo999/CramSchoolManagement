@@ -5,14 +5,14 @@
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>@ViewBag.StudentName</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>students_attendance</h4>
+        <h4>出席編集</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.students_attendance_id)
@@ -45,12 +45,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="保存" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("出席一覧へ戻る", "Index")
 </div>

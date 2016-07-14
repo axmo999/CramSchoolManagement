@@ -95,7 +95,7 @@ using CramSchoolManagement.Commons;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
         
-        [Display(Name = "ï\é¶ñº")]
+        [Display(Name = "ê∂ìkñº")]
         public string display_name
         {
             get

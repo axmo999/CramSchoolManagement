@@ -11,6 +11,7 @@ namespace CramSchoolManagement.Areas.Settings.Models
 
     public partial class teachers_m : IUser<string>
     {
+
         [Key]
         [Display(Name = "çuétä«óùID")]
         public string Id { get; set; }
@@ -57,6 +58,36 @@ namespace CramSchoolManagement.Areas.Settings.Models
         public string update_date { get; set; }
 
         public virtual gender_m gender_m { get; set; }
+
+        [Display(Name = "çuétñº")]
+        public string display_name
+        {
+            get
+            {
+                return teacherName();
+            }
+        }
+
+        public string teacherName()
+        {
+            string teacherName = string.Empty;
+            if (last_name != null)
+            {
+                teacherName = last_name.ToString();
+            }
+
+            if (middle_name != null)
+            {
+                teacherName += " " + middle_name.ToString();
+            }
+
+            if (first_name != null)
+            {
+                teacherName += " " + first_name.ToString();
+            }
+            return teacherName;
+        }
+
     }
 
     public class ManageUserViewModel

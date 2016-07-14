@@ -22,7 +22,8 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             var students_like_dislike = db.students_like_dislike.Where(m => m.students_id == students_id).Include(s => s.students_m);
             var students_class = db.students_guide.Include(s => s.classes_m);
 
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+
             return View(students_like_dislike.ToList());
         }
 
@@ -38,7 +39,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_like_dislike);
         }
 
@@ -48,7 +49,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             ViewBag.students_id = ViewBag.students_id = students_id;
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name");
             ViewBag.like_dislike = new SelectList(CramSchoolManagement.Commons.Utility.likedislike_items, "value", "key");
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View();
         }
 
@@ -87,7 +88,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_like_dislike.class_id);
             ViewBag.like_dislike = new SelectList(CramSchoolManagement.Commons.Utility.likedislike_items, "value", "key", students_like_dislike.like_dislike);
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_like_dislike);
         }
 

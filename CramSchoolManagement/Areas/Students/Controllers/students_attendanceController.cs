@@ -19,7 +19,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         {
             var students_attendance_list = db.students_attendance.Where(students_attendance => students_attendance.students_id == students_id).Include(s => s.students_m);
 
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
 
             return View(students_attendance_list.ToList());
         }
@@ -36,7 +36,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_attendance);
         }
 
@@ -44,7 +44,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         public ActionResult Create(int? students_id)
         {
             ViewBag.students_id = students_id;
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View();
         }
 
@@ -79,7 +79,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_attendance);
         }
 
