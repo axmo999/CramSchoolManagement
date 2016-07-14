@@ -31,13 +31,13 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_guide/Details/5
-        public ActionResult Details(long? students_id, long? id)
+        public ActionResult Details(long? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_guide students_guide = db.students_guide.Find(id);
+            students_guide students_guide = db.students_guide.Find(num);
             if (students_guide == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         {
             ViewBag.students_id = students_id;
             ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", User.Identity.GetUserId());
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name");
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View();
         }
@@ -73,24 +73,24 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
 
             ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_guide.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_guide.class_id);
             return View(students_guide);
         }
 
         // GET: Students/students_guide/Edit/5
-        public ActionResult Edit(long? students_id, long? id)
+        public ActionResult Edit(long? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_guide students_guide = db.students_guide.Find(id);
+            students_guide students_guide = db.students_guide.Find(num);
             if (students_guide == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_guide.class_id);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", (object)students_guide.Id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_guide.class_id);
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_guide);
         }
@@ -111,18 +111,18 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_guide.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_guide.class_id);
             return View(students_guide);
         }
 
         // GET: Students/students_guide/Delete/5
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_guide students_guide = db.students_guide.Find(id);
+            students_guide students_guide = db.students_guide.Find(num);
             if (students_guide == null)
             {
                 return HttpNotFound();

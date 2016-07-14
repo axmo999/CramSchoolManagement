@@ -16,8 +16,8 @@ namespace CramSchoolManagement.Areas.Students
         {
             context.MapRoute(
                 "Students_id_route",
-                "Students/{students_id}/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Students/{students_id}/{controller}/{action}/{num}",
+                new { action = "Index", num = UrlParameter.Optional }
             );
 
             //context.MapRoute(

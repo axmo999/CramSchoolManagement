@@ -36,14 +36,14 @@
             @Html.DisplayFor(modelItem => item.teachers_m.display_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.classes_m.name)
+            @Html.DisplayFor(modelItem => item.classes_m.display_name)
         </td>
         <td>
             @Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))
         </td>
         <td>
-            @Html.ActionLink("編集", "Edit", new { id=item.students_guide_id }) |
-            @Html.ActionLink("削除", "Delete", new { id=item.students_guide_id })
+            @Html.ActionLink("編集", "Edit", new { num = item.students_guide_id }) |
+            @Html.ActionLink("削除", "Delete", new { num = item.students_guide_id })
         </td>
     </tr>
 }
