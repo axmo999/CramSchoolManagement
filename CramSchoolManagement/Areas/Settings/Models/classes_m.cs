@@ -5,6 +5,7 @@ namespace CramSchoolManagement.Areas.Settings.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     public partial class classes_m
     {
@@ -43,5 +44,21 @@ namespace CramSchoolManagement.Areas.Settings.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
+
+        [Display(Name = "‹³‰È–¼")]
+        public string display_name
+        {
+            get
+            {
+                return displayClassName();
+            }
+        }
+
+        private string displayClassName()
+        {
+            MastersModel MasterDB = new MastersModel();
+            string divisionName = MasterDB.divisions_m.Single(x => x.division_id == division_id).name.ToString();
+            return divisionName + " " + name;
+        }
     }
 }

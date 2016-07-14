@@ -5,20 +5,13 @@
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>@ViewBag.StudentName</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>本当に削除してもよろしいですか？</h3>
 <div>
-    <h4>students_guide</h4>
+    <h4>生徒指導削除</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.students_m.last_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.students_m.last_name)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.guide_date)
@@ -29,19 +22,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id)
+            @Html.DisplayFor(model => model.teachers_m.display_name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.class_id)
+            @Html.DisplayNameFor(model => model.classes_m.display_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.class_id)
+            @Html.DisplayFor(model => model.classes_m.display_name)
         </dd>
 
         <dt>
@@ -52,45 +45,13 @@
             @Html.DisplayFor(model => model.guide_contents)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.create_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.create_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.create_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.create_date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.update_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.update_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.update_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.update_date)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="削除" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
