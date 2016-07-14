@@ -5,22 +5,21 @@
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
-<h2>Create</h2>
+<h2>@ViewBag.StudentName</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>students_guide</h4>
+        <h4>生徒指導登録</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group" style="display: none;">
             @Html.LabelFor(model => model.students_id, "students_id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @value = ViewBag.students_id } })
-                @*@Html.DropDownList("students_id", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.students_id } })
                 @Html.ValidationMessageFor(model => model.students_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.guide_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.guide_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.guide_date, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.ToString("yyy-MM-dd") } })
                 @Html.ValidationMessageFor(model => model.guide_date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -37,7 +36,6 @@
             @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
-                @*@Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +44,6 @@
             @Html.LabelFor(model => model.class_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("class_id", null, htmlAttributes: new { @class = "form-control" })
-                @*@Html.EditorFor(model => model.class_id, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.class_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,19 +51,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.guide_contents, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.guide_contents, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.guide_contents, 5, 6, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.guide_contents, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="登録" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("生徒指導一覧へ戻る", "Index")
 </div>

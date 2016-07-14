@@ -52,7 +52,7 @@
 
 <div class="row row-eq-height">
     <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.note)</p>
-    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.note)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.Raw(Html.Encode(Model.note).Replace("\n", "<br/>"))</p>
 </div>
 
 <div class="row row-eq-height">
@@ -77,6 +77,12 @@
             </p>
         </div>
     }
+</div>
+
+<div class="row">
+    <p>
+        @Html.RouteLink("好き苦手科目を編集する", "Students_id_route", new { controller = "students_like_dislike", students_id = Model.students_id }, new { @class = "btn btn-info" })
+    </p>
 </div>
 
     <hr />

@@ -25,7 +25,8 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             var students_teacher = db.students_guide.Include(s => s.teachers_m);
             var students_class = db.students_guide.Include(s => s.classes_m);
 
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+
             return View(students_guide.ToList());
         }
 
@@ -41,7 +42,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_guide);
         }
 
@@ -49,9 +50,9 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         public ActionResult Create(int? students_id)
         {
             ViewBag.students_id = students_id;
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "UserName", User.Identity.GetUserId());
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", User.Identity.GetUserId());
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name");
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View();
         }
 
@@ -71,7 +72,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "UserName", students_guide.Id);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_guide.class_id);
             return View(students_guide);
         }
@@ -88,9 +89,9 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "UserName", students_guide.Id);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_guide.class_id);
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_guide);
         }
 
@@ -109,7 +110,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "UserName", students_guide.Id);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_guide.class_id);
             return View(students_guide);
         }

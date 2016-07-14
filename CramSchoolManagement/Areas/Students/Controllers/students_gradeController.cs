@@ -23,7 +23,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             var students_exam = db.students_grade.Include(s => s.exams_m);
             var students_class = db.students_grade.Include(s => s.classes_m);
 
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
 
             return View(students_grade_list.ToList());
         }
@@ -40,7 +40,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_grade);
         }
 
@@ -50,7 +50,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             ViewBag.students_id = students_id;
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name");
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name");
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View();
         }
 
@@ -90,7 +90,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", students_grade.exam_id);
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_grade.class_id);
-            ViewBag.StudentName = CramSchoolManagement.Commons.Utility.GetStudentName(students_id);
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_grade);
         }
 
