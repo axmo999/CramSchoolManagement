@@ -9,21 +9,21 @@ namespace CramSchoolManagement.Areas.Students.Models
     public partial class students_attendance
     {
         [Key]
-        [Display(Name = "oÈŠÇ—”Ô†")]
+        [Display(Name = "å‡ºå¸­ç®¡ç†ç•ªå·")]
         public long students_attendance_id { get; set; }
 
-        [Display(Name = "¶“kŠÇ—”Ô†")]
+        [Display(Name = "ç”Ÿå¾’ç®¡ç†ç•ªå·")]
         public long students_id { get; set; }
 
-        [Display(Name = "oÈ“ú")]
+        [Display(Name = "å‡ºå¸­æ—¥")]
         [DataType(DataType.Date)]
         public string attendance_day { get; set; }
 
-        [Display(Name = "ŠJnŠÔ")]
+        [Display(Name = "é–‹å§‹æ™‚é–“")]
         [DataType(DataType.Time)]
         public string start_time { get; set; }
 
-        [Display(Name = "I—¹ŠÔ")]
+        [Display(Name = "çµ‚äº†æ™‚é–“")]
         [DataType(DataType.Time)]
         public string end_time { get; set; }
 

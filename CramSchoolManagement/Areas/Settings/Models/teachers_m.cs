@@ -13,40 +13,40 @@ namespace CramSchoolManagement.Areas.Settings.Models
     {
 
         [Key]
-        [Display(Name = "utŠÇ—ID")]
+        [Display(Name = "è¬›å¸«ç®¡ç†ID")]
         public string Id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "ƒ†[ƒU[–¼")]
+        [Display(Name = "ãƒ¦ãƒ¼ã‚¶ãƒ¼å")]
         public string UserName { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "ƒpƒXƒ[ƒh")]
+        [Display(Name = "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰")]
         public string teachers_password { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "©")]
+        [Display(Name = "å§“")]
         public string last_name { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "–¼")]
+        [Display(Name = "å")]
         public string first_name { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "ƒ~ƒhƒ‹ƒl[ƒ€")]
+        [Display(Name = "ãƒŸãƒ‰ãƒ«ãƒãƒ¼ãƒ ")]
         public string middle_name { get; set; }
 
-        [Display(Name = "«•Ê")]
+        [Display(Name = "æ€§åˆ¥")]
         public long gender_id { get; set; }
 
         [StringLength(2147483647)]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "”õl")]
+        [Display(Name = "å‚™è€ƒ")]
         public string note { get; set; }
 
-        [Display(Name = "ŠÇ—Òƒtƒ‰ƒO")]
+        [Display(Name = "ç®¡ç†è€…ãƒ•ãƒ©ã‚°")]
         public long administrator_flag { get; set; }
 
         public string create_user { get; set; }
@@ -59,7 +59,7 @@ namespace CramSchoolManagement.Areas.Settings.Models
 
         public virtual gender_m gender_m { get; set; }
 
-        [Display(Name = "ut–¼")]
+        [Display(Name = "è¬›å¸«å")]
         public string display_name
         {
             get
@@ -94,18 +94,18 @@ namespace CramSchoolManagement.Areas.Settings.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Œ»İ‚ÌƒpƒXƒ[ƒh")]
+        [Display(Name = "ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} ‚Ì’·‚³‚ÍA{2} •¶šˆÈã‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} ã®é•·ã•ã¯ã€{2} æ–‡å­—ä»¥ä¸Šã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "V‚µ‚¢ƒpƒXƒ[ƒh")]
+        [Display(Name = "æ–°ã—ã„ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "V‚µ‚¢ƒpƒXƒ[ƒh‚ÌŠm”F“ü—Í")]
-        [Compare("NewPassword", ErrorMessage = "V‚µ‚¢ƒpƒXƒ[ƒh‚ÆŠm”F‚ÌƒpƒXƒ[ƒh‚ªˆê’v‚µ‚Ü‚¹‚ñB")]
+        [Display(Name = "æ–°ã—ã„ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®ç¢ºèªå…¥åŠ›")]
+        [Compare("NewPassword", ErrorMessage = "æ–°ã—ã„ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã¨ç¢ºèªã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒä¸€è‡´ã—ã¾ã›ã‚“ã€‚")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -168,7 +168,7 @@ namespace CramSchoolManagement.Areas.Settings.Models
 
         public void Dispose()
         {
-            //—áŠO‚Ío‚È‚¢‚æ‚¤‚ÉNotImplementedException‚ÍÁ‚µ‚Ä‚¨‚­
+            //ä¾‹å¤–ã¯å‡ºãªã„ã‚ˆã†ã«NotImplementedExceptionã¯æ¶ˆã—ã¦ãŠã
         }
 
         public Task<string> GetPasswordHashAsync(teachers_m user)

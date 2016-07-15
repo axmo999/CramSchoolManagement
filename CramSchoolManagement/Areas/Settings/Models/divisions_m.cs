@@ -16,12 +16,12 @@ namespace CramSchoolManagement.Areas.Settings.Models
         }
 
         [Key]
-        [Display(Name = "ŠwZ‹æ•ªŠÇ—”Ô†")]
+        [Display(Name = "å­¦æ ¡åŒºåˆ†ç®¡ç†ç•ªå·")]
         public long division_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "ŠwZ‹æ•ª–¼")]
+        [Display(Name = "å­¦æ ¡åŒºåˆ†å")]
         public string name { get; set; }
 
         public string create_user { get; set; }

@@ -15,12 +15,12 @@ namespace CramSchoolManagement.Areas.Settings.Models
         }
 
         [Key]
-        [Display(Name = "ƒeƒXƒg‹æ•ªŠÇ—”Ô†")]
+        [Display(Name = "ãƒ†ã‚¹ãƒˆåŒºåˆ†ç®¡ç†ç•ªå·")]
         public long exam_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "ƒeƒXƒg‹æ•ª–¼")]
+        [Display(Name = "ãƒ†ã‚¹ãƒˆåŒºåˆ†å")]
         public string name { get; set; }
 
         public string create_user { get; set; }

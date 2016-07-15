@@ -19,56 +19,56 @@ using CramSchoolManagement.Commons;
         }
 
         [Key]
-        [Display(Name = "¶“kŠÇ—”Ô†")]
+        [Display(Name = "ç”Ÿå¾’ç®¡ç†ç•ªå·")]
         public long students_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "©")]
+        [Display(Name = "å§“")]
         public string last_name { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "–¼")]
+        [Display(Name = "å")]
         public string first_name { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "ƒ~ƒhƒ‹ƒl[ƒ€")]
+        [Display(Name = "ãƒŸãƒ‰ãƒ«ãƒãƒ¼ãƒ ")]
         public string middle_name { get; set; }
 
-        [Display(Name = "ŠwZŠÇ—”Ô†")]
+        [Display(Name = "å­¦æ ¡ç®¡ç†ç•ªå·")]
         public long school_id { get; set; }
 
-        [Display(Name = "«•Ê")]
+        [Display(Name = "æ€§åˆ¥")]
         public long gender_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "’a¶“ú")]
+        [Display(Name = "èª•ç”Ÿæ—¥")]
         [DataType(DataType.Date)]
         public string birthday { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "—X•Ö”Ô†")]
+        [Display(Name = "éƒµä¾¿ç•ªå·")]
         public string postal_code { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "ZŠ")]
+        [Display(Name = "ä½æ‰€")]
         public string address { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "“d˜b”Ô†")]
+        [Display(Name = "é›»è©±ç•ªå·")]
         public string phone_number { get; set; }
 
-        [Display(Name = "Šó–]Z")]
+        [Display(Name = "å¸Œæœ›æ ¡")]
         public long hope_school { get; set; }
 
-        [Display(Name = "“üŠwZ")]
+        [Display(Name = "å…¥å­¦æ ¡")]
         public long enter_school { get; set; }
 
         [StringLength(2147483647)]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "”õl")]
+        [Display(Name = "å‚™è€ƒ")]
         public string note { get; set; }
 
         public string create_user { get; set; }
@@ -95,7 +95,7 @@ using CramSchoolManagement.Commons;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
         
-        [Display(Name = "¶“k–¼")]
+        [Display(Name = "ç”Ÿå¾’å")]
         public string display_name
         {
             get
@@ -104,7 +104,7 @@ using CramSchoolManagement.Commons;
             }
         }
 
-        [Display(Name = "Šw”N")]
+        [Display(Name = "å­¦å¹´")]
         public string grade
         {
             get
@@ -113,7 +113,7 @@ using CramSchoolManagement.Commons;
             }
         }
 
-        [Display(Name = "4/1‚Ì–”N—î 5ÎˆÈ‰º‚Í0")]
+        [Display(Name = "4/1æ™‚ã®æº€å¹´é½¢ 5æ­³ä»¥ä¸‹ã¯0")]
         public long gradeint
         {
             get

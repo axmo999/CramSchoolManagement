@@ -9,23 +9,23 @@ namespace CramSchoolManagement.Areas.Students.Models
     public partial class students_grade
     {
         [Key]
-        [Display(Name = "¬ÑŠÇ—”Ô†")]
+        [Display(Name = "æˆç¸¾ç®¡ç†ç•ªå·")]
         public long students_grade_id { get; set; }
 
-        [Display(Name = "¶“kŠÇ—”Ô†")]
+        [Display(Name = "ç”Ÿå¾’ç®¡ç†ç•ªå·")]
         public long students_id { get; set; }
 
-        [Display(Name = "Œ±“ú")]
+        [Display(Name = "è©¦é¨“æ—¥")]
         [DataType(DataType.Date)]
         public string exam_date { get; set; }
 
-        [Display(Name = "Œ±‹æ•ª")]
+        [Display(Name = "è©¦é¨“åŒºåˆ†")]
         public long exam_id { get; set; }
 
-        [Display(Name = "‹³‰È”Ô†")]
+        [Display(Name = "æ•™ç§‘ç•ªå·")]
         public long class_id { get; set; }
 
-        [Display(Name = "Œ±“_”")]
+        [Display(Name = "è©¦é¨“ç‚¹æ•°")]
         public long exam_scores { get; set; }
 
         public string create_user { get; set; }

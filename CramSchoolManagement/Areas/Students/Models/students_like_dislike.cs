@@ -9,16 +9,16 @@ namespace CramSchoolManagement.Areas.Students.Models
     public partial class students_like_dislike
     {
         [Key]
-        [Display(Name = "D‚«Œ™‚¢ŠÇ—”Ô†")]
+        [Display(Name = "å¥½ãå«Œã„ç®¡ç†ç•ªå·")]
         public long students_like_dislike_id { get; set; }
 
-        [Display(Name = "¶“kŠÇ—”Ô†")]
+        [Display(Name = "ç”Ÿå¾’ç®¡ç†ç•ªå·")]
         public long students_id { get; set; }
 
-        [Display(Name = "‹³‰ÈŠÇ—”Ô†")]
+        [Display(Name = "æ•™ç§‘ç®¡ç†ç•ªå·")]
         public long class_id { get; set; }
 
-        [Display(Name = "D‚«or‹êè")]
+        [Display(Name = "å¥½ãorè‹¦æ‰‹")]
         public long like_dislike { get; set; }
 
         public string create_user { get; set; }
@@ -47,11 +47,11 @@ namespace CramSchoolManagement.Areas.Students.Models
 
             if (like_dislike == 1)
             {
-                likedislike = "D‚«";
+                likedislike = "å¥½ã";
             }
             else
             {
-                likedislike = "‹êè";
+                likedislike = "è‹¦æ‰‹";
             }
             
             return likedislike;

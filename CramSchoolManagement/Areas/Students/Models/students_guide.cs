@@ -9,26 +9,26 @@ namespace CramSchoolManagement.Areas.Students.Models
     public partial class students_guide
     {
         [Key]
-        [Display(Name = "¬ÑŠÇ—”Ô†")]
+        [Display(Name = "æˆç¸¾ç®¡ç†ç•ªå·")]
         public long students_guide_id { get; set; }
 
-        [Display(Name = "¶“kŠÇ—”Ô†")]
+        [Display(Name = "ç”Ÿå¾’ç®¡ç†ç•ªå·")]
         public long students_id { get; set; }
 
-        [Display(Name = "¶“kw“±“ú")]
+        [Display(Name = "ç”Ÿå¾’æŒ‡å°æ—¥")]
         [DataType(DataType.Date)]
         public string guide_date { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "utŠÇ—”Ô†")]
+        [Display(Name = "è¬›å¸«ç®¡ç†ç•ªå·")]
         public string Id { get; set; }
 
-        [Display(Name = "‹³‰ÈŠÇ—”Ô†")]
+        [Display(Name = "æ•™ç§‘ç®¡ç†ç•ªå·")]
         public long class_id { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "w“±“à—e")]
+        [Display(Name = "æŒ‡å°å†…å®¹")]
         public string guide_contents { get; set; }
 
         public string create_user { get; set; }

@@ -9,26 +9,26 @@ namespace CramSchoolManagement.Areas.Settings.Models
     public partial class schools_m
     {
         [Key]
-        [Display(Name = "ŠwZŠÇ—”Ô†")]
+        [Display(Name = "å­¦æ ¡ç®¡ç†ç•ªå·")]
         public long school_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "ŠwZ–¼")]
+        [Display(Name = "å­¦æ ¡å")]
         public string name { get; set; }
 
         [Required]
-        [Display(Name = "ŠwZ‹æ•ª")]
+        [Display(Name = "å­¦æ ¡åŒºåˆ†")]
         public long? division_id { get; set; }
 
-        [Display(Name = "—X•Ö”Ô†")]
+        [Display(Name = "éƒµä¾¿ç•ªå·")]
         public string postal_code { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "ZŠ")]
+        [Display(Name = "ä½æ‰€")]
         public string address { get; set; }
 
-        [Display(Name = "˜A—æ")]
+        [Display(Name = "é€£çµ¡å…ˆ")]
         public string phone_number { get; set; }
 
         public string create_user { get; set; }

@@ -16,20 +16,20 @@ namespace CramSchoolManagement.Areas.Settings.Models
         }
 
         [Key]
-        [Display(Name = "‹³‰ÈŠÇ—”Ô†")]
+        [Display(Name = "æ•™ç§‘ç®¡ç†ç•ªå·")]
         public long class_id { get; set; }
 
         [Required]
-        [Display(Name = "ŠwZ‹æ•ªŠÇ—”Ô†")]
+        [Display(Name = "å­¦æ ¡åŒºåˆ†ç®¡ç†ç•ªå·")]
         public long division_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "‹³‰È–¼")]
+        [Display(Name = "æ•™ç§‘å")]
         public string name { get; set; }
 
         [StringLength(2147483647)]
-        [Display(Name = "‹³‰È‰pŒê–¼")]
+        [Display(Name = "æ•™ç§‘è‹±èªå")]
         public string eng_name { get; set; }
 
         public string create_user { get; set; }
@@ -45,7 +45,7 @@ namespace CramSchoolManagement.Areas.Settings.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
 
-        [Display(Name = "‹³‰È–¼")]
+        [Display(Name = "æ•™ç§‘å")]
         public string display_name
         {
             get

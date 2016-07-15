@@ -15,12 +15,12 @@ namespace CramSchoolManagement.Areas.Settings.Models
         }
 
         [Key]
-        [Display(Name = "«•ÊŠÇ—”Ô†")]
+        [Display(Name = "æ€§åˆ¥ç®¡ç†ç•ªå·")]
         public long gender_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
-        [Display(Name = "«•Ê–¼")]
+        [Display(Name = "æ€§åˆ¥å")]
         public string gender_name { get; set; }
 
         public string create_user { get; set; }
