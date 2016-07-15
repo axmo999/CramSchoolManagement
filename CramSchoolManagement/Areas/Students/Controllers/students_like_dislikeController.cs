@@ -28,13 +28,13 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_like_dislike/Details/5
-        public ActionResult Details(long? students_id, long? id)
+        public ActionResult Details(long? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_like_dislike students_like_dislike = db.students_like_dislike.Find(id);
+            students_like_dislike students_like_dislike = db.students_like_dislike.Find(num);
             if (students_like_dislike == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         public ActionResult Create(int? students_id)
         {
             ViewBag.students_id = ViewBag.students_id = students_id;
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name");
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
             ViewBag.like_dislike = new SelectList(CramSchoolManagement.Commons.Utility.likedislike_items, "value", "key");
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View();
@@ -69,24 +69,24 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_like_dislike.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_like_dislike.class_id);
             ViewBag.like_dislike = new SelectList(CramSchoolManagement.Commons.Utility.likedislike_items, "value", "key", students_like_dislike.like_dislike);
             return View(students_like_dislike);
         }
 
         // GET: Students/students_like_dislike/Edit/5
-        public ActionResult Edit(int? students_id, long? id)
+        public ActionResult Edit(int? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_like_dislike students_like_dislike = db.students_like_dislike.Find(id);
+            students_like_dislike students_like_dislike = db.students_like_dislike.Find(num);
             if (students_like_dislike == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_like_dislike.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_like_dislike.class_id);
             ViewBag.like_dislike = new SelectList(CramSchoolManagement.Commons.Utility.likedislike_items, "value", "key", students_like_dislike.like_dislike);
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_like_dislike);
@@ -107,19 +107,19 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_like_dislike.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_like_dislike.class_id);
             ViewBag.like_dislike = new SelectList(CramSchoolManagement.Commons.Utility.likedislike_items, "value", "key", students_like_dislike.like_dislike);
             return View(students_like_dislike);
         }
 
         // GET: Students/students_like_dislike/Delete/5
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_like_dislike students_like_dislike = db.students_like_dislike.Find(id);
+            students_like_dislike students_like_dislike = db.students_like_dislike.Find(num);
             if (students_like_dislike == null)
             {
                 return HttpNotFound();
@@ -130,9 +130,9 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // POST: Students/students_like_dislike/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(long num)
         {
-            students_like_dislike students_like_dislike = db.students_like_dislike.Find(id);
+            students_like_dislike students_like_dislike = db.students_like_dislike.Find(num);
             db.students_like_dislike.Remove(students_like_dislike);
             db.SaveChanges();
             return RedirectToAction("Index");

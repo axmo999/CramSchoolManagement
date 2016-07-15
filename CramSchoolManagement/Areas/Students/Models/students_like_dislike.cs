@@ -32,5 +32,30 @@ namespace CramSchoolManagement.Areas.Students.Models
         public virtual CramSchoolManagement.Models.students_m students_m { get; set; }
 
         public virtual CramSchoolManagement.Areas.Settings.Models.classes_m classes_m { get; set; }
+
+        public string display_like_dislike
+        {
+            get
+            {
+                return searchlikedislike();
+            }
+        }
+
+        private string searchlikedislike()
+        {
+            string likedislike = string.Empty;
+
+            if (like_dislike == 1)
+            {
+                likedislike = "D‚«";
+            }
+            else
+            {
+                likedislike = "‹êè";
+            }
+            
+            return likedislike;
+
+        }
     }
 }

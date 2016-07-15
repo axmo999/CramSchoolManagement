@@ -59,8 +59,8 @@
     <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">好きな科目</p></div>
     @foreach (var x in Model.students_like_dislike.Where(s => s.like_dislike == CramSchoolManagement.Commons.Utility.likedislike_items["好き"]))
     {
-        <div class="col col-xs-2 col-sm-1 col-md-1">
-            <p class="btn btn-success">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+            <p class="btn btn-success center-block">
                 @CramSchoolManagement.Commons.Utility.GetClassName(x.class_id)
             </p>
         </div>
@@ -71,18 +71,20 @@
     <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">苦手な科目</p></div>
     @foreach (var x in Model.students_like_dislike.Where(s => s.like_dislike == CramSchoolManagement.Commons.Utility.likedislike_items["苦手"]))
     {
-        <div class="col col-xs-2 col-sm-1 col-md-1">
-            <p class="btn btn-warning">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+            <p class="btn btn-warning center-block">
                 @CramSchoolManagement.Commons.Utility.GetClassName(x.class_id)
             </p>
         </div>
     }
 </div>
 
-<div class="row">
-    <p>
-        @Html.RouteLink("好き苦手科目を編集する", "Students_id_route", new { controller = "students_like_dislike", students_id = Model.students_id }, new { @class = "btn btn-info" })
-    </p>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-xs-12 col-sm-12 col-md-2">
+        <p>
+            @Html.RouteLink("好き苦手科目を編集する", "Students_id_route", new { controller = "students_like_dislike", students_id = Model.students_id }, new { @class = "btn btn-info" })
+        </p>
+    </div>
 </div>
 
     <hr />

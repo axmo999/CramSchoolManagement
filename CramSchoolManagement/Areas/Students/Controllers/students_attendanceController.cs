@@ -25,13 +25,13 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_attendance/Details/5
-        public ActionResult Details(int? students_id, long? id)
+        public ActionResult Details(int? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_attendance students_attendance = db.students_attendance.Find(id);
+            students_attendance students_attendance = db.students_attendance.Find(num);
             if (students_attendance == null)
             {
                 return HttpNotFound();
@@ -68,13 +68,13 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_attendance/Edit/5
-        public ActionResult Edit(long? students_id, long? id)
+        public ActionResult Edit(long? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_attendance students_attendance = db.students_attendance.Find(id);
+            students_attendance students_attendance = db.students_attendance.Find(num);
             if (students_attendance == null)
             {
                 return HttpNotFound();
@@ -102,13 +102,13 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_attendance/Delete/5
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_attendance students_attendance = db.students_attendance.Find(id);
+            students_attendance students_attendance = db.students_attendance.Find(num);
             if (students_attendance == null)
             {
                 return HttpNotFound();
@@ -119,9 +119,9 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // POST: Students/students_attendance/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(long num)
         {
-            students_attendance students_attendance = db.students_attendance.Find(id);
+            students_attendance students_attendance = db.students_attendance.Find(num);
             db.students_attendance.Remove(students_attendance);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -63,28 +63,28 @@ namespace CramSchoolManagement.Commons
             return displayName;
         }
 
-        internal static dynamic GetStudentName(long? students_id)
-        {
-            CramSchoolManagement.Models.Students_mModel studentdb = new CramSchoolManagement.Models.Students_mModel();
-            var student_person = studentdb.students_m.Single(students_m => students_m.students_id == students_id);
-            string studentName = string.Empty;
-            if (student_person.last_name != null)
-            {
-                studentName = student_person.last_name.ToString();
-            }
+        //internal static dynamic GetStudentName(long? students_id)
+        //{
+        //    CramSchoolManagement.Models.Students_mModel studentdb = new CramSchoolManagement.Models.Students_mModel();
+        //    var student_person = studentdb.students_m.Single(students_m => students_m.students_id == students_id);
+        //    string studentName = string.Empty;
+        //    if (student_person.last_name != null)
+        //    {
+        //        studentName = student_person.last_name.ToString();
+        //    }
 
-            if (student_person.middle_name != null)
-            {
-                studentName += " " + student_person.middle_name.ToString();
-            }
+        //    if (student_person.middle_name != null)
+        //    {
+        //        studentName += " " + student_person.middle_name.ToString();
+        //    }
 
-            if (student_person.first_name != null)
-            {
-                studentName += " " + student_person.first_name.ToString();
-            }
+        //    if (student_person.first_name != null)
+        //    {
+        //        studentName += " " + student_person.first_name.ToString();
+        //    }
 
-            return studentName;
-        }
+        //    return studentName;
+        //}
 
         /// <summary>
         /// 教科管理番号から教科名を表示します。
@@ -94,8 +94,15 @@ namespace CramSchoolManagement.Commons
         public static string GetClassName(long? class_id)
         {
             CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
-            string className = masterdb.classes_m.Single(x => x.class_id == class_id).name.ToString();
+            string className = masterdb.classes_m.Single(x => x.class_id == class_id).display_name.ToString();
             return className;
+        }
+
+        public static string GetExamName(long exam_id)
+        {
+            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+            string examname = masterdb.exams_m.Single(x => x.exam_id == exam_id).name.ToString(); ;
+            return examname;
         }
 
         /// <summary>

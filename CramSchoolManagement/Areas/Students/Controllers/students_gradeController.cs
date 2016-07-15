@@ -19,7 +19,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // GET: Students/students_grade
         public ActionResult Index(long? students_id)
         {
-            var students_grade_list = db.students_grade.Where(students_grade => students_grade.students_id == students_id).Include(s => s.students_m);
+            var students_grade_list = db.students_grade.Where(s => s.students_id == students_id).Include(s => s.students_m);
             var students_exam = db.students_grade.Include(s => s.exams_m);
             var students_class = db.students_grade.Include(s => s.classes_m);
 
@@ -29,13 +29,13 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_grade/Details/5
-        public ActionResult Details(long? students_id, long? id)
+        public ActionResult Details(long? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_grade students_grade = db.students_grade.Find(id);
+            students_grade students_grade = db.students_grade.Find(num);
             if (students_grade == null)
             {
                 return HttpNotFound();
@@ -49,7 +49,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         {
             ViewBag.students_id = students_id;
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name");
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name");
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View();
         }
@@ -71,25 +71,25 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
 
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", students_grade.exam_id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_grade.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
             return View(students_grade);
         }
 
         // GET: Students/students_grade/Edit/5
-        public ActionResult Edit(long? students_id, long? id)
+        public ActionResult Edit(long? students_id, long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_grade students_grade = db.students_grade.Find(id);
+            students_grade students_grade = db.students_grade.Find(num);
             if (students_grade == null)
             {
                 return HttpNotFound();
             }
             
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", students_grade.exam_id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_grade.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_grade);
         }
@@ -111,18 +111,18 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
             
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", students_grade.exam_id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "name", students_grade.class_id);
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
             return View(students_grade);
         }
 
         // GET: Students/students_grade/Delete/5
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(long? num)
         {
-            if (id == null)
+            if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_grade students_grade = db.students_grade.Find(id);
+            students_grade students_grade = db.students_grade.Find(num);
             if (students_grade == null)
             {
                 return HttpNotFound();
@@ -133,9 +133,9 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // POST: Students/students_grade/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(long num)
         {
-            students_grade students_grade = db.students_grade.Find(id);
+            students_grade students_grade = db.students_grade.Find(num);
             db.students_grade.Remove(students_grade);
             db.SaveChanges();
             return RedirectToAction("Index");
