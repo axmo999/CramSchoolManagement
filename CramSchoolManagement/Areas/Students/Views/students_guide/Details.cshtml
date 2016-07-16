@@ -11,13 +11,6 @@
     <h4>@ViewBag.Title</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.students_m.last_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.students_m.last_name)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.guide_date)
@@ -28,19 +21,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id)
+            @Html.DisplayFor(model => model.teachers_m.display_name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.class_id)
+            @Html.DisplayNameFor(model => model.classes_m.display_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.class_id)
+            @Html.DisplayFor(model => model.classes_m.display_name)
         </dd>
 
         <dt>
@@ -51,41 +44,9 @@
             @Html.DisplayFor(model => model.guide_contents)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.create_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.create_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.create_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.create_date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.update_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.update_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.update_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.update_date)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "保存", new { num = Model.students_guide_id }) |
+    @Html.ActionLink("編集", "Edit", new { num = Model.students_guide_id }) |
     @Html.ActionLink("生徒指導一覧へ戻る", "Index")
 </p>

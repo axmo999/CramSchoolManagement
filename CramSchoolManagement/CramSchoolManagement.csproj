@@ -275,6 +275,7 @@
     <Compile Include="Areas\Students\Models\students_grade.cs" />
     <Compile Include="Areas\Students\Models\students_guide.cs" />
     <Compile Include="Areas\Students\Models\students_like_dislike.cs" />
+    <Compile Include="Models\DbInitializer.cs" />
     <Compile Include="Models\students_face.cs" />
     <Compile Include="Models\Students_mModel.cs" />
     <Compile Include="Models\students_m.cs" />

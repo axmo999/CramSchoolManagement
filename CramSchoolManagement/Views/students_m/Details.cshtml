@@ -5,19 +5,19 @@
     Layout = "~/Views/Shared/_Honoka.cshtml";
 }
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-6">
         @if (Model.students_face.Any(f => f.FileType == "Image"))
         {
             <img src="~/students_face?id=@Model.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" class="img-rounded img-responsive"/>
         }
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
         <h2>@Html.DisplayFor(model => model.display_name)</h2>
         <h3>@Html.DisplayFor(model => model.schools_m.name)</h3>
         <div class="row">
             <h4 class="col-xs-6">性別：@Html.DisplayFor(model => model.gender_m.gender_name)</h4>
             <h4 class="col-xs-6">誕生日：@DateTime.Parse(Model.birthday).ToString("yyyy年MM月dd日")</h4>
-            <h4 class="col-xs-6">年齢：@CramSchoolManagement.Commons.Utility.AgeCal((Model.birthday))</h4>
+            <h4 class="col-xs-6">年齢：@CramSchoolManagement.Commons.Utility.AgeCal((Model.birthday)) 歳</h4>
             <h4 class="col-xs-6">学年：@Html.DisplayFor(model => model.grade)</h4>
         </div>
     </div>

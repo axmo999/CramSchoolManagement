@@ -8,20 +8,20 @@
 @if(info != null)
 {
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             @if (info.students_face.Any(f => f.FileType == "Image"))
             {
-                <img src="~/students_face?id=@info.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" />
+                <img src="~/students_face?id=@info.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" class="img-rounded img-responsive" />
             }
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <h2>@Html.DisplayFor(model => info.display_name)</h2>
             <h3>@Html.DisplayFor(model => info.schools_m.name)</h3>
             <div class="row">
-                <h4 class="col-xs-6">@Html.DisplayFor(model => info.gender_m.gender_name)</h4>
-                <h4 class="col-xs-6">@Html.DisplayFor(model => info.birthday)</h4>
-                <h4 class="col-xs-6">@CramSchoolManagement.Commons.Utility.AgeCal((info.birthday))</h4>
-                <h4 class="col-xs-6">@Html.DisplayFor(model => info.grade)</h4>
+                <h4 class="col-xs-6">性別：@Html.DisplayFor(model => info.gender_m.gender_name)</h4>
+                <h4 class="col-xs-6">誕生日：@DateTime.Parse(info.birthday).ToString("yyyy年MM月dd日")</h4>
+                <h4 class="col-xs-6">年齢：@CramSchoolManagement.Commons.Utility.AgeCal((info.birthday)) 歳</h4>
+                <h4 class="col-xs-6">学年：@Html.DisplayFor(model => info.grade)</h4>
             </div>
         </div>
     </div>
