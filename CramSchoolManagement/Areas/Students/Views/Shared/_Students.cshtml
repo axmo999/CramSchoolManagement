@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8" />
@@ -46,6 +46,7 @@
         <div class="container">
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
+                @Html.Partial("_StudentHeader")
                 @RenderBody()
             </section>
         </div>

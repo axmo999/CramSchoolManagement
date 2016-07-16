@@ -1,20 +1,17 @@
-@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.classes_m>
+﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.classes_m>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "教科一覧";
     Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("教科新規作成", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.class_id)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.divisions_m.name)
         </th>
@@ -24,26 +21,11 @@
         <th>
             @Html.DisplayNameFor(model => model.eng_name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_date)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.class_id)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.divisions_m.name)
         </td>
@@ -54,21 +36,8 @@
             @Html.DisplayFor(modelItem => item.eng_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.create_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.create_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.class_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.class_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.class_id })
+            @Html.ActionLink("編集", "Edit", new { id=item.class_id }) |
+            @Html.ActionLink("削除", "Delete", new { id=item.class_id })
         </td>
     </tr>
 }

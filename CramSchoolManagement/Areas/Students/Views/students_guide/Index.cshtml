@@ -1,11 +1,11 @@
 @model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_guide>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "生徒指導一覧";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
-<h2>@ViewBag.StudentName</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("新規指導登録", "Create")

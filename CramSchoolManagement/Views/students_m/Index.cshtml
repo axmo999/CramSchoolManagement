@@ -11,51 +11,58 @@
     @Html.ActionLink("生徒新規登録", "Create")
 </p>
 
-@using (Html.BeginForm("Index", "students_m", null, FormMethod.Get, new { @class = "form-inline" }))
+@using (Html.BeginForm("Index", "students_m", null, FormMethod.Get, new { @class = "form-inline form-group" }))
 {
-    @Html.Label("school_id", " 学校名：", new { @class = "control-label col-md-3" })
-    @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control col-md-2" })
-    @Html.Label("school_grade", " 学年：", new { @class = "control-label col-md-2" })
-    @Html.DropDownList("school_grade", null, htmlAttributes: new { @class = "form-control col-md-3" })
-    <input type="submit" value="検索" class="btn btn-info col-md-2" />
+    <div class="form-group">
+        @Html.Label("school_id", " 学校名：", new { @class = "control-label" })
+        @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("school_grade", " 学年：", new { @class = "control-label" })
+        @Html.DropDownList("school_grade", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="検索" class="btn btn-info" />
+    </div>
+
 }
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.display_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.schools_m.name)
-            </th>
-            <th>@Html.DisplayNameFor(model => model.grade)</th>
-            <th>情報選択</th>
-            <th>生徒編集</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.display_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.schools_m.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.grade)
-                </td>
-                <td>
-                    @Html.RouteLink("出席", "Students_id_route", new { controller = "students_attendance", students_id = item.students_id }) |
-                    @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }) |
-                    @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id })
-                </td>
-                <td>
-                    @Html.ActionLink("詳細", "Details", new { id = item.students_id }) |
-                    @Html.ActionLink("編集", "Edit", new { id = item.students_id }) |
-                    @Html.ActionLink("削除", "Delete", new { id = item.students_id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.display_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.schools_m.name)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.grade)</th>
+                <th>情報選択</th>
+                <th>生徒編集</th>
             </tr>
+
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.display_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schools_m.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.grade)
+                    </td>
+                    <td>
+                        @Html.RouteLink("出席", "Students_id_route", new { controller = "students_attendance", students_id = item.students_id }) |
+                        @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }) |
+                        @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id })
+                    </td>
+                    <td>
+                        @Html.ActionLink("詳細", "Details", new { id = item.students_id }) |
+                        @Html.ActionLink("編集", "Edit", new { id = item.students_id }) |
+                        @Html.ActionLink("削除", "Delete", new { id = item.students_id })
+                    </td>
+                </tr>
         }
 
-    </table>
+        </table>

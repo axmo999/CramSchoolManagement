@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+    Layout = "~/Views/Shared/_Honoka.cshtml";
 }
 <div class="row">
     <div class="col-sm-4">
@@ -15,10 +15,10 @@
         <h2>@Html.DisplayFor(model => model.display_name)</h2>
         <h3>@Html.DisplayFor(model => model.schools_m.name)</h3>
         <div class="row">
-            <h4 class="col-xs-6">@Html.DisplayFor(model => model.gender_m.gender_name)</h4>
-            <h4 class="col-xs-6">@Html.DisplayFor(model => model.birthday)</h4>
-            <h4 class="col-xs-6">@CramSchoolManagement.Commons.Utility.AgeCal((Model.birthday))</h4>
-            <h4 class="col-xs-6">@Html.DisplayFor(model => model.grade)</h4>
+            <h4 class="col-xs-6">性別：@Html.DisplayFor(model => model.gender_m.gender_name)</h4>
+            <h4 class="col-xs-6">誕生日：@DateTime.Parse(Model.birthday).ToString("yyyy年MM月dd日")</h4>
+            <h4 class="col-xs-6">年齢：@CramSchoolManagement.Commons.Utility.AgeCal((Model.birthday))</h4>
+            <h4 class="col-xs-6">学年：@Html.DisplayFor(model => model.grade)</h4>
         </div>
     </div>
 </div>
@@ -82,13 +82,13 @@
 <div class="row" style="margin-top: 20px;">
     <div class="col-xs-12 col-sm-12 col-md-2">
         <p>
-            @Html.RouteLink("好き苦手科目を編集する", "Students_id_route", new { controller = "students_like_dislike", students_id = Model.students_id }, new { @class = "btn btn-info" })
+            @Html.RouteLink("好き苦手科目を編集する", "Students_id_route", new { controller = "students_like_dislike", students_id = Model.students_id }, new { @class = "btn" })
         </p>
     </div>
 </div>
 
     <hr />
-        <div>
+        @*<div>
             <dl class="dl-horizontal">
 
                 <dt>
@@ -124,7 +124,7 @@
                 </dd>
 
             </dl>
-        </div>
+        </div>*@
         <p>
             @Html.ActionLink("編集する", "Edit", new { id = Model.students_id }, new { @class = "btn btn-danger" }) |
             @Html.ActionLink("一覧へ戻る", "Index", null, new { @class = "btn btn-primary" })

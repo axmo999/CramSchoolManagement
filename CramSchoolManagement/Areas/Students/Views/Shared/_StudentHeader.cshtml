@@ -1,0 +1,28 @@
+﻿@using CramSchoolManagement.Models;
+
+@{
+    Students_mModel MasterDB = new Students_mModel();
+    long student_id = Convert.ToInt64(this.ViewContext.RouteData.Values["students_id"]);
+    var info = MasterDB.students_m.SingleOrDefault(s => s.students_id == student_id);
+}
+@if(info != null)
+{
+    <div class="row">
+        <div class="col-sm-4">
+            @if (info.students_face.Any(f => f.FileType == "Image"))
+            {
+                <img src="~/students_face?id=@info.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" />
+            }
+        </div>
+        <div class="col-sm-8">
+            <h2>@Html.DisplayFor(model => info.display_name)</h2>
+            <h3>@Html.DisplayFor(model => info.schools_m.name)</h3>
+            <div class="row">
+                <h4 class="col-xs-6">@Html.DisplayFor(model => info.gender_m.gender_name)</h4>
+                <h4 class="col-xs-6">@Html.DisplayFor(model => info.birthday)</h4>
+                <h4 class="col-xs-6">@CramSchoolManagement.Commons.Utility.AgeCal((info.birthday))</h4>
+                <h4 class="col-xs-6">@Html.DisplayFor(model => info.grade)</h4>
+            </div>
+        </div>
+    </div>
+}

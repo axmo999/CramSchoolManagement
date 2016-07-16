@@ -1,18 +1,17 @@
-@model CramSchoolManagement.Areas.Settings.Models.exams_m
+﻿@model CramSchoolManagement.Areas.Settings.Models.exams_m
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "テスト区分新規作成";
     Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
 }
 
-<h2>Create</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>exams_m</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -26,12 +25,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="作成" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("テスト区分一覧に戻る", "Index")
 </div>

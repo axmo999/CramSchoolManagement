@@ -230,6 +230,8 @@
     <Content Include="Areas\Settings\Views\age_m\Details.cshtml" />
     <Content Include="Areas\Settings\Views\age_m\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\age_m\Index.cshtml" />
+    <Content Include="Areas\Students\Views\Shared\_StudentHeader.cshtml" />
+    <Content Include="Areas\Students\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -265,6 +267,7 @@
     <Compile Include="Areas\Students\Controllers\students_gradeController.cs" />
     <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
     <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
+    <Compile Include="Controllers\StudentsInfoController.cs" />
     <Compile Include="Controllers\students_faceController.cs" />
     <Compile Include="Controllers\students_mController.cs" />
     <Compile Include="Areas\Students\Models\StudentsModel.cs" />
@@ -300,6 +303,7 @@
     <Content Include="Views\Login\Manage.cshtml" />
     <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -308,6 +312,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\StudentsInfo\" />
     <Folder Include="Views\students_face\" />
   </ItemGroup>
   <PropertyGroup>

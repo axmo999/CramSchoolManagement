@@ -1,14 +1,14 @@
-@model CramSchoolManagement.Areas.Settings.Models.schools_m
+﻿@model CramSchoolManagement.Areas.Settings.Models.schools_m
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "学校詳細";
     Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@Html.Raw(Model.name)</h2>
 
 <div>
-    <h4>schools_m</h4>
+    <h4>@ViewBag.Title</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -86,6 +86,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.school_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("編集", "Edit", new { id = Model.school_id }) |
+    @Html.ActionLink("学校一覧へ戻る", "Index")
 </p>

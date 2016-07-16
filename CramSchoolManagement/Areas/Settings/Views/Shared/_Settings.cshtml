@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8" />
@@ -39,7 +39,8 @@
                         <li>@Html.ActionLink("テスト区分一覧", "Index", "exams_m")</li>
                         <li>@Html.ActionLink("教科一覧", "Index", "classes_m")</li>
                         <li>@Html.ActionLink("講師一覧", "Index", "teachers_m")</li>
-                        <li>@Html.ActionLink("性別一覧", "Index", "gender_m")</li>
+                        @*<li>@Html.ActionLink("性別一覧", "Index", "gender_m")</li>
+                        <li>@Html.ActionLink("学年一覧", "Index", "age_m")</li>*@
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -48,10 +49,12 @@
     </header>
 
     <div id="body">
-        @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
-            @RenderBody()
-        </section>
+        <div class="container">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
     </div>
 
     <footer>

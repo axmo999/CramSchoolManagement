@@ -1,31 +1,19 @@
-@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.exams_m>
+﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.exams_m>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "テスト区分一覧";
     Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("テスト区分新規作成", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_date)
         </th>
         <th></th>
     </tr>
@@ -36,21 +24,8 @@
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.create_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.create_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.exam_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.exam_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.exam_id })
+            @Html.ActionLink("編集", "Edit", new { id=item.exam_id }) |
+            @Html.ActionLink("削除", "Delete", new { id=item.exam_id })
         </td>
     </tr>
 }

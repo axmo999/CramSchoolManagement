@@ -23,12 +23,16 @@
         [Display(Name = "テスト区分名")]
         public string name { get; set; }
 
+        [Display(Name = "作成ユーザー")]
         public string create_user { get; set; }
 
+        [Display(Name = "作成日時")]
         public string create_date { get; set; }
 
+        [Display(Name = "更新ユーザー")]
         public string update_user { get; set; }
 
+        [Display(Name = "更新日時")]
         public string update_date { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

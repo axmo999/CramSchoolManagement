@@ -1,7 +1,7 @@
 @model CramSchoolManagement.Areas.Students.Models.students_guide
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "生徒指導登録";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>生徒指導登録</h4>
+        <h4>@ViewBag.Title</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

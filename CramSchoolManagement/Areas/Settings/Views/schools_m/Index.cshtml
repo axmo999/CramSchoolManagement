@@ -1,14 +1,14 @@
-@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.schools_m>
+﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.schools_m>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "学校一覧";
     Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("学校新規作成", "Create")
 </p>
 <table class="table">
     <tr>
@@ -26,18 +26,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.phone_number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_date)
         </th>
         <th></th>
     </tr>
@@ -60,21 +48,9 @@
             @Html.DisplayFor(modelItem => item.phone_number)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.create_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.create_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.school_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.school_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.school_id })
+            @Html.ActionLink("編集", "Edit", new { id=item.school_id }) |
+            @Html.ActionLink("詳細", "Details", new { id=item.school_id }) |
+            @Html.ActionLink("削除", "Delete", new { id=item.school_id })
         </td>
     </tr>
 }

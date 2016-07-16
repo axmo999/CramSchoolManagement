@@ -31,12 +31,16 @@
         [Display(Name = "連絡先")]
         public string phone_number { get; set; }
 
+        [Display(Name = "作成ユーザー")]
         public string create_user { get; set; }
 
+        [Display(Name = "作成日時")]
         public string create_date { get; set; }
 
+        [Display(Name = "更新ユーザー")]
         public string update_user { get; set; }
 
+        [Display(Name = "更新日時")]
         public string update_date { get; set; }
 
         public virtual divisions_m divisions_m { get; set; }

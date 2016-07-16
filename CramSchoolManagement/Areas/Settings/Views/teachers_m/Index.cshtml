@@ -1,23 +1,17 @@
-@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.teachers_m>
+﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.teachers_m>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "講師一覧";
     Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("講師新規作成", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.teachers_password)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.last_name)
         </th>
@@ -30,35 +24,11 @@
         <th>
             @Html.DisplayNameFor(model => model.gender_m.gender_name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.administrator_flag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.create_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.update_date)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.teachers_password)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.last_name)
         </td>
@@ -72,27 +42,9 @@
             @Html.DisplayFor(modelItem => item.gender_m.gender_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.administrator_flag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.create_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.create_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.update_date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("編集", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("詳細", "Details", new { id=item.Id }) |
+            @Html.ActionLink("削除", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
