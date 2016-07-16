@@ -1,4 +1,4 @@
-namespace CramSchoolManagement.Areas.Students.Models
+﻿namespace CramSchoolManagement.Areas.Students.Models
 {
     using System;
     using System.Data.Entity;

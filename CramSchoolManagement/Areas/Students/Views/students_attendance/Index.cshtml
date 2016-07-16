@@ -36,8 +36,8 @@
             @Html.DisplayFor(modelItem => item.end_time)
         </td>
         <td>
-            @Html.ActionLink("編集", "Edit", new { id=item.students_attendance_id }) |
-            @Html.ActionLink("削除", "Delete", new { id=item.students_attendance_id })
+            @Html.ActionLink("編集", "Edit", new { num=item.students_attendance_id }) |
+            @Html.ActionLink("削除", "Delete", new { num=item.students_attendance_id })
         </td>
     </tr>
 }
