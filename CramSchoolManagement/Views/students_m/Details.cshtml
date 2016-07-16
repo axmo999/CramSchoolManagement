@@ -8,7 +8,7 @@
     <div class="col-sm-4">
         @if (Model.students_face.Any(f => f.FileType == "Image"))
         {
-            <img src="~/students_face?id=@Model.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" />
+            <img src="~/students_face?id=@Model.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" class="img-rounded img-responsive"/>
         }
     </div>
     <div class="col-sm-8">
