@@ -41,12 +41,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.guide_contents)
+            @Html.Raw(Html.Encode(Model.guide_contents).Replace("\n", "<br />"))
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("編集", "Edit", new { num = Model.students_guide_id }) |
+    @Html.ActionLink("削除", "Delete", new { num = Model.students_guide_id }) |
     @Html.ActionLink("生徒指導一覧へ戻る", "Index")
 </p>

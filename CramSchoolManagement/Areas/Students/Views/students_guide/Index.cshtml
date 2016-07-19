@@ -10,6 +10,23 @@
 <p>
     @Html.ActionLink("新規指導登録", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "students_guide", null, FormMethod.Get, new { @class = "form-inline form-group" }))
+{
+    <div class="form-group">
+        @Html.Label("teacher_id", " 講師名：", new { @class = "control-label" })
+        @Html.DropDownList("teacher_id", null, "", htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("class_id", " 教科名：", new { @class = "control-label" })
+        @Html.DropDownList("class_id", null, "", htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="検索" class="btn btn-info" />
+    </div>
+
+}
+
 <table class="table">
     <tr>
         <th>
@@ -39,12 +56,18 @@
             @Html.DisplayFor(modelItem => item.classes_m.display_name)
         </td>
         <td>
-            @Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))
+            @*@Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))*@
+            @if (item.guide_contents == null || item.guide_contents.Length < 20)
+            {
+                @Html.DisplayFor(modelItem => item.guide_contents)
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.guide_contents).ToHtmlString().Substring(0, 20)
+            }
         </td>
         <td>
-            @Html.ActionLink("編集", "Edit", new { num = item.students_guide_id }) |
-            @Html.ActionLink("詳細", "Details", new { num = item.students_guide_id }) |
-            @Html.ActionLink("削除", "Delete", new { num = item.students_guide_id })
+            @Html.ActionLink("詳細", "Details", new { num = item.students_guide_id })
         </td>
     </tr>
 }

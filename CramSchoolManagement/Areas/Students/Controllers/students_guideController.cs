@@ -19,13 +19,26 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         private CramSchoolManagement.Models.students_m studentdb = new CramSchoolManagement.Models.students_m();
 
         // GET: Students/students_guide
-        public ActionResult Index(int? students_id)
+        public ActionResult Index(int? students_id, string teacher_id, int? class_id)
         {
             var students_guide = db.students_guide.Where(m => m.students_id == students_id).Include(s => s.students_m);
             var students_teacher = db.students_guide.Include(s => s.teachers_m);
             var students_class = db.students_guide.Include(s => s.classes_m);
 
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+
+            ViewBag.teacher_id = new SelectList(setdb.teachers_m, "Id", "display_name");
+            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
+
+            if (teacher_id != "")
+            {
+                students_guide = students_guide.Where(s => s.Id.Equals(teacher_id));
+            }
+            if (class_id != null)
+            {
+                students_guide = students_guide.Where(s => s.class_id == class_id);
+            }
+
 
             return View(students_guide.ToList());
         }
