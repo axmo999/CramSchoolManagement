@@ -21,7 +21,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // GET: Students/students_guide
         public ActionResult Index(int? students_id, string teacher_id, int? class_id)
         {
-            var students_guide = db.students_guide.Where(m => m.students_id == students_id).Include(s => s.students_m);
+            var students_guide = db.students_guide.Where(m => m.students_id == students_id).OrderByDescending(m => m.guide_date).Include(s => s.students_m);
             var students_teacher = db.students_guide.Include(s => s.teachers_m);
             var students_class = db.students_guide.Include(s => s.classes_m);
 
@@ -30,7 +30,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             ViewBag.teacher_id = new SelectList(setdb.teachers_m, "Id", "display_name");
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
 
-            if (teacher_id != "")
+            if (teacher_id != null && teacher_id != "")
             {
                 students_guide = students_guide.Where(s => s.Id.Equals(teacher_id));
             }
