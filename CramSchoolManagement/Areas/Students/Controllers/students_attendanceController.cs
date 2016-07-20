@@ -15,7 +15,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         private StudentsModel db = new StudentsModel();
 
         // GET: Students/students_attendance
-        public ActionResult Index(int? students_id)
+        public ActionResult Index(string students_id)
         {
             var students_attendance_list = db.students_attendance.Where(students_attendance => students_attendance.students_id == students_id).Include(s => s.students_m);
 
@@ -25,7 +25,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_attendance/Details/5
-        public ActionResult Details(int? students_id, long? num)
+        public ActionResult Details(string students_id, long? num)
         {
             if (num == null)
             {
@@ -41,7 +41,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_attendance/Create
-        public ActionResult Create(int? students_id)
+        public ActionResult Create(string students_id)
         {
             ViewBag.students_id = students_id;
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
@@ -68,7 +68,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_attendance/Edit/5
-        public ActionResult Edit(long? students_id, long? num)
+        public ActionResult Edit(string students_id, long? num)
         {
             if (num == null)
             {

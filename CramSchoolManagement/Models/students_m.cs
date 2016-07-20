@@ -20,7 +20,7 @@ using CramSchoolManagement.Commons;
 
         [Key]
         [Display(Name = "生徒管理番号")]
-        public long students_id { get; set; }
+        public string students_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]

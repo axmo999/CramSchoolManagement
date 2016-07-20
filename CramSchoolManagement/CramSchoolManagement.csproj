@@ -240,6 +240,11 @@
     <Content Include="Areas\Settings\Views\age_m\Index.cshtml" />
     <Content Include="Areas\Students\Views\Shared\_StudentHeader.cshtml" />
     <Content Include="Areas\Students\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -274,8 +279,10 @@
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Students\Controllers\students_attendanceController.cs" />
     <Compile Include="Areas\Students\Controllers\students_gradeController.cs" />
+    <Compile Include="Areas\Students\Controllers\students_interviewController.cs" />
     <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
     <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
+    <Compile Include="Areas\Students\Models\students_interview.cs" />
     <Compile Include="Controllers\StudentsInfoController.cs" />
     <Compile Include="Controllers\students_faceController.cs" />
     <Compile Include="Controllers\students_mController.cs" />

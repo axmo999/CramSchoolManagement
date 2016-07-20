@@ -1,0 +1,50 @@
+@model CramSchoolManagement.Areas.Students.Models.students_interview
+
+@{
+    ViewBag.Title = "生徒面談削除";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>@ViewBag.StudentName</h2>
+
+<h3>本当に削除してもよろしいですか？</h3>
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interview_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interview_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teachers_m.display_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interview_contents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interview_contents)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="削除" class="btn btn-default" /> |
+            @Html.ActionLink("生徒面談一覧へ戻る", "Index")
+        </div>
+    }
+</div>

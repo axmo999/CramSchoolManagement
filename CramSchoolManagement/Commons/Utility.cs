@@ -155,7 +155,11 @@ namespace CramSchoolManagement.Commons
         {
             CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
             var grade = masterdb.age_m.SingleOrDefault(x => x.age == age);
-            return grade.divisions_m.name + grade.grade;
+            if (grade != null)
+            {
+                return grade.divisions_m.name + grade.grade;
+            }
+            return "卒業生";
         }
 
         /// <summary>

@@ -12,18 +12,17 @@ using Microsoft.AspNet.Identity;
 
 namespace CramSchoolManagement.Areas.Students.Controllers
 {
-    public class students_guideController : Controller
+    public class students_interviewController : Controller
     {
         private StudentsModel db = new StudentsModel();
         private CramSchoolManagement.Areas.Settings.Models.MastersModel setdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
         private CramSchoolManagement.Models.students_m studentdb = new CramSchoolManagement.Models.students_m();
 
-        // GET: Students/students_guide
-        public ActionResult Index(string students_id, string teacher_id, int? class_id)
+        // GET: Students/students_interview
+        public ActionResult Index(string students_id, string teacher_id)
         {
-            var students_guide = db.students_guide.Where(m => m.students_id == students_id).OrderByDescending(m => m.guide_date).Include(s => s.students_m);
-            var students_teacher = db.students_guide.Include(s => s.teachers_m);
-            var students_class = db.students_guide.Include(s => s.classes_m);
+            var students_interview = db.students_interview.Where(m => m.students_id == students_id).OrderByDescending(m => m.interview_date).Include(s => s.students_m);
+            var students_teacher = db.students_interview.Include(s => s.teachers_m);
 
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
 
@@ -32,34 +31,30 @@ namespace CramSchoolManagement.Areas.Students.Controllers
 
             if (teacher_id != null && teacher_id != "")
             {
-                students_guide = students_guide.Where(s => s.Id.Equals(teacher_id));
-            }
-            if (class_id != null)
-            {
-                students_guide = students_guide.Where(s => s.class_id == class_id);
+                students_interview = students_interview.Where(s => s.Id.Equals(teacher_id));
             }
 
 
-            return View(students_guide.ToList());
+            return View(students_interview.ToList());
         }
 
-        // GET: Students/students_guide/Details/5
+        // GET: Students/students_interview/Details/5
         public ActionResult Details(string students_id, long? num)
         {
             if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_guide students_guide = db.students_guide.Find(num);
-            if (students_guide == null)
+            students_interview students_interview = db.students_interview.Find(num);
+            if (students_interview == null)
             {
                 return HttpNotFound();
             }
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
-            return View(students_guide);
+            return View(students_interview);
         }
 
-        // GET: Students/students_guide/Create
+        // GET: Students/students_interview/Create
         public ActionResult Create(string students_id)
         {
             ViewBag.students_id = students_id;
@@ -69,87 +64,84 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             return View();
         }
 
-        // POST: Students/students_guide/Create
+        // POST: Students/students_interview/Create
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_guide_id,students_id,guide_date,Id,class_id,guide_contents,create_user,create_date,update_user,update_date")] students_guide students_guide)
+        public ActionResult Create([Bind(Include = "students_interview_id,students_id,interview_date,Id,interview_contents,create_user,create_date,update_user,update_date")] students_interview students_interview)
         {
             if (ModelState.IsValid)
             {
-                students_guide.create_user = User.Identity.Name.ToString();
-                students_guide.create_date = DateTime.Now.ToString();
-                db.students_guide.Add(students_guide);
+                students_interview.create_user = User.Identity.Name.ToString();
+                students_interview.create_date = DateTime.Now.ToString();
+                db.students_interview.Add(students_interview);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_guide.class_id);
-            return View(students_guide);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_interview.Id);
+            return View(students_interview);
         }
 
-        // GET: Students/students_guide/Edit/5
+        // GET: Students/students_interview/Edit/5
         public ActionResult Edit(string students_id, long? num)
         {
             if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_guide students_guide = db.students_guide.Find(num);
-            if (students_guide == null)
+            students_interview students_interview = db.students_interview.Find(num);
+            if (students_interview == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", (object)students_guide.Id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_guide.class_id);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", (object)students_interview.Id);
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
-            return View(students_guide);
+            return View(students_interview);
         }
 
-        // POST: Students/students_guide/Edit/5
+        // POST: Students/students_interview/Edit/5
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_guide_id,students_id,guide_date,Id,class_id,guide_contents,create_user,create_date,update_user,update_date")] students_guide students_guide)
+        public ActionResult Edit([Bind(Include = "students_interview_id,students_id,interview_date,Id,interview_contents,create_user,create_date,update_user,update_date")] students_interview students_interview)
         {
             if (ModelState.IsValid)
             {
-                students_guide.update_user = User.Identity.Name.ToString();
-                students_guide.update_date = DateTime.Now.ToString();
-                db.Entry(students_guide).State = EntityState.Modified;
+                students_interview.update_user = User.Identity.Name.ToString();
+                students_interview.update_date = DateTime.Now.ToString();
+                db.Entry(students_interview).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_guide.Id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_guide.class_id);
-            return View(students_guide);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_interview.Id);
+            return View(students_interview);
         }
 
-        // GET: Students/students_guide/Delete/5
+        // GET: Students/students_interview/Delete/5
         public ActionResult Delete(long? num)
         {
             if (num == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_guide students_guide = db.students_guide.Find(num);
-            if (students_guide == null)
+            students_interview students_interview = db.students_interview.Find(num);
+            if (students_interview == null)
             {
                 return HttpNotFound();
             }
-            return View(students_guide);
+            return View(students_interview);
         }
 
-        // POST: Students/students_guide/Delete/5
+        // POST: Students/students_interview/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            students_guide students_guide = db.students_guide.Find(id);
-            db.students_guide.Remove(students_guide);
+            students_interview students_interview = db.students_interview.Find(id);
+            db.students_interview.Remove(students_interview);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

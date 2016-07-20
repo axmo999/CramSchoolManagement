@@ -2,7 +2,7 @@
 
 @{
     Students_mModel MasterDB = new Students_mModel();
-    long student_id = Convert.ToInt64(this.ViewContext.RouteData.Values["students_id"]);
+    string student_id = this.ViewContext.RouteData.Values["students_id"].ToString();
     var info = MasterDB.students_m.SingleOrDefault(s => s.students_id == student_id);
 }
 @if(info != null)

@@ -17,7 +17,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         private CramSchoolManagement.Areas.Settings.Models.MastersModel setdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
 
         // GET: Students/students_grade
-        public ActionResult Index(long? students_id)
+        public ActionResult Index(string students_id)
         {
             var students_grade_list = db.students_grade.Where(s => s.students_id == students_id).Include(s => s.students_m);
             var students_exam = db.students_grade.Include(s => s.exams_m);
@@ -29,7 +29,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_grade/Details/5
-        public ActionResult Details(long? students_id, long? num)
+        public ActionResult Details(string students_id, long? num)
         {
             if (num == null)
             {
@@ -45,7 +45,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_grade/Create
-        public ActionResult Create(int? students_id)
+        public ActionResult Create(string students_id)
         {
             ViewBag.students_id = students_id;
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name");
@@ -76,7 +76,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_grade/Edit/5
-        public ActionResult Edit(long? students_id, long? num)
+        public ActionResult Edit(string students_id, long? num)
         {
             if (num == null)
             {

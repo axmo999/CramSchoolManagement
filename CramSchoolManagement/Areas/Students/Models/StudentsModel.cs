@@ -15,6 +15,7 @@
         public virtual DbSet<students_attendance> students_attendance { get; set; }
         public virtual DbSet<students_grade> students_grade { get; set; }
         public virtual DbSet<students_guide> students_guide { get; set; }
+        public virtual DbSet<students_interview> students_interview { get; set; }
         public virtual DbSet<students_like_dislike> students_like_dislike { get; set; }
 
         public virtual DbSet<CramSchoolManagement.Models.students_m> students_m { get; set; }

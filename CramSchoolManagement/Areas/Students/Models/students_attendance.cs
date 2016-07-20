@@ -13,7 +13,7 @@
         public long students_attendance_id { get; set; }
 
         [Display(Name = "生徒管理番号")]
-        public long students_id { get; set; }
+        public string students_id { get; set; }
 
         [Display(Name = "出席日")]
         [DataType(DataType.Date)]

@@ -38,7 +38,7 @@ namespace CramSchoolManagement.Controllers
         }
 
         // GET: /students_m/Details/5
-        public ActionResult Details(long? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -105,7 +105,7 @@ namespace CramSchoolManagement.Controllers
         }
 
         // GET: /students_m/Edit/5
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -127,7 +127,7 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, long id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, string id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
@@ -194,7 +194,7 @@ namespace CramSchoolManagement.Controllers
         // POST: /students_m/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(string id)
         {
             //生徒情報削除
             students_m students_m = db.students_m.Find(id);
