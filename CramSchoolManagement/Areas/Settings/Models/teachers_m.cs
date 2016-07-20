@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CramSchoolManagement.Areas.Settings.Models
 {
@@ -189,6 +190,11 @@ namespace CramSchoolManagement.Areas.Settings.Models
         {
             return Task.Delay(0);
         }
+
+    }
+
+    public class ApplicationRole : IdentityRole
+    {
 
     }
 

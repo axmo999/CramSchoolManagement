@@ -19,7 +19,7 @@ namespace CramSchoolManagement.Controllers
         // GET: /students_m
         public ActionResult Index(long? school_id, long? school_grade)
         {
-            var student_list = db.students_m.AsEnumerable();
+            var student_list = db.students_m.Include(s => s.schools_m).AsEnumerable();
 
             if (school_id != null)
             {
@@ -65,7 +65,7 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, HttpPostedFileBase face_img)
+        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
@@ -127,12 +127,12 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, long id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, long id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
                 var studentToUpdate = db.students_m.Find(id);
-                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id","last_name","first_name","middle_name","school_id","gender_id","birthday","postal_code","address","phone_number","hope_school","enter_school","note","create_user","create_date","update_user","update_date" }))
+                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date" }))
                 {
                     try
                     {

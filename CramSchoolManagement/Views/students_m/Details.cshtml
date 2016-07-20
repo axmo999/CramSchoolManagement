@@ -19,6 +19,7 @@
             <h4 class="col-xs-6">誕生日：@DateTime.Parse(Model.birthday).ToString("yyyy年MM月dd日")</h4>
             <h4 class="col-xs-6">年齢：@CramSchoolManagement.Commons.Utility.AgeCal((Model.birthday)) 歳</h4>
             <h4 class="col-xs-6">学年：@Html.DisplayFor(model => model.grade)</h4>
+            <h4 class="col-xs-6">部活：@Html.DisplayFor(model => model.club)</h4>
         </div>
     </div>
 </div>

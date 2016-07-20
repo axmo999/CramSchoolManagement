@@ -49,6 +49,10 @@ using CramSchoolManagement.Commons;
         public string birthday { get; set; }
 
         [StringLength(2147483647)]
+        [Display(Name = "部活")]
+        public string club { get; set; }
+
+        [StringLength(2147483647)]
         [Display(Name = "郵便番号")]
         public string postal_code { get; set; }
 
