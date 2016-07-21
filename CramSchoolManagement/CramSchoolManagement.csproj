@@ -164,6 +164,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\site.css" />
     <Content Include="Content\themes\honoka\css\bootstrap.css" />
     <Content Include="Content\themes\honoka\css\bootstrap.min.css" />
     <Content Include="Content\themes\honoka\fonts\glyphicons-halflings-regular.svg" />
