@@ -14,7 +14,8 @@
 @foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exam_id))
 {
     <h3>@Html.Encode(CramSchoolManagement.Commons.Utility.GetExamName(group.Key))</h3>
-    <table class="table">
+    <h4>合計点数：@Html.Encode(group.Sum(p => p.exam_scores)) 点</h4>
+    @*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.classes_m.display_name)
@@ -23,26 +24,37 @@
             @Html.DisplayNameFor(model => model.exam_scores)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
 
-@foreach (var item in group)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.classes_m.display_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.exam_scores)
-        </td>
-        <td>
-            @Html.ActionLink("編集", "Edit", new { num = item.students_grade_id }) |
-            @Html.ActionLink("削除", "Delete", new { num = item.students_grade_id })
-        </td>
-    </tr>
-}
+    <div class="row">
 
-</table>
+        @foreach (var item in group)
+        {
+            @*<tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.classes_m.display_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.exam_scores)
+                    </td>
+                    <td>
+                        @Html.ActionLink("編集", "Edit", new { num = item.students_grade_id }) |
+                        @Html.ActionLink("削除", "Delete", new { num = item.students_grade_id })
+                    </td>
+                </tr>*@
 
+            <div class="col-sm-2 col-xs-4">
+                <h5 class="text-center grade_border_title" style="margin-bottom:0px;">@Html.DisplayFor(modelItem => item.classes_m.display_name)</h5>
+                <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.exam_scores)</p>
+                <p class="text-center">
+                    @Html.ActionLink("編集", "Edit", new { num = item.students_grade_id })
+                </p>
+            </div>
+        }
+
+        @*</table>*@
+
+    </div>
 }
 
 <div>
