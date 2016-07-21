@@ -28,6 +28,9 @@
         [Display(Name = "試験点数")]
         public long exam_scores { get; set; }
 
+        [Display(Name = "席次")]
+        public long exam_precedence { get; set; }
+
         public string create_user { get; set; }
 
         public string create_date { get; set; }

@@ -7,6 +7,8 @@
 
 <h2>@ViewBag.Title</h2>
 
+<h3>@ViewBag.Announce</h3>
+
 <p>
     @Html.ActionLink("生徒新規登録", "Create")
 </p>
@@ -46,13 +48,14 @@
                     @Html.DisplayNameFor(model => model.offices_m.name)
                 </th>
                 <th>情報選択</th>
+                <th>出席</th>
             </tr>
 
             @foreach (var item in Model)
-        {
+            {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.display_name)
+                        @Html.ActionLink(item.display_name, "Details", new { id = item.students_id })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.schools_m.name)
@@ -70,9 +73,16 @@
                         @Html.RouteLink("面談", "Students_id_route", new { controller = "students_interview", students_id = item.students_id })
                     </td>
                     <td>
-                        @Html.ActionLink("詳細", "Details", new { id = item.students_id })
+                        @if (CramSchoolManagement.Commons.Utility.GetAttend(item.students_id))
+                        {
+                            @Html.ActionLink("退席", "CheckOut", new { id = item.students_id })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("出席", "CheckIn", new { id = item.students_id })
+                        }
                     </td>
                 </tr>
-        }
+            }
 
         </table>

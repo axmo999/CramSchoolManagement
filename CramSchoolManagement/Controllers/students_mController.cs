@@ -228,5 +228,52 @@ namespace CramSchoolManagement.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult CheckIn(string id)
+        {
+            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
+            Areas.Students.Models.students_attendance attends = new Areas.Students.Models.students_attendance();
+
+            attends.students_id = id;
+            attends.attendance_day = DateTime.Today.ToString("yyyy-MM-dd");
+            attends.start_time = DateTime.Now.ToString("HH:mm");
+
+            attends.create_user = User.Identity.Name.ToString();
+            attends.create_date = DateTime.Now.ToString();
+
+            studentdb.students_attendance.Add(attends);
+            studentdb.SaveChanges();
+
+            students_m students_m = db.students_m.Find(id);
+
+            ViewBag.Announce = students_m.display_name + "が出席しました。";
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult CheckOut(string id)
+        {
+            string today = DateTime.Today.ToString("yyyy-MM-dd");
+            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
+            Areas.Students.Models.students_attendance attends = studentdb.students_attendance.FirstOrDefault(x => x.students_id == id && x.attendance_day == today);
+
+            if (attends != null)
+            {
+                attends.end_time = DateTime.Now.ToString("HH:mm");
+
+                attends.update_user = User.Identity.Name.ToString();
+                attends.update_date = DateTime.Now.ToString();
+                studentdb.Entry(attends).State = EntityState.Modified;
+                studentdb.SaveChanges();
+
+                students_m students_m = db.students_m.Find(id);
+
+                ViewBag.Announce = students_m.display_name + "が退席しました。";
+
+            }
+
+
+            return RedirectToAction("Index");
+        }
     }
 }
