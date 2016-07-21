@@ -74,18 +74,21 @@ namespace CramSchoolManagement.Commons
             return false;
         }
 
-        public static bool GetAttend( string id )
+        public static int GetAttend( string id )
         {
             string today = DateTime.Today.ToString("yyyy-MM-dd");
             Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
-            Areas.Students.Models.students_attendance attends = studentdb.students_attendance.FirstOrDefault(x => x.students_id == id && x.attendance_day == today);
-
+            var attends = studentdb.students_attendance.SingleOrDefault(x => x.students_id == id);
             if (attends != null)
             {
-                return true;
+                if (attends.end_time != null)
+                {
+                    return 3;
+                }
+                return 2;
             }
 
-            return false;
+            return 1;
         }
 
         //internal static dynamic GetStudentName(long? students_id)
