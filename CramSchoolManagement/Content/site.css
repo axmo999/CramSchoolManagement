@@ -1,0 +1,20 @@
+﻿/* add css*/
+.row-eq-height {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-wrap: wrap;
+}
+
+.grade_border_title{
+    background-color: #F7F7F9;
+    border: 1px solid #E1E1E8;
+    padding: 8px;
+}
+
+.grade_border_score{
+    background-color: #F0F0F0;
+    border: 1px solid #E1E1E8;
+    padding: 8px;
+}

@@ -25,6 +25,10 @@ namespace CramSchoolManagement
             bundles.Add(new ScriptBundle("~/Content/honoka/js").Include(
                         "~/Content/themes/honoka/js/bootstrap.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                        "~/Content/site.css"
+                ));
         }
     }
 }
