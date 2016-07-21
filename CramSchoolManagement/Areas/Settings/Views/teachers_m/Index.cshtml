@@ -24,6 +24,9 @@
         <th>
             @Html.DisplayNameFor(model => model.gender_m.gender_name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.administrator_flag)
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +43,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.gender_m.gender_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.display_admin)
         </td>
         <td>
             @Html.ActionLink("編集", "Edit", new { id=item.Id }) |

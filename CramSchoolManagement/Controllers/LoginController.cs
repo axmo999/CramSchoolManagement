@@ -14,6 +14,8 @@ namespace CramSchoolManagement.Controllers
 {
     public class LoginController : Controller
     {
+        private MastersModel db = new MastersModel();
+
         public LoginController()
             : this(new UserManager<teachers_m>(new TeacherUserStore()))
         {

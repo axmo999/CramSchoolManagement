@@ -17,9 +17,9 @@ namespace CramSchoolManagement.Controllers
         private CramSchoolManagement.Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
 
         // GET: /students_m
-        public ActionResult Index(long? school_id, long? school_grade)
+        public ActionResult Index(long? school_id, long? school_grade, long? office_id)
         {
-            var student_list = db.students_m.Include(s => s.schools_m).AsEnumerable();
+            var student_list = db.students_m.Include(s => s.schools_m).Include(s => s.offices_m).AsEnumerable();
 
             if (school_id != null)
             {
@@ -29,11 +29,16 @@ namespace CramSchoolManagement.Controllers
             {
                 student_list = student_list.Where(s => s.gradeint == school_grade);
             }
+            if (office_id != null)
+            {
+                student_list = student_list.Where(s => s.office_id == office_id);
+            }
 
-            var students_m_gender = db.students_m.Include(s => s.gender_m);
-            var students_m_school = db.students_m.Include(s => s.schools_m);
+            //var students_m_gender = db.students_m.Include(s => s.gender_m);
+            //var students_m_school = db.students_m.Include(s => s.schools_m);
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name");
             ViewBag.school_grade = new SelectList(setdb.age_m, "age", "display_name");
+            ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
             return View(student_list);
         }
 
@@ -57,6 +62,7 @@ namespace CramSchoolManagement.Controllers
         {
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name");
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name");
+            ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
             return View();
         }
 
@@ -65,7 +71,7 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, HttpPostedFileBase face_img)
+        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +106,8 @@ namespace CramSchoolManagement.Controllers
             }
 
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
-            ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.gender_id);
+            ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.school_id);
+            ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", students_m.office_id);
             return View(students_m);
         }
 
@@ -118,6 +125,7 @@ namespace CramSchoolManagement.Controllers
             }
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.school_id);
+            ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", students_m.office_id);
             ViewBag.likedislikeclass_id = new SelectList(setdb.classes_m, "class_id", "name");
             return View(students_m);
         }
@@ -127,12 +135,12 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, string id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, string id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
                 var studentToUpdate = db.students_m.Find(id);
-                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date" }))
+                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date" }))
                 {
                     try
                     {
@@ -172,7 +180,8 @@ namespace CramSchoolManagement.Controllers
                 }
             }
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
-            ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.gender_id);
+            ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.school_id);
+            ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", students_m.office_id);
             return View(students_m);
         }
 

@@ -245,6 +245,11 @@
     <Content Include="Areas\Students\Views\students_interview\Details.cshtml" />
     <Content Include="Areas\Students\Views\students_interview\Edit.cshtml" />
     <Content Include="Areas\Students\Views\students_interview\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -265,6 +270,7 @@
     <Compile Include="Areas\Settings\Controllers\divisions_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\exams_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\gender_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\offices_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Settings\Controllers\schools_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\teachers_mController.cs" />
@@ -274,6 +280,7 @@
     <Compile Include="Areas\Settings\Models\gender_m.cs" />
     <Compile Include="Areas\Settings\Models\exams_m.cs" />
     <Compile Include="Areas\Settings\Models\MastersModel.cs" />
+    <Compile Include="Areas\Settings\Models\offices_m.cs" />
     <Compile Include="Areas\Settings\Models\schools_m.cs" />
     <Compile Include="Areas\Settings\Models\teachers_m.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />

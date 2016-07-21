@@ -17,6 +17,7 @@
         public virtual DbSet<exams_m> exams_m { get; set; }
         public virtual DbSet<gender_m> gender_m { get; set; }
         public virtual DbSet<schools_m> schools_m { get; set; }
+        public virtual DbSet<offices_m> offices_m { get; set; }
         public virtual DbSet<teachers_m> teachers_m { get; set; }
         public virtual DbSet<age_m> age_m { get; set; }
     }

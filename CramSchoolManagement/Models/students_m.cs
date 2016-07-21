@@ -52,6 +52,9 @@ using CramSchoolManagement.Commons;
         [Display(Name = "部活")]
         public string club { get; set; }
 
+        [Display(Name = "教室管理番号")]
+        public long office_id { get; set; }
+
         [StringLength(2147483647)]
         [Display(Name = "郵便番号")]
         public string postal_code { get; set; }
@@ -86,6 +89,8 @@ using CramSchoolManagement.Commons;
         public virtual CramSchoolManagement.Areas.Settings.Models.gender_m gender_m { get; set; }
 
         public virtual CramSchoolManagement.Areas.Settings.Models.schools_m schools_m { get; set; }
+
+        public virtual CramSchoolManagement.Areas.Settings.Models.offices_m offices_m { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_attendance> students_attendance { get; set; }

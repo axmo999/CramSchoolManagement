@@ -40,6 +40,7 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
         public ActionResult Create()
         {
             ViewBag.gender_id = new SelectList(db.gender_m, "gender_id", "gender_name");
+            ViewBag.administrator_flag = new SelectList(Commons.Utility.admin_flg, "value", "key");
             return View();
         }
 
@@ -76,6 +77,7 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
                 return HttpNotFound();
             }
             ViewBag.gender_id = new SelectList(db.gender_m, "gender_id", "gender_name", teachers_m.gender_id);
+            ViewBag.administrator_flag = new SelectList(Commons.Utility.admin_flg, "value", "key", teachers_m.administrator_flag);
             return View(teachers_m);
         }
 
@@ -95,6 +97,7 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.gender_id = new SelectList(db.gender_m, "gender_id", "gender_name", teachers_m.gender_id);
+            ViewBag.administrator_flag = new SelectList(Commons.Utility.admin_flg, "value", "key", teachers_m.administrator_flag);
             return View(teachers_m);
         }
 

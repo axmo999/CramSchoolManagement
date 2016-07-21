@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Diagnostics;
 
 namespace CramSchoolManagement.Areas.Settings.Models
 {
@@ -93,6 +94,31 @@ namespace CramSchoolManagement.Areas.Settings.Models
             return teacherName;
         }
 
+        public string display_admin
+        {
+            get
+            {
+                return searchadmin();
+            }
+        }
+
+        private string searchadmin()
+        {
+            string admin = string.Empty;
+
+            if (administrator_flag == 1)
+            {
+                admin = "はい";
+            }
+            else
+            {
+                admin = "";
+            }
+
+            return admin;
+
+        }
+
     }
 
     public class ManageUserViewModel
@@ -114,7 +140,11 @@ namespace CramSchoolManagement.Areas.Settings.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class TeacherUserStore : IUserStore<teachers_m>, IUserPasswordStore<teachers_m>
+    public class TeacherUserStore : 
+        IUserStore<teachers_m>, 
+        IUserPasswordStore<teachers_m>
+        //IUserRoleStore<teachers_m, string> 
+        //IRoleStore<ApplicationRole, string>
     {
         private static List<teachers_m> users = new List<teachers_m>
         {
@@ -191,11 +221,134 @@ namespace CramSchoolManagement.Areas.Settings.Models
             return Task.Delay(0);
         }
 
+        //private static List<ApplicationRole> Roles = new List<ApplicationRole>();
+
+        //private static List<Tuple<string, string>> UserRoleMap = new List<Tuple<string, string>>();
+        ///// <summary>
+        ///// ユーザーをロールに追加する
+        ///// </summary>
+        //public Task AddToRoleAsync(teachers_m user, string roleName)
+        //{
+        //    //Debug.WriteLine(nameof(AddToRoleAsync));
+
+        //    var role = Roles.FirstOrDefault(x => x.Name == roleName);
+        //    if(role == null){ throw new InvalidOperationException(); }
+
+        //    var userRoleMap = UserRoleMap.FirstOrDefault(x => x.Item1 == user.Id && x.Item2 == role.Id);
+        //    if(userRoleMap == null)
+        //    {
+        //        UserRoleMap.Add(Tuple.Create(user.Id, role.Id));
+        //    }
+
+        //    return Task.FromResult(default(object));
+        //}
+
+        ///// <summary>
+        ///// ユーザーのロールを取得する
+        ///// </summary>
+        //public Task<IList<string>> GetRolesAsync(teachers_m user)
+        //{
+        //    //Debug.WriteLine(nameof(GetRolesAsync));
+        //    IList<string> roleNames = UserRoleMap.Where(x => x.Item1 == user.Id).Select(x => x.Item2)
+        //        .Select(x => Roles.First(y => y.Id == x))
+        //        .Select(x => x.Name)
+        //        .ToList();
+        //    return Task.FromResult(roleNames);
+        //}
+
+        ///// <summary>
+        ///// ユーザーがロールに所属するか
+        ///// </summary>
+        //public async Task<bool> IsInRoleAsync(teachers_m user, string roleName)
+        //{
+        //    //Debug.WriteLine(nameof(IsInRoleAsync));
+        //    var roles = await this.GetRolesAsync(user);
+        //    return roles.FirstOrDefault(x => x.ToUpper() == roleName.ToUpper()) != null;
+        //}
+
+        ///// <summary>
+        ///// ユーザーをロールから削除する
+        ///// </summary>
+        //public Task RemoveFromRoleAsync(teachers_m user, string roleName)
+        //{
+        //    //Debug.WriteLine(nameof(RemoveFromRoleAsync));
+        //    var role = Roles.FirstOrDefault(x => x.Name == roleName);
+        //    if (role == null) { return Task.FromResult(default(object)); }
+        //    var userRoleMap = UserRoleMap.FirstOrDefault(x => x.Item1 == user.Id && x.Item2 == role.Id);
+        //    if (userRoleMap != null)
+        //    {
+        //        UserRoleMap.Remove(userRoleMap);
+        //    }
+        //    return Task.FromResult(default(object));
+        //}
+
+        ///// <summary>
+        ///// ロールを作成します。
+        ///// </summary>
+        //public Task CreateAsync(ApplicationRole role)
+        //{
+        //    //Debug.WriteLine(nameof(CreateAsync) + " role");
+        //    Roles.Add(role);
+        //    return Task.FromResult(default(object));
+        //}
+
+        ///// <summary>
+        ///// ロールを更新します
+        ///// </summary>
+        //public Task UpdateAsync(ApplicationRole role)
+        //{
+        //    //Debug.WriteLine(nameof(UpdateAsync) + " role");
+        //    var r = Roles.FirstOrDefault(x => x.Id == role.Id);
+        //    if (r == null) { return Task.FromResult(default(object)); }
+        //    r.Name = role.Name;
+        //    return Task.FromResult(default(object));
+        //}
+
+        ///// <summary>
+        ///// ロールを削除します
+        ///// </summary>
+        //public Task DeleteAsync(ApplicationRole role)
+        //{
+        //    //Debug.WriteLine(nameof(DeleteAsync) + " role");
+        //    var r = Roles.FirstOrDefault(x => x.Id == role.Id);
+        //    if (r == null) { return Task.FromResult(default(object)); }
+        //    Roles.Remove(r);
+        //    return Task.FromResult(default(object));
+        //}
+
+        ///// <summary>
+        ///// ロールをIDで取得します。
+        ///// </summary>
+        //Task<ApplicationRole> IRoleStore<ApplicationRole, string>.FindByIdAsync(string roleId)
+        //{
+        //    //Debug.WriteLine(nameof(FindByIdAsync) + " role");
+        //    var r = Roles.FirstOrDefault(x => x.Id == roleId);
+        //    return Task.FromResult(r);
+        //}
+
+        ///// <summary>
+        ///// ロールを名前で取得します。
+        ///// </summary>
+        //Task<ApplicationRole> IRoleStore<ApplicationRole, string>.FindByNameAsync(string roleName)
+        //{
+        //    //Debug.WriteLine(nameof(FindByNameAsync) + " role");
+        //    var r = Roles.FirstOrDefault(x => x.Name == roleName);
+        //    return Task.FromResult(r);
+        //}
+
     }
 
-    public class ApplicationRole : IdentityRole
-    {
+    //public class ApplicationRole : IdentityRole
+    //{
+    //    public ApplicationRole()
+    //        : base()
+    //    {
+    //    }
 
-    }
+    //    public ApplicationRole(string pRoleName)
+    //        : base(pRoleName)
+    //    {
+    //    }
+    //}
 
 }

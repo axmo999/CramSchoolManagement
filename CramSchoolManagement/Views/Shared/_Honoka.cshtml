@@ -32,7 +32,10 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("生徒一覧", "Index", "students_m")</li>
-                        <li>@Html.ActionLink("設定", "Index", "Settings", new { area = "Settings" }, new { })</li>
+                        @if (CramSchoolManagement.Commons.Utility.GetAdminFlg())
+                        {
+                            <li>@Html.ActionLink("設定", "Index", "Settings", new { area = "Settings" }, new { })</li>
+                        }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>

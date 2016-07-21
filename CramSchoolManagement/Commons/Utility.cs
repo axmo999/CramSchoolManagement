@@ -63,6 +63,17 @@ namespace CramSchoolManagement.Commons
             return displayName;
         }
 
+        public static bool GetAdminFlg()
+        {
+            var manager = new UserManager<teachers_m>(new TeacherUserStore());
+            var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId());
+            if (currentUser != null && currentUser.administrator_flag == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
         //internal static dynamic GetStudentName(long? students_id)
         //{
         //    CramSchoolManagement.Models.Students_mModel studentdb = new CramSchoolManagement.Models.Students_mModel();
@@ -142,6 +153,10 @@ namespace CramSchoolManagement.Commons
             {
                 age = 0;
             }
+            else if (age > 14)
+            {
+                age = 15;
+            }
 
             return age;
         }
@@ -159,7 +174,7 @@ namespace CramSchoolManagement.Commons
             {
                 return grade.divisions_m.name + grade.grade;
             }
-            return "卒業生";
+            return "計算不能";
         }
 
         /// <summary>
@@ -168,6 +183,14 @@ namespace CramSchoolManagement.Commons
         public static Dictionary<string, long> likedislike_items = new Dictionary<string, long>{
                 { "好き", 1 },
                 { "苦手", 2 }
+        };
+
+        /// <summary>
+        /// 管理者フラグ
+        /// </summary>
+        public static Dictionary<string, long> admin_flg = new Dictionary<string, long>{
+                { "はい", 1 },
+                { "いいえ", 0 }
         };
 
     }
