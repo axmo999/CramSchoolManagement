@@ -239,7 +239,10 @@ namespace CramSchoolManagement.Controllers
 
             attends.students_id = id;
             attends.attendance_day = DateTime.Today.ToString("yyyy-MM-dd");
-            attends.start_time = DateTime.Now.ToString("HH:mm");
+
+            TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+
+            attends.start_time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).ToString("HH:mm");
 
             attends.create_user = User.Identity.Name.ToString();
             attends.create_date = DateTime.Now.ToString();
@@ -262,7 +265,9 @@ namespace CramSchoolManagement.Controllers
 
             if (attends != null)
             {
-                attends.end_time = DateTime.Now.ToString("HH:mm");
+                TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+
+                attends.end_time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).ToString("HH:mm");
 
                 attends.update_user = User.Identity.Name.ToString();
                 attends.update_date = DateTime.Now.ToString();
