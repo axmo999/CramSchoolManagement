@@ -39,6 +39,9 @@ namespace CramSchoolManagement.Controllers
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name");
             ViewBag.school_grade = new SelectList(setdb.age_m, "age", "display_name");
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
+
+            ViewBag.Message = TempData["Message"];
+
             return View(student_list);
         }
 
@@ -246,7 +249,7 @@ namespace CramSchoolManagement.Controllers
 
             students_m students_m = db.students_m.Find(id);
 
-            ViewBag.Announce = students_m.display_name + "が出席しました。";
+            TempData["Message"] = students_m.display_name + "が出席しました。";
 
             return RedirectToAction("Index");
         }
@@ -268,7 +271,9 @@ namespace CramSchoolManagement.Controllers
 
                 students_m students_m = db.students_m.Find(id);
 
-                ViewBag.Announce = students_m.display_name + "が退席しました。";
+                TempData["Message"] = students_m.display_name + "が退席しました。";
+
+                PartialView();
 
             }
 

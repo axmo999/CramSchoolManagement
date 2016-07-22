@@ -7,7 +7,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<h3>@ViewBag.Announce</h3>
+<h3>@ViewBag.Message</h3>
 
 <p>
     @Html.ActionLink("生徒新規登録", "Create")
@@ -76,10 +76,10 @@
                         @switch (CramSchoolManagement.Commons.Utility.GetAttend(item.students_id))
                         {
                             case 1:
-                                @Html.ActionLink("出席", "CheckIn", new { id = item.students_id });
+                                @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" });
                                 break;
                             case 2:
-                                @Html.ActionLink("退席", "CheckOut", new { id = item.students_id });
+                                @Html.ActionLink("退席", "CheckOut", new { id = item.students_id }, new { @class = "btn btn-warning btn-sm" });
                                 break;
                             default:
                                 ;

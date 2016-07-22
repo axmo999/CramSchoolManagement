@@ -74,11 +74,16 @@ namespace CramSchoolManagement.Commons
             return false;
         }
 
+        /// <summary>
+        /// 出席確認
+        /// </summary>
+        /// <param name="id">生徒ID</param>
+        /// <returns>1:未出席 2:出席済み 3:退席済み</returns>
         public static int GetAttend( string id )
         {
             string today = DateTime.Today.ToString("yyyy-MM-dd");
             Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
-            var attends = studentdb.students_attendance.SingleOrDefault(x => x.students_id == id);
+            var attends = studentdb.students_attendance.SingleOrDefault(x => x.students_id == id && x.attendance_day == today);
             if (attends != null)
             {
                 if (attends.end_time != null)
@@ -87,7 +92,6 @@ namespace CramSchoolManagement.Commons
                 }
                 return 2;
             }
-
             return 1;
         }
 
