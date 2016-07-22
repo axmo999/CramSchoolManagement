@@ -49,6 +49,7 @@
                 </th>
                 <th>情報選択</th>
                 <th>出席</th>
+                <th></th>
             </tr>
 
             @foreach (var item in Model)
@@ -85,6 +86,9 @@
                                 ;
                                 break;
                         }
+                    </td>
+                    <td>
+                        @Html.ActionLink("バーコード", "StudentBarCode", new { id = item.students_id }, new { @class = "btn btn-sm" })
                     </td>
                 </tr>
             }

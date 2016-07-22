@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CramSchoolManagement.Models;
+using System.IO;
+using System.Drawing;
+using ZXing;
 
 namespace CramSchoolManagement.Controllers
 {
@@ -284,6 +287,36 @@ namespace CramSchoolManagement.Controllers
 
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult StudentBarCode(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return null;
+            }
+
+            var ms = new MemoryStream();
+
+            var barcodeWriter = new BarcodeWriter();
+
+            barcodeWriter.Format = BarcodeFormat.CODE_128;
+
+            barcodeWriter.Options.Height = 40;
+            barcodeWriter.Options.Width = 200;
+
+            barcodeWriter.Options.Margin = 30;
+
+            barcodeWriter.Options.PureBarcode = false;
+
+            using (var bitmap = barcodeWriter.Write(id))
+            {
+                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                ms.Position = 0;
+            }
+
+            return new FileStreamResult(ms, "image/png"); 
+
         }
     }
 }
