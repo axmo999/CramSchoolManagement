@@ -5,6 +5,10 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using CramSchoolManagement.Areas.Settings.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using CodeForce.Barcodes;
+using System.IO;
+using CodeForce.Barcodes.Enums;
+using ZXing;
 
 
 namespace CramSchoolManagement.Commons
@@ -61,6 +65,19 @@ namespace CramSchoolManagement.Commons
             }
 
             return displayName;
+        }
+
+        public static string GetSchoolName(long Id)
+        {
+            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+            var schoolname = masterdb.schools_m.SingleOrDefault(x => x.school_id == Id);
+
+            if (schoolname != null)
+            {
+                return schoolname.name;
+            }
+
+            return "なし";
         }
 
         public static bool GetAdminFlg()
@@ -197,6 +214,51 @@ namespace CramSchoolManagement.Commons
             }
             return "計算不能";
         }
+
+        public static byte[] GuidToCode39(string guid, int width, int height)
+        {
+            string GUID = guid.ToString().ToUpper();
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Barcode code39 = new Barcode();
+                code39.Encode(TYPE.CODE39, GUID, width, height);
+                code39.SaveImage(stream, SaveTypes.PNG);
+                return stream.ToArray();
+            }
+        }
+
+        public static byte[] GuidToCode39(string guid)
+        {
+            string GUID = guid.ToString().ToUpper();
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                var barcodeWriter = new BarcodeWriter();
+
+                barcodeWriter.Format = BarcodeFormat.CODE_39;
+
+                barcodeWriter.Options.Height = 60;
+                barcodeWriter.Options.Width = 100;
+
+                barcodeWriter.Options.Margin = 0;
+
+                barcodeWriter.Options.PureBarcode = false;
+
+                using (var bitmap = barcodeWriter.Write(GUID))
+                {
+                    bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    stream.Position = 0;
+                }
+                return stream.ToArray();
+            }
+
+        }
+
+
+
+
+
 
         /// <summary>
         /// 好き苦手マスタ

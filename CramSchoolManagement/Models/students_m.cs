@@ -122,6 +122,22 @@ using CramSchoolManagement.Commons;
             }
         }
 
+        public string hope_school_name
+        {
+            get
+            {
+                return Utility.GetSchoolName(hope_school);
+            }
+        }
+
+        public string enter_school_name
+        {
+            get
+            {
+                return Utility.GetSchoolName(enter_school);
+            }
+        }
+
         [Display(Name = "4/1時の満年齢 5歳以下は0")]
         public long gradeint
         {

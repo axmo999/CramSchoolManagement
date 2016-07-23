@@ -85,16 +85,19 @@
                 @Html.ValidationMessageFor(model => model.office_id, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @if (Model.students_face.Any(f => f.FileType == "Image"))
+        @if (Model.students_face != null)
         {
-            <div class="form-group">
-                <span class="control-label col-md-2"><strong>現在顔写真</strong></span>
-                <div class="col-md-10">
-                    <img src="~/students_face?id=@Model.students_face.First(f => f.FileType == "Image").FileId" alt="avatar" />
+            if (Model.students_face.Any(f => f.FileType == "Image"))
+            {
+                <div class="form-group">
+                    <span class="control-label col-md-2"><strong>現在顔写真</strong></span>
+                    <div class="col-md-10">
+                        <img src="~/students_face?id=@Model.students_face.First(f => f.FileType == "Image").FileId" alt="avatar" />
+                    </div>
                 </div>
-            </div>
+            }
         }
+
         
         <div class="form-group">
             @Html.Label("新しい顔写真", new {@class = "control-label col-md-2"})
@@ -130,7 +133,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.hope_school, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("hope_school", null, htmlAttributes: new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.hope_school, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.hope_school, "", new { @class = "text-danger" })
             </div>
@@ -139,7 +142,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.enter_school, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("enter_school", null, htmlAttributes: new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.enter_school, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.enter_school, "", new { @class = "text-danger" })
             </div>

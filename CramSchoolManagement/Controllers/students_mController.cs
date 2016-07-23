@@ -11,6 +11,7 @@ using System.IO;
 using System.Drawing;
 using ZXing;
 
+
 namespace CramSchoolManagement.Controllers
 {
     public class students_mController : Controller
@@ -55,7 +56,7 @@ namespace CramSchoolManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_m students_m = db.students_m.Include(s => s.students_face).SingleOrDefault(s => s.students_id == id);
+            students_m students_m = db.students_m.Include(s => s.students_face).Include(s => s.schools_m).Include(s => s.offices_m).SingleOrDefault(s => s.students_id == id);
             if (students_m == null)
             {
                 return HttpNotFound();
@@ -68,6 +69,8 @@ namespace CramSchoolManagement.Controllers
         {
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name");
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name");
+            ViewBag.hope_school = new SelectList(setdb.schools_m, "school_id", "name");
+            ViewBag.enter_school = new SelectList(setdb.schools_m, "school_id", "name");
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
             return View();
         }
@@ -113,6 +116,8 @@ namespace CramSchoolManagement.Controllers
 
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.school_id);
+            ViewBag.hope_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.hope_school);
+            ViewBag.enter_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.enter_school);
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", students_m.office_id);
             return View(students_m);
         }
@@ -131,6 +136,8 @@ namespace CramSchoolManagement.Controllers
             }
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.school_id);
+            ViewBag.hope_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.hope_school);
+            ViewBag.enter_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.enter_school);
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", students_m.office_id);
             ViewBag.likedislikeclass_id = new SelectList(setdb.classes_m, "class_id", "name");
             return View(students_m);
@@ -187,6 +194,8 @@ namespace CramSchoolManagement.Controllers
             }
             ViewBag.gender_id = new SelectList(setdb.gender_m, "gender_id", "gender_name", students_m.gender_id);
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name", students_m.school_id);
+            ViewBag.hope_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.hope_school);
+            ViewBag.enter_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.enter_school);
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", students_m.office_id);
             return View(students_m);
         }
@@ -242,7 +251,16 @@ namespace CramSchoolManagement.Controllers
 
             attends.students_id = id;
 
-            TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+            TimeZoneInfo tst;
+
+            try
+            {
+                tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+            }
+            catch (Exception)
+            {
+                tst = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
+            }
 
             attends.attendance_day = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).ToString("yyyy-MM-dd");
             attends.start_time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).ToString("HH:mm");
@@ -262,7 +280,7 @@ namespace CramSchoolManagement.Controllers
 
         public ActionResult CheckOut(string id)
         {
-            TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+            TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time") ?? TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
 
             string today = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).ToString("yyyy-MM-dd");
             Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
@@ -296,24 +314,9 @@ namespace CramSchoolManagement.Controllers
                 return null;
             }
 
-            var ms = new MemoryStream();
+            Stream ms = new MemoryStream(Commons.Utility.GuidToCode39(id));
 
-            var barcodeWriter = new BarcodeWriter();
 
-            barcodeWriter.Format = BarcodeFormat.CODE_128;
-
-            barcodeWriter.Options.Height = 40;
-            barcodeWriter.Options.Width = 200;
-
-            barcodeWriter.Options.Margin = 30;
-
-            barcodeWriter.Options.PureBarcode = false;
-
-            using (var bitmap = barcodeWriter.Write(id))
-            {
-                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                ms.Position = 0;
-            }
 
             return new FileStreamResult(ms, "image/png"); 
 

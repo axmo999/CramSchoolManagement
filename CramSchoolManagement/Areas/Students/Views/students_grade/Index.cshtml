@@ -44,8 +44,9 @@
                 </tr>*@
 
             <div class="col-sm-2 col-xs-4">
-                <h5 class="text-center grade_border_title" style="margin-bottom:0px;">@Html.DisplayFor(modelItem => item.classes_m.display_name)</h5>
-                <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.exam_scores)</p>
+                <h5 class="text-center grade_border_title">@Html.DisplayFor(modelItem => item.classes_m.display_name)</h5>
+                <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.exam_scores) 点</p>
+                <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.exam_precedence) 位</p>
                 <p class="text-center">
                     @Html.ActionLink("編集", "Edit", new { num = item.students_grade_id })
                 </p>

@@ -59,7 +59,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_grade_id,students_id,exam_date,exam_id,class_id,exam_scores,create_user,create_date,update_user,update_date")] students_grade students_grade)
+        public ActionResult Create([Bind(Include = "students_grade_id,students_id,exam_date,exam_id,class_id,exam_scores,exam_precedence,create_user,create_date,update_user,update_date")] students_grade students_grade)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_grade_id,students_id,exam_date,exam_id,class_id,exam_scores,create_user,create_date,update_user,update_date")] students_grade students_grade)
+        public ActionResult Edit([Bind(Include = "students_grade_id,students_id,exam_date,exam_id,class_id,exam_scores,exam_precedence,create_user,create_date,update_user,update_date")] students_grade students_grade)
         {
             if (ModelState.IsValid)
             {
