@@ -38,18 +38,18 @@
                 <th>
                     @Html.DisplayNameFor(model => model.display_name)
                 </th>
-                <th>
+                <th class="hidden-xs">
                     @Html.DisplayNameFor(model => model.schools_m.name)
                 </th>
-                <th>
+                <th class="hidden-xs">
                     @Html.DisplayNameFor(model => model.grade)
                 </th>
-                <th>
+                <th class="hidden-xs">
                     @Html.DisplayNameFor(model => model.offices_m.name)
                 </th>
                 <th>情報選択</th>
                 <th>出席</th>
-                <th></th>
+                @*<th></th>*@
             </tr>
 
             @foreach (var item in Model)
@@ -58,13 +58,13 @@
                     <td>
                         @Html.ActionLink(item.display_name, "Details", new { id = item.students_id })
                     </td>
-                    <td>
+                    <td class="hidden-xs">
                         @Html.DisplayFor(modelItem => item.schools_m.name)
                     </td>
-                    <td>
+                    <td class="hidden-xs">
                         @Html.DisplayFor(modelItem => item.grade)
                     </td>
-                    <td>
+                    <td class="hidden-xs">
                         @Html.DisplayFor(modelItem => item.offices_m.name)
                     </td>
                     <td>
@@ -87,9 +87,9 @@
                                 break;
                         }
                     </td>
-                    <td>
+                    @*<td>
                         @Html.ActionLink("バーコード", "StudentBarCode", new { id = item.students_id }, new { @class = "btn btn-sm" })
-                    </td>
+                    </td>*@
                 </tr>
             }
 
