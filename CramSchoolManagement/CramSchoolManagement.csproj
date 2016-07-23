@@ -259,6 +259,7 @@
     <Content Include="Areas\Settings\Views\offices_m\Details.cshtml" />
     <Content Include="Areas\Settings\Views\offices_m\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\offices_m\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
