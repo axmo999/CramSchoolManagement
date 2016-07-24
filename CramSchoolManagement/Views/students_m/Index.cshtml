@@ -24,73 +24,93 @@
         @Html.DropDownList("school_grade", null, "", htmlAttributes: new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.Label("office_id", " 教室名：", new { @class = "control-label" })
-        @Html.DropDownList("office_id", null, "", htmlAttributes: new { @class = "form-control" })
-    </div>
-    <div class="form-group">
         <input type="submit" value="検索" class="btn btn-info" />
     </div>
 
 }
 
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.display_name)
-                </th>
-                <th class="hidden-xs">
-                    @Html.DisplayNameFor(model => model.schools_m.name)
-                </th>
-                <th class="hidden-xs">
-                    @Html.DisplayNameFor(model => model.grade)
-                </th>
-                <th class="hidden-xs">
-                    @Html.DisplayNameFor(model => model.offices_m.name)
-                </th>
-                <th>情報選択</th>
-                <th>出席</th>
-                @*<th></th>*@
-            </tr>
-
-            @foreach (var item in Model)
-            {
+        <table id="student_list" class="table table-striped table-bordered">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.ActionLink(item.display_name, "Details", new { id = item.students_id })
-                    </td>
-                    <td class="hidden-xs">
-                        @Html.DisplayFor(modelItem => item.schools_m.name)
-                    </td>
-                    <td class="hidden-xs">
-                        @Html.DisplayFor(modelItem => item.grade)
-                    </td>
-                    <td class="hidden-xs">
-                        @Html.DisplayFor(modelItem => item.offices_m.name)
-                    </td>
-                    <td>
-                        @Html.RouteLink("出席", "Students_id_route", new { controller = "students_attendance", students_id = item.students_id }) |
-                        @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }) |
-                        @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id }) |
-                        @Html.RouteLink("面談", "Students_id_route", new { controller = "students_interview", students_id = item.students_id })
-                    </td>
-                    <td>
-                        @switch (CramSchoolManagement.Commons.Utility.GetAttend(item.students_id))
-                        {
-                            case 1:
-                                @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" });
-                                break;
-                            case 2:
+                    <th>
+                        @Html.DisplayNameFor(model => model.display_name)
+                    </th>
+                    <th class="hidden-xs">
+                        @Html.DisplayNameFor(model => model.schools_m.name)
+                    </th>
+                    <th class="hidden-xs">
+                        @Html.DisplayNameFor(model => model.grade)
+                    </th>
+                    <th>情報選択</th>
+                    <th>出席</th>
+                    @*<th></th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.display_name, "Details", new { id = item.students_id })
+                        </td>
+                        <td class="hidden-xs">
+                            @Html.DisplayFor(modelItem => item.schools_m.name)
+                        </td>
+                        <td class="hidden-xs">
+                            @Html.DisplayFor(modelItem => item.grade)
+                        </td>
+                        <td>
+                            @Html.RouteLink("出席", "Students_id_route", new { controller = "students_attendance", students_id = item.students_id }) |
+                            @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }) |
+                            @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id }) |
+                            @Html.RouteLink("面談", "Students_id_route", new { controller = "students_interview", students_id = item.students_id })
+                        </td>
+                        <td>
+                            @switch (CramSchoolManagement.Commons.Utility.GetAttend(item.students_id))
+                            {
+                                case 1:
+                                    @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" });
+                                                                                                                                        break;
+                                case 2:
                                 @Html.ActionLink("退席", "CheckOut", new { id = item.students_id }, new { @class = "btn btn-warning btn-sm" });
-                                break;
-                            default:
-                                ;
-                                break;
-                        }
-                    </td>
-                    @*<td>
+                                                                                                                                        break;
+                                default:
+                                                                                                                                        ;
+                                                                                                                                        break;
+                            }
+                        </td>
+                        @*<td>
                         @Html.ActionLink("バーコード", "StudentBarCode", new { id = item.students_id }, new { @class = "btn btn-sm" })
                     </td>*@
-                </tr>
-            }
-
+                    </tr>
+                }
+            </tbody>
         </table>
+
+
+
+
+@section scripts{
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+
+    <script type="text/javascript">
+
+        $.extend($.fn.dataTable.defaults, {
+            language: {
+                url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+            }
+        });
+
+        jQuery(function ($) {
+
+            $("#student_list").dataTable({
+                stateSave: true
+            });
+        });
+
+    </script>
+
+}

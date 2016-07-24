@@ -91,43 +91,7 @@
 </div>
 
     <hr />
-        @*<div>
-            <dl class="dl-horizontal">
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.create_user)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.create_user)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.create_date)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.create_date)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.update_user)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.update_user)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.update_date)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.update_date)
-                </dd>
-
-            </dl>
-        </div>*@
         <p>
             @Html.ActionLink("編集する", "Edit", new { id = Model.students_id }, new { @class = "btn btn-standard" }) |
             @Html.ActionLink("削除", "Delete", new { id = Model.students_id }, new { @class = "btn btn-danger" }) |

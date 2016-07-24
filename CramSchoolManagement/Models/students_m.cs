@@ -52,6 +52,10 @@ using CramSchoolManagement.Commons;
         [Display(Name = "部活")]
         public string club { get; set; }
 
+        [StringLength(7)]
+        [Display(Name = "出席可能曜日")]
+        public char able_days { get; set; }
+
         [Display(Name = "教室管理番号")]
         public long office_id { get; set; }
 
