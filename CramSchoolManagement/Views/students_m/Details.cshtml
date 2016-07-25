@@ -82,6 +82,20 @@
     }
 </div>
 
+<div class="row row-eq-height" style="margin-top: 10px;">
+    <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">出席可能曜日</p></div>
+        @Html.LabelFor(model => model.attend_mon, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.CheckBoxFor(model => model.attend_mon, new { @checked = Model.attend_mon, @class = "col-md-2", @disabled = "disabled" })
+        @Html.LabelFor(model => model.attend_tue, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.CheckBoxFor(model => model.attend_tue, new { @checked = Model.attend_mon, @class = "col-md-2", @disabled = "disabled" })
+        @Html.LabelFor(model => model.attend_wed, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.CheckBoxFor(model => model.attend_wed, new { @checked = Model.attend_mon, @class = "col-md-2", @disabled = "disabled" })
+        @Html.LabelFor(model => model.attend_thurs, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.CheckBoxFor(model => model.attend_thurs, new { @checked = Model.attend_mon, @class = "col-md-2", @disabled = "disabled" })
+        @Html.LabelFor(model => model.attend_fri, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.CheckBoxFor(model => model.attend_fri, new { @checked = Model.attend_mon, @class = "col-md-2", @disabled = "disabled" })
+</div>
+
 <div class="row" style="margin-top: 20px;">
     <div class="col-xs-12 col-sm-12 col-md-2">
         <p>

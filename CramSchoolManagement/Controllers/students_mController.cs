@@ -10,6 +10,7 @@ using CramSchoolManagement.Models;
 using System.IO;
 using System.Drawing;
 using ZXing;
+using Newtonsoft.Json;
 
 
 namespace CramSchoolManagement.Controllers
@@ -60,7 +61,8 @@ namespace CramSchoolManagement.Controllers
             if (students_m == null)
             {
                 return HttpNotFound();
-            }
+            }   
+
             return View(students_m);
         }
 
@@ -72,6 +74,7 @@ namespace CramSchoolManagement.Controllers
             ViewBag.hope_school = new SelectList(setdb.schools_m, "school_id", "name");
             ViewBag.enter_school = new SelectList(setdb.schools_m, "school_id", "name");
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
+
             return View();
         }
 
@@ -80,7 +83,7 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, HttpPostedFileBase face_img)
+        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri")] students_m students_m, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
@@ -148,12 +151,12 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date")] students_m students_m, string id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri")] students_m students_m, string id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
                 var studentToUpdate = db.students_m.Find(id);
-                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date" }))
+                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date", "attend_mon", "attend_tue", "attend_wed", "attend_thurs", "attend_fri" }))
                 {
                     try
                     {
@@ -197,6 +200,7 @@ namespace CramSchoolManagement.Controllers
             ViewBag.hope_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.hope_school);
             ViewBag.enter_school = new SelectList(setdb.schools_m, "school_id", "name", students_m.enter_school);
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", students_m.office_id);
+
             return View(students_m);
         }
 

@@ -52,10 +52,6 @@ using CramSchoolManagement.Commons;
         [Display(Name = "部活")]
         public string club { get; set; }
 
-        [StringLength(7)]
-        [Display(Name = "出席可能曜日")]
-        public char able_days { get; set; }
-
         [Display(Name = "教室管理番号")]
         public long office_id { get; set; }
 
@@ -81,6 +77,21 @@ using CramSchoolManagement.Commons;
         [DataType(DataType.MultilineText)]
         [Display(Name = "備考")]
         public string note { get; set; }
+
+        [Display(Name = "月曜日")]
+        public bool attend_mon { get; set; }
+
+        [Display(Name = "火曜日")]
+        public bool attend_tue { get; set; }
+
+        [Display(Name = "水曜日")]
+        public bool attend_wed { get; set; }
+
+        [Display(Name = "木曜日")]
+        public bool attend_thurs { get; set; }
+
+        [Display(Name = "金曜日")]
+        public bool attend_fri { get; set; }
 
         public string create_user { get; set; }
 
