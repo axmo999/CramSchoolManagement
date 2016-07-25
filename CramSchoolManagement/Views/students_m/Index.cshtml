@@ -63,7 +63,8 @@
                             @Html.RouteLink("出席", "Students_id_route", new { controller = "students_attendance", students_id = item.students_id }) |
                             @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }) |
                             @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id }) |
-                            @Html.RouteLink("面談", "Students_id_route", new { controller = "students_interview", students_id = item.students_id })
+                            @Html.RouteLink("面談", "Students_id_route", new { controller = "students_interview", students_id = item.students_id }) |
+                            @Html.RouteLink("自立", "Students_id_route", new { controller = "students_independence", students_id = item.students_id })
                         </td>
                         <td>
                             @switch (CramSchoolManagement.Commons.Utility.GetAttend(item.students_id))

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_independence>
+
+@{
+    ViewBag.Title = "自立チェック一覧";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>@ViewBag.StudentName</h2>
+
+<p>
+    @Html.ActionLink("新規登録", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.students_m.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.week)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.students_m.last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.week)
+        </td>
+        <td>
+            @Html.ActionLink("詳細", "Details", new { id=item.independence_id })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
+</div>

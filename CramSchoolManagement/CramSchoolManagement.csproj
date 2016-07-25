@@ -178,6 +178,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\raty\images\cancel-off.png" />
+    <Content Include="Content\raty\images\cancel-on.png" />
+    <Content Include="Content\raty\images\star-half.png" />
+    <Content Include="Content\raty\images\star-off.png" />
+    <Content Include="Content\raty\images\star-on.png" />
     <Content Include="Content\site.css" />
     <Content Include="Content\themes\honoka\css\bootstrap.css" />
     <Content Include="Content\themes\honoka\css\bootstrap.min.css" />
@@ -222,6 +227,7 @@
     <Content Include="Areas\Settings\Views\teachers_m\Index.cshtml" />
     <Content Include="Areas\Students\Views\web.config" />
     <Content Include="Areas\Students\Views\Shared\_Students.cshtml" />
+    <Content Include="Content\raty\jquery.raty.js" />
     <Content Include="Views\students_m\Create.cshtml" />
     <Content Include="Views\students_m\Delete.cshtml" />
     <Content Include="Views\students_m\Details.cshtml" />
@@ -265,6 +271,11 @@
     <Content Include="Areas\Settings\Views\offices_m\Details.cshtml" />
     <Content Include="Areas\Settings\Views\offices_m\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\offices_m\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Index.cshtml" />
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -302,9 +313,11 @@
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Students\Controllers\students_attendanceController.cs" />
     <Compile Include="Areas\Students\Controllers\students_gradeController.cs" />
+    <Compile Include="Areas\Students\Controllers\students_independenceController.cs" />
     <Compile Include="Areas\Students\Controllers\students_interviewController.cs" />
     <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
     <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
+    <Compile Include="Areas\Students\Models\students_independence.cs" />
     <Compile Include="Areas\Students\Models\students_interview.cs" />
     <Compile Include="Controllers\StudentsInfoController.cs" />
     <Compile Include="Controllers\students_faceController.cs" />

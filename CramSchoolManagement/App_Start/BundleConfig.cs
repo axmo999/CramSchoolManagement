@@ -30,6 +30,10 @@ namespace CramSchoolManagement
                         "~/Content/site.css"
                 ));
 
+            bundles.Add(new ScriptBundle("~/Content/raty").Include(
+                        "~/Content/raty/jquery.raty.js"
+                ));
+
         }
     }
 }

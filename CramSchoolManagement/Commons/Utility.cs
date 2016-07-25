@@ -9,6 +9,7 @@ using CodeForce.Barcodes;
 using System.IO;
 using CodeForce.Barcodes.Enums;
 using ZXing;
+using System.Web.Mvc;
 
 
 namespace CramSchoolManagement.Commons
@@ -262,6 +263,21 @@ namespace CramSchoolManagement.Commons
                 { "好き", 1 },
                 { "苦手", 2 }
         };
+
+        /// <summary>
+        /// 評価マスタ
+        /// </summary>
+        public static IEnumerable<SelectListItem> rate()
+        {
+            return new List<SelectListItem>()
+		        {
+			        new SelectListItem() { Value = "1", Text = "★" },
+			        new SelectListItem() { Value = "2", Text = "★★" },
+			        new SelectListItem() { Value = "3", Text = "★★★" },
+                    new SelectListItem() { Value = "4", Text = "★★★★" },
+                    new SelectListItem() { Value = "5", Text = "★★★★★" },
+		        };
+        }
 
         /// <summary>
         /// 管理者フラグ
