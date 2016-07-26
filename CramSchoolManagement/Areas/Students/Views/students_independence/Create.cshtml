@@ -25,6 +25,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "col-md-9" })
+            <div class="col-md-3">
+                @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.week, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.week, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.ToString("yyyy-MM-dd") } })
@@ -44,7 +52,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question02, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question02, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question02, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question02, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question03, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question03, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question03, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question03, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -60,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question04, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question04, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question04, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question04, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,7 +76,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question05, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question05, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question05, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question05, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question06, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question06, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question06, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question06, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question07, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question07, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question07, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question07, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -92,7 +100,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question08, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question08, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question08, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question08, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,7 +108,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question09, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question09, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question09, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question09, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -108,7 +116,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question10, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question10, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question10, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question10, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -116,7 +124,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question11, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question11, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question11, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question11, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -124,7 +132,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question12, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question12, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question12, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question12, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -132,7 +140,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question13, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question13, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question13, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question13, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -140,7 +148,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question14, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question14, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question14, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question14, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -148,7 +156,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question15, htmlAttributes: new { @class = "col-md-9" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.question15, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.question15, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question15, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -164,13 +172,3 @@
 <div>
     @Html.ActionLink("自立チェック一覧へ戻る", "Index")
 </div>
-
-@section scripts{
-    @Scripts.Render("~/Content/raty")
-    <script type="text/javascript">
-        $.fn.raty.defaults.path = "/Content/raty/images";
-        $('select.form-control').raty();
-    </script>
-    
-
-}

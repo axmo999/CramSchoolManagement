@@ -10,6 +10,7 @@ using System.IO;
 using CodeForce.Barcodes.Enums;
 using ZXing;
 using System.Web.Mvc;
+using System.Globalization;
 
 
 namespace CramSchoolManagement.Commons
@@ -214,6 +215,26 @@ namespace CramSchoolManagement.Commons
                 return grade.divisions_m.name + grade.grade;
             }
             return "計算不能";
+        }
+
+        public static bool CheckIndependent(string students_id)
+        {
+            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
+            var indepentent = studentdb.students_independence.OrderByDescending(a => a.week).FirstOrDefault(a => a.students_id == students_id);
+            if (indepentent != null)
+            {
+                DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+                Calendar cal = dfi.Calendar;
+                int weeknum = cal.GetWeekOfYear(DateTime.Parse(indepentent.week), dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+                int todaynum = cal.GetWeekOfYear(DateTime.Today, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+
+                if (weeknum.Equals(todaynum))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public static byte[] GuidToCode39(string guid, int width, int height)

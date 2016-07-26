@@ -146,9 +146,9 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // POST: Students/students_guide/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(long num)
         {
-            students_guide students_guide = db.students_guide.Find(id);
+            students_guide students_guide = db.students_guide.Find(num);
             db.students_guide.Remove(students_guide);
             db.SaveChanges();
             return RedirectToAction("Index");

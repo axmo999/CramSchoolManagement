@@ -7,18 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CramSchoolManagement.Areas.Students.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CramSchoolManagement.Areas.Students.Controllers
 {
     public class students_independenceController : Controller
     {
         private StudentsModel db = new StudentsModel();
+        private CramSchoolManagement.Areas.Settings.Models.MastersModel setdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
 
         // GET: Students/students_independence
         public ActionResult Index(string students_id)
         {
             var students_independence = db.students_independence.Where(independence => independence.students_id == students_id).Include(s => s.students_m);
 
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name");
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
 
             return View(students_independence.ToList());
@@ -47,7 +50,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         {
             ViewBag.students_id = students_id;
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
-            //ViewBag.SelectOptions = new SelectList(CramSchoolManagement.Commons.Utility.rate);
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", User.Identity.GetUserId());
             return View();
         }
 
@@ -56,7 +59,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "independence_id,students_id,week,question01,question02,question03,question04,question05,question06,question07,question08,question09,question10,question11,question12,question13,question14,question15,create_user,create_date,update_user,update_date")] students_independence students_independence)
+        public ActionResult Create([Bind(Include = "independence_id,students_id,Id,week,question01,question02,question03,question04,question05,question06,question07,question08,question09,question10,question11,question12,question13,question14,question15,create_user,create_date,update_user,update_date")] students_independence students_independence)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +69,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_independence.Id);
             return View(students_independence);
         }
 
@@ -83,6 +86,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 return HttpNotFound();
             }
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", (object)students_independence.Id);
             return View(students_independence);
         }
 
@@ -91,7 +95,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "independence_id,students_id,week,question01,question02,question03,question04,question05,question06,question07,question08,question09,question10,question11,question12,question13,question14,question15,create_user,create_date,update_user,update_date")] students_independence students_independence)
+        public ActionResult Edit([Bind(Include = "independence_id,students_id,week,Id,question01,question02,question03,question04,question05,question06,question07,question08,question09,question10,question11,question12,question13,question14,question15,create_user,create_date,update_user,update_date")] students_independence students_independence)
         {
             if (ModelState.IsValid)
             {
@@ -101,6 +105,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", students_independence.Id);
             return View(students_independence);
         }
 

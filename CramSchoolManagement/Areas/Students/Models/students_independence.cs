@@ -15,6 +15,9 @@
         [Display(Name = "生徒管理番号")]
         public string students_id { get; set; }
 
+        [Display(Name = "講師管理ID")]
+        public string Id { get; set; }
+
         [Display(Name = "投稿日")]
         [DataType(DataType.Date)]
         public string week { get; set; }
@@ -73,5 +76,7 @@
         public string update_date { get; set; }
 
         public virtual CramSchoolManagement.Models.students_m students_m { get; set; }
+
+        public virtual CramSchoolManagement.Areas.Settings.Models.teachers_m teachers_m { get; set; }
     }
 }

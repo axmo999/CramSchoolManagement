@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.students_m.last_name)
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.week)
@@ -24,13 +24,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.students_m.last_name)
+            @Html.DisplayFor(modelItem => item.teachers_m.display_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.week)
         </td>
         <td>
-            @Html.ActionLink("詳細", "Details", new { id=item.independence_id })
+            @Html.ActionLink("詳細", "Details", new { num = item.independence_id })
         </td>
     </tr>
 }
