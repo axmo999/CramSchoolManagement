@@ -100,7 +100,7 @@ namespace CramSchoolManagement.Commons
         /// <returns>1:未出席 2:出席済み 3:退席済み</returns>
         public static int GetAttend( string id )
         {
-            string today = DateTime.Today.ToString("yyyy-MM-dd");
+            DateTime today = DateTime.Today;
             Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
             var attends = studentdb.students_attendance.SingleOrDefault(x => x.students_id == id && x.attendance_day == today);
             if (attends != null)
@@ -217,6 +217,12 @@ namespace CramSchoolManagement.Commons
             return "計算不能";
         }
 
+        /// <summary>
+        /// 自立チェック週入力確認
+        /// 入力した日時を週計算し、あるなしを判断する
+        /// </summary>
+        /// <param name="students_id">生徒管理ID</param>
+        /// <returns>あればfalse,なければtrue</returns>
         public static bool CheckIndependent(string students_id)
         {
             Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
@@ -235,6 +241,29 @@ namespace CramSchoolManagement.Commons
             }
 
             return true;
+        }
+
+
+        public static string CheckAttendRate(string students_id, string date)
+        {
+            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
+            Areas.Settings.Models.MastersModel masterdb = new Areas.Settings.Models.MastersModel();
+
+            DateTime thisday = DateTime.Parse(date);
+            DateTime dtFDM = new DateTime(thisday.Year, thisday.Month, 1);
+            DateTime dtLDM = new DateTime(thisday.Year, thisday.Month, DateTime.DaysInMonth(thisday.Year, thisday.Month));
+            var student_attend = studentdb.students_attendance.AsEnumerable().Where(x => x.attendance_day >= dtFDM && x.attendance_day <= dtLDM && x.students_id == students_id);
+
+            decimal attend_count = student_attend.Count();
+            decimal month_attend = masterdb.atteds_m.SingleOrDefault(x => x.year_month == dtFDM).count;
+            decimal rate = attend_count / month_attend;
+
+            if (student_attend != null)
+            {
+                return rate + "％";
+            }
+
+            return "0%";
         }
 
         public static byte[] GuidToCode39(string guid, int width, int height)

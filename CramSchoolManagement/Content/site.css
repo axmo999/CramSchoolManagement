@@ -26,3 +26,36 @@
     border: 1px solid #E1E1E8;
     padding: 8px;
 }
+
+.form-group {
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+}
+
+.indep_h3 {
+	padding: .25em 0 .5em .75em;
+	border-left: 6px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.form-group label{
+    margin-top: 6px;
+}
+
+.counter {
+    counter-increment: num;
+}
+
+.counter:before {
+    content: counter(num) ". ";
+}
+
+dl.counterdl dt{
+    counter-increment: num;
+}
+
+dl.counterdl dt:before {
+    content: counter(num) ". ";
+}
+
+body{counter-reset: num;}

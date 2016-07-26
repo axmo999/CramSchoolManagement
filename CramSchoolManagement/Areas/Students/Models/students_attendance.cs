@@ -17,7 +17,7 @@
 
         [Display(Name = "出席日")]
         [DataType(DataType.Date)]
-        public string attendance_day { get; set; }
+        public DateTime attendance_day { get; set; }
 
         [Display(Name = "開始時間")]
         [DataType(DataType.Time)]

@@ -6,8 +6,8 @@
     <WebStackScaffolding_IsLayoutPageSelected>True</WebStackScaffolding_IsLayoutPageSelected>
     <WebStackScaffolding_IsPartialViewSelected>True</WebStackScaffolding_IsPartialViewSelected>
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>False</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
-    <WebStackScaffolding_LayoutPageFile>~/Areas/Students/Views/Shared/_Students.cshtml</WebStackScaffolding_LayoutPageFile>
-    <WebStackScaffolding_DbContextTypeFullName>CramSchoolManagement.Areas.Students.Models.StudentsModel</WebStackScaffolding_DbContextTypeFullName>
+    <WebStackScaffolding_LayoutPageFile>~/Areas/Settings/Views/Shared/_Settings.cshtml</WebStackScaffolding_LayoutPageFile>
+    <WebStackScaffolding_DbContextTypeFullName>CramSchoolManagement.Areas.Settings.Models.MastersModel</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>

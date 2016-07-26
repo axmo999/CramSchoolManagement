@@ -1,0 +1,67 @@
+﻿@model CramSchoolManagement.Areas.Settings.Models.atteds_m
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>atteds_m</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.year_month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.year_month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.attend_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

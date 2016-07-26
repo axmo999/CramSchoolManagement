@@ -20,5 +20,6 @@
         public virtual DbSet<offices_m> offices_m { get; set; }
         public virtual DbSet<teachers_m> teachers_m { get; set; }
         public virtual DbSet<age_m> age_m { get; set; }
+        public virtual DbSet<atteds_m> atteds_m { get; set; }
     }
 }

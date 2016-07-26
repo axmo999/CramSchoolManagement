@@ -19,6 +19,8 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         {
             var students_attendance_list = db.students_attendance.Where(students_attendance => students_attendance.students_id == students_id).Include(s => s.students_m);
 
+            ViewBag.attend_rate = CramSchoolManagement.Commons.Utility.CheckAttendRate(students_id, DateTime.Today.ToShortDateString());
+
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
 
             return View(students_attendance_list.ToList());

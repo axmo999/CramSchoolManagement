@@ -18,6 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.week)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.avr)
+        </th>
         <th></th>
     </tr>
 
@@ -28,6 +31,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.week)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.avr)
         </td>
         <td>
             @Html.ActionLink("詳細", "Details", new { num = item.independence_id })

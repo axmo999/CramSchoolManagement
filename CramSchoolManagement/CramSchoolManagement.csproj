@@ -276,6 +276,11 @@
     <Content Include="Areas\Students\Views\students_independence\Details.cshtml" />
     <Content Include="Areas\Students\Views\students_independence\Edit.cshtml" />
     <Content Include="Areas\Students\Views\students_independence\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Index.cshtml" />
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -293,6 +298,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Settings\Controllers\age_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\atteds_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\classes_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\divisions_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\exams_mController.cs" />
@@ -307,6 +313,7 @@
     <Compile Include="Areas\Settings\Models\gender_m.cs" />
     <Compile Include="Areas\Settings\Models\exams_m.cs" />
     <Compile Include="Areas\Settings\Models\MastersModel.cs" />
+    <Compile Include="Areas\Settings\Models\atteds_m.cs" />
     <Compile Include="Areas\Settings\Models\offices_m.cs" />
     <Compile Include="Areas\Settings\Models\schools_m.cs" />
     <Compile Include="Areas\Settings\Models\teachers_m.cs" />

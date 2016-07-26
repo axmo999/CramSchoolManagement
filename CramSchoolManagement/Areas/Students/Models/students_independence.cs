@@ -64,7 +64,7 @@
         [Display(Name = "塾内・社会で必要な姿勢を意識し習慣化している")]
         public int question14 { get; set; }
 
-        [Display(Name = "短期目標を設定し、計画的に取り組むことが出来る。\nまた、中・長期的な目標を達成するために学習面、生活面の両方から正しい行いができる。")]
+        [Display(Name = "短期目標を設定し、計画的に取り組むことが出来る。\\nまた、中・長期的な目標を達成するために学習面、生活面の両方から正しい行いができる。")]
         public int question15 { get; set; }
 
         public string create_user { get; set; }
@@ -78,5 +78,32 @@
         public virtual CramSchoolManagement.Models.students_m students_m { get; set; }
 
         public virtual CramSchoolManagement.Areas.Settings.Models.teachers_m teachers_m { get; set; }
+
+        [Display(Name = "平均値")]
+        public decimal avr
+        {
+            get { return getsum(); }
+        }
+
+        private decimal getsum()
+        {
+            int sum = question01;
+            sum += question02;
+            sum += question03;
+            sum += question04;
+            sum += question05;
+            sum += question06;
+            sum += question07;
+            sum += question08;
+            sum += question09;
+            sum += question10;
+            sum += question11;
+            sum += question12;
+            sum += question13;
+            sum += question14;
+            sum += question15;
+            decimal avr = Convert.ToDecimal(sum) / 15;
+            return avr;
+        }
     }
 }
