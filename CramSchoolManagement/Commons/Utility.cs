@@ -114,28 +114,28 @@ namespace CramSchoolManagement.Commons
             return 1;
         }
 
-        //internal static dynamic GetStudentName(long? students_id)
-        //{
-        //    CramSchoolManagement.Models.Students_mModel studentdb = new CramSchoolManagement.Models.Students_mModel();
-        //    var student_person = studentdb.students_m.Single(students_m => students_m.students_id == students_id);
-        //    string studentName = string.Empty;
-        //    if (student_person.last_name != null)
-        //    {
-        //        studentName = student_person.last_name.ToString();
-        //    }
+        public static string GetStudentName(string students_id)
+        {
+            CramSchoolManagement.Models.Students_mModel studentdb = new CramSchoolManagement.Models.Students_mModel();
+            var student_person = studentdb.students_m.Single(students_m => students_m.students_id == students_id);
+            string studentName = string.Empty;
+            if (student_person.last_name != null)
+            {
+                studentName = student_person.last_name.ToString();
+            }
 
-        //    if (student_person.middle_name != null)
-        //    {
-        //        studentName += " " + student_person.middle_name.ToString();
-        //    }
+            if (student_person.middle_name != null)
+            {
+                studentName += " " + student_person.middle_name.ToString();
+            }
 
-        //    if (student_person.first_name != null)
-        //    {
-        //        studentName += " " + student_person.first_name.ToString();
-        //    }
+            if (student_person.first_name != null)
+            {
+                studentName += " " + student_person.first_name.ToString();
+            }
 
-        //    return studentName;
-        //}
+            return studentName;
+        }
 
         /// <summary>
         /// 教科管理番号から教科名を表示します。
@@ -243,23 +243,50 @@ namespace CramSchoolManagement.Commons
             return true;
         }
 
+        public static DateTime getFDM()
+        {
+            DateTime Today = DateTime.Today;
+            DateTime dtFDM = new DateTime(Today.Year, Today.Month, 1);
+            return dtFDM;
+        }
 
-        public static string CheckAttendRate(string students_id, string date)
+        public static DateTime getFDM(int year, int month)
+        {
+            DateTime dtFDM = new DateTime(year, month, 1);
+            return dtFDM;
+        }
+
+        public static DateTime getLDM()
+        {
+            DateTime Today = DateTime.Today;
+            DateTime dtLDM = new DateTime(Today.Year, Today.Month, DateTime.DaysInMonth(Today.Year, Today.Month));
+            return dtLDM;
+        }
+
+        public static DateTime getLDM(int year, int month)
+        {
+            DateTime dtLDM = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+            return dtLDM;
+        }
+
+
+        public static string CheckAttendRate(string students_id, int year, int month)
         {
             Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
             Areas.Settings.Models.MastersModel masterdb = new Areas.Settings.Models.MastersModel();
 
-            DateTime thisday = DateTime.Parse(date);
-            DateTime dtFDM = new DateTime(thisday.Year, thisday.Month, 1);
-            DateTime dtLDM = new DateTime(thisday.Year, thisday.Month, DateTime.DaysInMonth(thisday.Year, thisday.Month));
+            //DateTime thisday = DateTime.Parse(date);
+            DateTime dtFDM = new DateTime(year, month, 1);
+            DateTime dtLDM = new DateTime(year, month, DateTime.DaysInMonth(year, month));
             var student_attend = studentdb.students_attendance.AsEnumerable().Where(x => x.attendance_day >= dtFDM && x.attendance_day <= dtLDM && x.students_id == students_id);
+            var month_attend = masterdb.atteds_m.SingleOrDefault(x => x.year_month == dtFDM);
+            
 
-            decimal attend_count = student_attend.Count();
-            decimal month_attend = masterdb.atteds_m.SingleOrDefault(x => x.year_month == dtFDM).count;
-            decimal rate = attend_count / month_attend;
-
-            if (student_attend != null)
+            if (student_attend != null && month_attend != null)
             {
+                decimal attend_count = student_attend.Count();
+                decimal month_count = month_attend.count;
+                decimal rate = attend_count / month_count * 100;
                 return rate + "％";
             }
 

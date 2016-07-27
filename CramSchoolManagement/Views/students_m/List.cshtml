@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_attendance>
+
+@{
+    ViewBag.Title = "生徒出席率一覧";
+    Layout = "~/Views/Shared/_Honoka.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>@ViewBag.this_year 年 @ViewBag.this_month 月</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.students_m.display_name)
+        </th>
+        <th>
+            出席回数
+        </th>
+        <th>
+            出席率
+        </th>
+    </tr>
+        @{
+            var student_attend_name_group = Model.GroupBy(x => x.students_id);
+            foreach (var items in student_attend_name_group)
+            {
+                string studentName = CramSchoolManagement.Commons.Utility.GetStudentName(items.Key);
+                <tr>
+                    <td>@Html.RouteLink(studentName, "Students_id_route", new { controller = "students_attendance", students_id = items.Key })</td>
+                    <td>@items.Count()</td>
+                    <td>@CramSchoolManagement.Commons.Utility.CheckAttendRate(items.Key, ViewBag.this_year, ViewBag.this_month)</td>
+                </tr>
+            }
+         }
+</table>
+
+<h4>過去の出席一覧</h4>
+@{
+    ViewBag.AttendList_all.Reverse();
+}
+@foreach (var item_archive in ViewBag.AttendList_all)
+{
+    string title = item_archive;
+    string[] year_month = item_archive.Split('/');
+    <div class="btn-group">
+        @Html.ActionLink(title, "ArchiveList", new { year = year_month[0], month = year_month[1] }, new { @class = "btn btn-default" })
+    </div>
+}
+
+    <hr />
+
+    <div>
+        @Html.ActionLink("一覧へ戻る", "Index", null, new { @class = "btn btn-primary" })
+    </div>

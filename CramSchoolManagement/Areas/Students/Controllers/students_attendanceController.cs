@@ -17,13 +17,66 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // GET: Students/students_attendance
         public ActionResult Index(string students_id)
         {
-            var students_attendance_list = db.students_attendance.Where(students_attendance => students_attendance.students_id == students_id).Include(s => s.students_m);
+            DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM();
+            DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM();
 
-            ViewBag.attend_rate = CramSchoolManagement.Commons.Utility.CheckAttendRate(students_id, DateTime.Today.ToShortDateString());
+            var students_attendance_list = db.students_attendance.Where(
+                    students_attendance => students_attendance.students_id == students_id
+                    ).Include(s => s.students_m);
+
+            ViewBag.attend_rate = CramSchoolManagement.Commons.Utility.CheckAttendRate(students_id, DateTime.Today.Year, DateTime.Today.Month);
 
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
 
-            return View(students_attendance_list.ToList());
+            ViewBag.this_year = FDM.Year;
+            ViewBag.this_month = FDM.Month;
+
+            var students_attendance_list_thismonth = students_attendance_list.Where(
+                    x => x.attendance_day >= FDM &&
+                         x.attendance_day <= LDM
+                ).OrderByDescending(x => x.attendance_day);
+
+            var students_attendance_list_month = students_attendance_list.GroupBy(
+                        s => s.attendance_day.Year + "/" + s.attendance_day.Month
+                    ).Select(
+                        s => s.Key
+                    ).ToList();
+
+            ViewBag.attend_archive = students_attendance_list_month;
+
+            return View(students_attendance_list_thismonth.ToList());
+        }
+
+        public ActionResult Archive(string students_id, int year, int month)
+        {
+            DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+            DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
+
+            var students_attendance_list = db.students_attendance.Where(
+                    students_attendance => students_attendance.students_id == students_id
+                    ).Include(s => s.students_m);
+
+            ViewBag.attend_rate = CramSchoolManagement.Commons.Utility.CheckAttendRate(students_id, year, month);
+
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+
+            ViewBag.this_year = FDM.Year;
+            ViewBag.this_month = FDM.Month;
+
+            var students_attendance_list_thismonth = students_attendance_list.Where(
+                        x => x.attendance_day >= FDM &&
+                             x.attendance_day <= LDM
+                    ).OrderByDescending(x => x.attendance_day);
+
+            var students_attendance_list_month = students_attendance_list.GroupBy(
+                        s => s.attendance_day.Year + "/" + s.attendance_day.Month
+                    ).Select(
+                        s => s.Key
+                    ).ToList();
+
+            ViewBag.attend_archive = students_attendance_list_month;
+
+            return View(students_attendance_list_thismonth.ToList());
         }
 
         // GET: Students/students_attendance/Details/5

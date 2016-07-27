@@ -36,5 +36,13 @@
         public string update_date { get; set; }
 
         public virtual CramSchoolManagement.Models.students_m students_m { get; set; }
+
     }
+
+    public class group
+    {
+        public int count { get; set; }
+        public string Name { get; set; }
+    }
+
 }

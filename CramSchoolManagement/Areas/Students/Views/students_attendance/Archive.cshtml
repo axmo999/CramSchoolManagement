@@ -1,4 +1,4 @@
-@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_attendance>
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_attendance>
 
 @{
     ViewBag.Title = "生徒出席一覧";
@@ -38,8 +38,8 @@
             @Html.DisplayFor(modelItem => item.end_time)
         </td>
         <td>
-            @Html.ActionLink("編集", "Edit", new { num=item.students_attendance_id }) |
-            @Html.ActionLink("削除", "Delete", new { num=item.students_attendance_id })
+            @Html.ActionLink("編集", "Edit", new { num = item.students_attendance_id }) |
+            @Html.ActionLink("削除", "Delete", new { num = item.students_attendance_id })
         </td>
     </tr>
 }

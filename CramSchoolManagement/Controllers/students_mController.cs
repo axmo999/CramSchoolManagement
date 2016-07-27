@@ -325,5 +325,45 @@ namespace CramSchoolManagement.Controllers
             return new FileStreamResult(ms, "image/png"); 
 
         }
+
+        public ActionResult List()
+        {
+            DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM();
+            DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM();
+
+            var student_list = studentdb.students_attendance.Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM).Include(s => s.students_m);
+            var student_list_name = student_list.GroupBy(x => x.students_id).ToList();
+
+            ViewBag.AttendList_all = studentdb.students_attendance.GroupBy(
+                        s => s.attendance_day.Year + "/" + s.attendance_day.Month
+                    ).Select(
+                        s => s.Key
+                    ).ToList();
+
+            ViewBag.this_year = FDM.Year;
+            ViewBag.this_month = FDM.Month;
+
+            return View(student_list);
+        }
+
+        public ActionResult ArchiveList(int year, int month)
+        {
+            DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+            DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
+
+            var student_list = studentdb.students_attendance.Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM).Include(s => s.students_m);
+            var student_list_name = student_list.GroupBy(x => x.students_id).ToList();
+
+            ViewBag.AttendList_all = studentdb.students_attendance.GroupBy(
+                        s => s.attendance_day.Year + "/" + s.attendance_day.Month
+                    ).Select(
+                        s => s.Key
+                    ).ToList();
+
+            ViewBag.this_year = FDM.Year;
+            ViewBag.this_month = FDM.Month;
+
+            return View(student_list);
+        }
     }
 }

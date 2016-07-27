@@ -281,6 +281,8 @@
     <Content Include="Areas\Settings\Views\atteds_m\Details.cshtml" />
     <Content Include="Areas\Settings\Views\atteds_m\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\atteds_m\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_attendance\Archive.cshtml" />
+    <Content Include="Views\students_m\List.cshtml" />
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -363,6 +365,7 @@
     <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\students_m\ArchiveList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
