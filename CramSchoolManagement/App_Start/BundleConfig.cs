@@ -33,6 +33,9 @@ namespace CramSchoolManagement
             bundles.Add(new ScriptBundle("~/Content/raty").Include(
                         "~/Content/raty/jquery.raty.js"
                 ));
+            bundles.Add(new ScriptBundle("~/Content/table").Include(
+                        "~/Scripts/jquery.table_transpose.js"
+                ));
 
         }
     }

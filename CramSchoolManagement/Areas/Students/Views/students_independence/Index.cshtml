@@ -7,6 +7,11 @@
 
 <h2>@ViewBag.StudentName</h2>
 
+@{
+    DateTime today = DateTime.Today;
+    <h3>@Html.ActionLink("今月集計", "ArchiveMonth", new { year = today.Year, month = today.Month })</h3>
+}
+
 <p>
     @Html.ActionLink("新規登録", "Create")
 </p>

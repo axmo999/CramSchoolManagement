@@ -143,5 +143,84 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ArchiveMonth(string students_id, int year, int month)
+        {
+            ViewBag.students_id = students_id;
+            ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+
+            DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+            DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
+            
+            ViewBag.this_year = FDM.Year;
+            ViewBag.this_month = FDM.Month;
+
+            var independence_list = db.students_independence.Where(independence => independence.students_id == students_id).Include(s => s.students_m);
+            
+            var independence_month = independence_list.Where(
+                        x => x.week >= FDM &&
+                             x.week <= LDM
+                    ).OrderByDescending(x => x.week);
+
+            students_independence student_independent = new students_independence();
+            student_independent.question01 = independence_month.Average(x => x.question01);
+            student_independent.question02 = independence_month.Average(x => x.question02);
+            student_independent.question03 = independence_month.Average(x => x.question03);
+            student_independent.question04 = independence_month.Average(x => x.question04);
+            student_independent.question05 = independence_month.Average(x => x.question05);
+            student_independent.question06 = independence_month.Average(x => x.question06);
+            student_independent.question07 = independence_month.Average(x => x.question07);
+            student_independent.question08 = independence_month.Average(x => x.question08);
+            student_independent.question09 = independence_month.Average(x => x.question09);
+            student_independent.question10 = independence_month.Average(x => x.question10);
+            student_independent.question11 = independence_month.Average(x => x.question11);
+            student_independent.question12 = independence_month.Average(x => x.question12);
+            student_independent.question13 = independence_month.Average(x => x.question13);
+            student_independent.question14 = independence_month.Average(x => x.question14);
+            student_independent.question15 = independence_month.Average(x => x.question15);
+
+            decimal total = independence_month.Count();
+
+            decimal rank1 = (student_independent.question01 
+                            + student_independent.question02
+                            + student_independent.question03
+                            + student_independent.question04
+                            + student_independent.question05) / 5;
+
+            
+
+            decimal rank2 = (student_independent.question06
+                            + student_independent.question07
+                            + student_independent.question08
+                            + student_independent.question09) / 4;
+
+            decimal rank3 = (student_independent.question10
+                            + student_independent.question11
+                            + student_independent.question12
+                            + student_independent.question13) / 4;
+
+            decimal rank4 = (student_independent.question14
+                            + student_independent.question15) / 2;
+
+            ViewBag.rank1 = rank1;
+            ViewBag.rank2 = rank2;
+            ViewBag.rank3 = rank3;
+            ViewBag.rank4 = rank4;
+
+            ViewBag.total_ave = (rank1 + rank2 + rank3 + rank4) / 4;
+
+            var independent_list_final =  independence_month.ToList();
+            independent_list_final.Add(student_independent);
+
+            var independence_list_month = independence_list.GroupBy(
+                       s => s.week.Year + "/" + s.week.Month
+                   ).Select(
+                       s => s.Key
+                   ).ToList();
+
+            ViewBag.attend_archive = independence_list_month;
+
+            return View(independent_list_final);
+        }
     }
 }

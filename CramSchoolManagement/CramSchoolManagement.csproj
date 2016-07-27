@@ -228,6 +228,7 @@
     <Content Include="Areas\Students\Views\web.config" />
     <Content Include="Areas\Students\Views\Shared\_Students.cshtml" />
     <Content Include="Content\raty\jquery.raty.js" />
+    <Content Include="Scripts\jquery.table_transpose.js" />
     <Content Include="Views\students_m\Create.cshtml" />
     <Content Include="Views\students_m\Delete.cshtml" />
     <Content Include="Views\students_m\Details.cshtml" />
@@ -283,6 +284,7 @@
     <Content Include="Areas\Settings\Views\atteds_m\Index.cshtml" />
     <Content Include="Areas\Students\Views\students_attendance\Archive.cshtml" />
     <Content Include="Views\students_m\List.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\ArchiveMonth.cshtml" />
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

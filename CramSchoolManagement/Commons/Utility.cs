@@ -231,7 +231,7 @@ namespace CramSchoolManagement.Commons
             {
                 DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
                 Calendar cal = dfi.Calendar;
-                int weeknum = cal.GetWeekOfYear(DateTime.Parse(indepentent.week), dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+                int weeknum = cal.GetWeekOfYear(indepentent.week, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
                 int todaynum = cal.GetWeekOfYear(DateTime.Today, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
 
                 if (weeknum.Equals(todaynum))
