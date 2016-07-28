@@ -70,10 +70,10 @@
     @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
 </div>
 
-@section scripts{
-    @Styles.Render("~/Content/DataTables")
-    @Scripts.Render("~/bundles/DataTables")
+@Styles.Render("~/Content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
 
+@section scripts{
     <script type="text/javascript">
 
         $.extend($.fn.dataTable.defaults, {
