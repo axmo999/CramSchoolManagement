@@ -37,6 +37,14 @@ namespace CramSchoolManagement
                         "~/Scripts/jquery.table_transpose.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/DataTables").Include(
+                        "~/Content/DataTables/datatables.min.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/DataTables").Include(
+                        "~/Content/DataTables/datatables.min.css"
+                ));
+
         }
     }
 }

@@ -205,7 +205,7 @@ namespace CramSchoolManagement.Controllers
         }
 
         // GET: /students_m/Delete/5
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {

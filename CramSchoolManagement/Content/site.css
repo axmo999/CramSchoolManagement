@@ -59,3 +59,9 @@ dl.counterdl dt:before {
 }
 
 body{counter-reset: num;}
+
+input[type=checkbox] {
+  -ms-transform: scale(1.5, 1.5);
+  -webkit-transform: scale(1.5, 1.5);
+  transform: scale(1.5, 1.5);
+}

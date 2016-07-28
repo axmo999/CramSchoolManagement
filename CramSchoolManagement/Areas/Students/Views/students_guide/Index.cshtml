@@ -27,53 +27,93 @@
 
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.guide_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.teachers_m.display_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.classes_m.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.guide_contents)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.guide_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.teachers_m.display_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.classes_m.display_name)
-        </td>
-        <td>
-            @*@Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))*@
-            @if (item.guide_contents == null || item.guide_contents.Length < 20)
-            {
-                @Html.DisplayFor(modelItem => item.guide_contents)
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.guide_contents).ToHtmlString().Substring(0, 20)
-            }
-        </td>
-        <td>
-            @Html.ActionLink("詳細", "Details", new { num = item.students_guide_id })
-        </td>
-    </tr>
-}
-
+<table class="table" id="student_list">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.guide_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.teachers_m.display_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.classes_m.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.guide_contents)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.guide_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teachers_m.display_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.classes_m.display_name)
+                </td>
+                <td>
+                    @*@Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))*@
+                    @if (item.guide_contents == null || item.guide_contents.Length < 20)
+                    {
+                        @Html.DisplayFor(modelItem => item.guide_contents)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.guide_contents).ToHtmlString().Substring(0, 20)
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("詳細", "Details", new { num = item.students_guide_id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 <div>
     @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
 </div>
+
+@section scripts{
+    @Styles.Render("~/Content/DataTables")
+    @Scripts.Render("~/bundles/DataTables")
+
+    <script type="text/javascript">
+
+        $.extend($.fn.dataTable.defaults, {
+            language: {
+                "sProcessing": "処理中...",
+                "sLengthMenu": "_MENU_ 件表示",
+                "sZeroRecords": "データはありません。",
+                "sInfo": " _TOTAL_ 件中 _START_ から _END_ まで表示",
+                "sInfoEmpty": " 0 件中 0 から 0 まで表示",
+                "sInfoFiltered": "（全 _MAX_ 件より抽出）",
+                "sInfoPostFix": "",
+                "sSearch": "検索:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "先頭",
+                    "sPrevious": "前",
+                    "sNext": "次",
+                    "sLast": "最終"
+                }
+            }
+        });
+
+        jQuery(function ($) {
+
+            $("#student_list").dataTable({
+                stateSave: true
+            });
+        });
+
+    </script>
+
+}

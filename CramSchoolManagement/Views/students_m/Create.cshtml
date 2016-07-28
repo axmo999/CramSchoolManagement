@@ -149,17 +149,40 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.attend_mon, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.CheckBoxFor(model => model.attend_mon, new { @checked = Model.attend_mon, @class = "col-md-2" })
-            @Html.LabelFor(model => model.attend_tue, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.CheckBoxFor(model => model.attend_tue, new { @checked = Model.attend_mon, @class = "col-md-2" })
-            @Html.LabelFor(model => model.attend_wed, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.CheckBoxFor(model => model.attend_wed, new { @checked = Model.attend_mon, @class = "col-md-2" })
-            @Html.LabelFor(model => model.attend_thurs, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.CheckBoxFor(model => model.attend_thurs, new { @checked = Model.attend_mon, @class = "col-md-2" })
-            @Html.LabelFor(model => model.attend_fri, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.CheckBoxFor(model => model.attend_fri, new { @checked = Model.attend_mon, @class = "col-md-2" })
+        <div class="row row-eq-height btn-group form-group" data-toggle="buttons" style="margin-top: 10px;">
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <p class="btn control-label">出席可能曜日</p>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_mon)
+                    @Html.DisplayNameFor(model => model.attend_mon)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_tue)
+                    @Html.DisplayNameFor(model => model.attend_tue)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_wed)
+                    @Html.DisplayNameFor(model => model.attend_wed)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_thurs)
+                    @Html.DisplayNameFor(model => model.attend_thurs)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_fri)
+                    @Html.DisplayNameFor(model => model.attend_fri)
+                </label>
+            </div>
         </div>
 
         <div class="form-group">
