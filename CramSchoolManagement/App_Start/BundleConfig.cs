@@ -42,7 +42,7 @@ namespace CramSchoolManagement
                 ));
 
             bundles.Add(new StyleBundle("~/Content/DataTables").Include(
-                        "~/Content/DataTables/datatables.min.css"
+                        "~/Content/DataTables/datatables.css"
                 ));
 
         }
