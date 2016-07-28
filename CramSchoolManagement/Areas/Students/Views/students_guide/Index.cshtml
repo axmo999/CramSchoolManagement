@@ -81,10 +81,12 @@
     @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
 </div>
 
-@Styles.Render("~/Content/DataTables")
-@Scripts.Render("~/bundles/DataTables")
+
 
 @section scripts{
+
+@Styles.Render("~/Content/DataTables")
+@Scripts.Render("~/Content/DataTables")
 
     <script type="text/javascript">
 

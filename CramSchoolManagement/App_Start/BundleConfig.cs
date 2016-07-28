@@ -37,7 +37,7 @@ namespace CramSchoolManagement
                         "~/Scripts/jquery.table_transpose.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/DataTables").Include(
+            bundles.Add(new ScriptBundle("~/Content/DataTables").Include(
                         "~/Content/DataTables/datatables.min.js"
                 ));
 
