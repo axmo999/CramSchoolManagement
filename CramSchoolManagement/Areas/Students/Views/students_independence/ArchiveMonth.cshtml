@@ -28,48 +28,60 @@
             @Html.DisplayNameFor(model => model.week)
         </th>
         <th>
+            <h5>基本的な事の徹底</h5>
+        </th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question01)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question02)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question03)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question04)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question05)
         </th>
         <th>
+            <h5>基本的な事の習慣化</h5>
+        </th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question06)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question07)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question08)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question09)
         </th>
         <th>
+            <h5>コミュニケーション能力基礎</h5>
+        </th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question10)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question11)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question12)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question13)
         </th>
         <th>
+            <h5>大きな目標を達成する為に必要な事</h5>
+        </th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question14)
         </th>
-        <th>
+        <th class="counter">
             @Html.DisplayNameFor(model => model.question15)
         </th>
         <th></th>
@@ -91,6 +103,7 @@
                 @Html.DisplayFor(modelItem => item.week)
             }
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.question01)
         </td>
@@ -106,6 +119,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.question05)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.question06)
         </td>
@@ -118,6 +132,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.question09)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.question10)
         </td>
@@ -130,6 +145,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.question13)
         </td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.question14)
         </td>
@@ -139,7 +155,7 @@
         <td>
             @if (item.teachers_m != null)
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.independence_id })
+                @Html.ActionLink("編集", "Edit", new { num = item.independence_id })
             }
         </td>
     </tr>

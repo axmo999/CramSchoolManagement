@@ -45,6 +45,11 @@ namespace CramSchoolManagement
                         "~/Content/DataTables/datatables.css"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/jTrunc").Include(
+                        "~/Scripts/jquery.jtruncsubstr-1.0rc.js",
+                        "~/Scripts/jglycy-1.0.js"
+                ));
+
         }
     }
 }

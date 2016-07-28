@@ -11,6 +11,7 @@ using System.IO;
 using System.Drawing;
 using ZXing;
 using Newtonsoft.Json;
+using System.Globalization;
 
 
 namespace CramSchoolManagement.Controllers
@@ -24,7 +25,11 @@ namespace CramSchoolManagement.Controllers
         // GET: /students_m
         public ActionResult Index(long? school_id, long? school_grade, long? office_id)
         {
-            var student_list = db.students_m.Include(s => s.schools_m).Include(s => s.offices_m).AsEnumerable();
+            var student_list = db.students_m.Include(s => s.schools_m)
+                                            .Include(s => s.offices_m)
+                                            .Include(s => s.students_attendance)
+                                            .Include(s => s.students_independence)
+                                            .Include(s => s.students_guide).AsEnumerable();
 
             if (school_id != null)
             {
@@ -38,6 +43,19 @@ namespace CramSchoolManagement.Controllers
             {
                 student_list = student_list.Where(s => s.office_id == office_id);
             }
+
+            DateTime today = DateTime.Today;
+
+            ViewBag.today = today;
+
+            int dow = (int)today.DayOfWeek;
+            today = today.AddDays(-dow);
+
+            ViewBag.monday = today.AddDays(1);
+            ViewBag.friday = today.AddDays(5);
+
+            ViewBag.FDM = Commons.Utility.getFDM();
+            ViewBag.LDM = Commons.Utility.getLDM();
 
             //var students_m_gender = db.students_m.Include(s => s.gender_m);
             //var students_m_school = db.students_m.Include(s => s.schools_m);
@@ -266,7 +284,7 @@ namespace CramSchoolManagement.Controllers
                 tst = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
             }
 
-            attends.attendance_day = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst);
+            attends.attendance_day = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).Date;
             attends.start_time = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).ToString("HH:mm");
 
             attends.create_user = User.Identity.Name.ToString();
@@ -284,9 +302,18 @@ namespace CramSchoolManagement.Controllers
 
         public ActionResult CheckOut(string id)
         {
-            TimeZoneInfo tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time") ?? TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
+            TimeZoneInfo tst;
 
-            DateTime today = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst);
+            try
+            {
+                tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+            }
+            catch (Exception)
+            {
+                tst = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
+            }
+
+            DateTime today = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).Date;
             Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
             Areas.Students.Models.students_attendance attends = studentdb.students_attendance.FirstOrDefault(x => x.students_id == id && x.attendance_day == today);
 

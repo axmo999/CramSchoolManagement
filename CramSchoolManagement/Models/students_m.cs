@@ -16,6 +16,7 @@ using CramSchoolManagement.Commons;
             students_grade = new HashSet<CramSchoolManagement.Areas.Students.Models.students_grade>();
             students_guide = new HashSet<CramSchoolManagement.Areas.Students.Models.students_guide>();
             students_like_dislike = new HashSet<CramSchoolManagement.Areas.Students.Models.students_like_dislike>();
+            students_independence = new HashSet<CramSchoolManagement.Areas.Students.Models.students_independence>();
         }
 
         [Key]
@@ -118,6 +119,9 @@ using CramSchoolManagement.Commons;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_independence> students_independence { get; set; }
         
         [Display(Name = "生徒名")]
         public string display_name

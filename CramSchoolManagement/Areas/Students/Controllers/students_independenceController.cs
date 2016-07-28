@@ -24,7 +24,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name");
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
 
-            return View(students_independence.ToList());
+            return View(students_independence.OrderByDescending(m => m.week).ToList());
         }
 
         // GET: Students/students_independence/Details/5

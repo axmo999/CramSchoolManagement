@@ -17,7 +17,7 @@
 
         [Display(Name = "生徒指導日")]
         [DataType(DataType.Date)]
-        public string guide_date { get; set; }
+        public DateTime guide_date { get; set; }
 
         [Required]
         [StringLength(2147483647)]

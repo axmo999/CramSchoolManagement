@@ -30,19 +30,19 @@
 <table class="table" id="student_list">
     <thead>
         <tr>
-            <th>
+            <th class="col-xs-2">
                 @Html.DisplayNameFor(model => model.guide_date)
             </th>
-            <th>
+            <th class="col-xs-2">
                 @Html.DisplayNameFor(model => model.teachers_m.display_name)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.classes_m.name)
+            <th class="col-xs-1">
+                教科
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.guide_contents)
             </th>
-            <th></th>
+            <th class="col-xs-1"></th>
         </tr>
     </thead>
     <tbody>
@@ -58,16 +58,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.classes_m.display_name)
                 </td>
-                <td>
-                    @*@Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))*@
-                    @if (item.guide_contents == null || item.guide_contents.Length < 20)
-                    {
-                        @Html.DisplayFor(modelItem => item.guide_contents)
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.guide_contents).ToHtmlString().Substring(0, 20)
-                    }
+                <td jg="jTruncSubstr" jg:jtruncsubstr="length:70">
+                    @Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))
                 </td>
                 <td>
                     @Html.ActionLink("詳細", "Details", new { num = item.students_guide_id })
@@ -118,5 +110,7 @@
         });
 
     </script>
+
+@Scripts.Render("~/bundles/jTrunc")
 
 }

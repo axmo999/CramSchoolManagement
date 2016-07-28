@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "生徒一覧";
     Layout = "~/Views/Shared/_Honoka.cshtml";
+
+    DateTime today = ViewBag.today;
+    DateTime monday = ViewBag.monday;
+    DateTime friday = ViewBag.friday;
+    DateTime FDM = ViewBag.FDM;
+    DateTime LDM = ViewBag.LDM;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -61,32 +67,52 @@
                         </td>
                         <td>
                             @Html.RouteLink("出席", "Students_id_route", new { controller = "students_attendance", students_id = item.students_id }) |
-                            @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }) |
+                            @{
+                                var month_guide = item.students_guide.Where(x => x.guide_date >= FDM && x.guide_date <= LDM);
+                                var week_guide = month_guide.Where(x => x.guide_date >= monday && x.guide_date <= friday);
+                                if (month_guide.Count() == 0)
+                                {
+                                    @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }, new { @class = "text-danger" })
+                                }
+                                else if (week_guide.Count() == 0)
+                                {
+                                    @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id }, new { @class = "text-warning" })
+                                }
+                                else
+                                {
+                                    @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id })
+                                }
+                            } |
                             @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id }) |
                             @Html.RouteLink("面談", "Students_id_route", new { controller = "students_interview", students_id = item.students_id }) |
-                            @if (CramSchoolManagement.Commons.Utility.CheckIndependent(item.students_id))
-                            {
-                                @Html.RouteLink("自立", "Students_id_route", new { controller = "students_independence", students_id = item.students_id }, new { @style = "color: red;" })
-                            }
-                            else
-                            {
-                                @Html.RouteLink("自立", "Students_id_route", new { controller = "students_independence", students_id = item.students_id })
-                            }
-                            
+                            @{
+                                var week_independent = item.students_independence.Where(x => x.week >= monday && x.week <= friday);
+                                if (week_independent.Count() == 0)
+                                {
+                                    @Html.RouteLink("自立", "Students_id_route", new { controller = "students_independence", students_id = item.students_id }, new { @class = "text-danger" })
+                                }
+                                else
+                                {
+                                    @Html.RouteLink("自立", "Students_id_route", new { controller = "students_independence", students_id = item.students_id })
+                                }
+}     
                         </td>
                         <td>
-                            @switch (CramSchoolManagement.Commons.Utility.GetAttend(item.students_id))
-                            {
-                                case 1:
+                            @{
+                                var today_attend = item.students_attendance.SingleOrDefault(x => x.attendance_day.Date == today.Date);
+                                if (today_attend == null)
+                                {
                                     @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" });
-                                                                                                                                        break;
-                                case 2:
-                                @Html.ActionLink("退席", "CheckOut", new { id = item.students_id }, new { @class = "btn btn-warning btn-sm" });
-                                                                                                                                        break;
-                                default:
-                                                                                                                                        ;
-                                                                                                                                        break;
-                            }
+                                }
+                                else if(today_attend.end_time == null)
+                                {
+                                    @Html.ActionLink("退席", "CheckOut", new { id = item.students_id }, new { @class = "btn btn-warning btn-sm" });
+                                }
+                                else
+                                {
+                                    
+                                }
+}
                         </td>
                         @*<td>
                         @Html.ActionLink("バーコード", "StudentBarCode", new { id = item.students_id }, new { @class = "btn btn-sm" })
