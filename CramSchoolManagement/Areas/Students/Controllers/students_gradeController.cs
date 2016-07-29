@@ -19,8 +19,8 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // GET: Students/students_grade
         public ActionResult Index(string students_id)
         {
-            var students_grade_list = db.students_grade.Where(s => s.students_id == students_id).Include(s => s.students_m);
-            var students_exam = db.students_grade.Include(s => s.exams_m);
+            var students_grade_list = db.students_grade.Where(s => s.students_id == students_id).Include(s => s.students_m).Include(s => s.exams_m).Include(s => s.classes_m);
+            //var students_exam = db.students_grade.Include(s => s.exams_m);
             var students_class = db.students_grade.Include(s => s.classes_m);
 
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();

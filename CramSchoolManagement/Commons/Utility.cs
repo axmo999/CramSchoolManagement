@@ -17,8 +17,45 @@ namespace CramSchoolManagement.Commons
 {
     public class Utility
     {
+
+        /// <summary>
+        /// クラス内コンストラクタ
+        /// マスターアクセス用
+        /// </summary>
+        private static CramSchoolManagement.Areas.Settings.Models.MastersModel _masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+
+        /// <summary>
+        /// クラス内コンストラクタ
+        /// 生徒マスターアクセス用
+        /// </summary>
+        private static Areas.Students.Models.StudentsModel _studentdb = new Areas.Students.Models.StudentsModel();
+
+        private static DateTime Today()
+        {
+            TimeZoneInfo tst;
+
+            try
+            {
+                tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+            }
+            catch (Exception)
+            {
+                tst = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
+            }
+
+            return TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).Date;
+        }
+
+        /// <summary>
+        /// 全体のアプリケーションネーム
+        /// </summary>
         public static string ApplicationName = "生徒管理システム";
 
+
+        /// <summary>
+        /// ログインしているユーザーの姓名を取得します
+        /// </summary>
+        /// <returns>姓名</returns>
         public static string GetDisplayName()
         {
             var manager = new UserManager<teachers_m>(new TeacherUserStore());
@@ -44,80 +81,14 @@ namespace CramSchoolManagement.Commons
             return displayName;
         }
 
-        public static string GetDisplayName(string Id)
-        {
-            var manager = new UserManager<teachers_m>(new TeacherUserStore());
-            var currentUser = manager.FindById(Id);
-
-            var displayName = string.Empty;
-
-            if (currentUser.last_name != null)
-            {
-                displayName = currentUser.last_name.ToString();
-            }
-
-            if (currentUser.middle_name != null)
-            {
-                displayName += " " + currentUser.middle_name.ToString();
-            }
-
-            if (currentUser.first_name != null)
-            {
-                displayName += " " + currentUser.first_name.ToString();
-            }
-
-            return displayName;
-        }
-
-        public static string GetSchoolName(long Id)
-        {
-            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
-            var schoolname = masterdb.schools_m.SingleOrDefault(x => x.school_id == Id);
-
-            if (schoolname != null)
-            {
-                return schoolname.name;
-            }
-
-            return "なし";
-        }
-
-        public static bool GetAdminFlg()
-        {
-            var manager = new UserManager<teachers_m>(new TeacherUserStore());
-            var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId());
-            if (currentUser != null && currentUser.administrator_flag == 1)
-            {
-                return true;
-            }
-            return false;
-        }
-
         /// <summary>
-        /// 出席確認
+        /// 生徒IDより生徒名を取得します
         /// </summary>
-        /// <param name="id">生徒ID</param>
-        /// <returns>1:未出席 2:出席済み 3:退席済み</returns>
-        public static int GetAttend( string id )
-        {
-            DateTime today = DateTime.Today;
-            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
-            var attends = studentdb.students_attendance.SingleOrDefault(x => x.students_id == id && x.attendance_day == today);
-            if (attends != null)
-            {
-                if (attends.end_time != null)
-                {
-                    return 3;
-                }
-                return 2;
-            }
-            return 1;
-        }
-
+        /// <param name="students_id">生徒管理ID</param>
+        /// <returns>生徒名</returns>
         public static string GetStudentName(string students_id)
         {
-            CramSchoolManagement.Models.Students_mModel studentdb = new CramSchoolManagement.Models.Students_mModel();
-            var student_person = studentdb.students_m.Single(students_m => students_m.students_id == students_id);
+            var student_person = _studentdb.students_m.Single(students_m => students_m.students_id == students_id);
             string studentName = string.Empty;
             if (student_person.last_name != null)
             {
@@ -137,6 +108,24 @@ namespace CramSchoolManagement.Commons
             return studentName;
         }
 
+
+        /// <summary>
+        /// 学校名取得
+        /// </summary>
+        /// <param name="Id">学校管理ID</param>
+        /// <returns>学校名</returns>
+        public static string GetSchoolName(long Id)
+        {
+            var schoolname = _masterdb.schools_m.SingleOrDefault(x => x.school_id == Id);
+
+            if (schoolname != null)
+            {
+                return schoolname.name;
+            }
+
+            return "なし";
+        }
+
         /// <summary>
         /// 教科管理番号から教科名を表示します。
         /// </summary>
@@ -149,11 +138,19 @@ namespace CramSchoolManagement.Commons
             return className;
         }
 
-        public static string GetExamName(long exam_id)
+        /// <summary>
+        /// 管理者フラグ ログインユーザーが管理者か判別します
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetAdminFlg()
         {
-            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
-            string examname = masterdb.exams_m.Single(x => x.exam_id == exam_id).name.ToString(); ;
-            return examname;
+            var manager = new UserManager<teachers_m>(new TeacherUserStore());
+            var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId());
+            if (currentUser != null && currentUser.administrator_flag == 1)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -165,9 +162,8 @@ namespace CramSchoolManagement.Commons
         {
             int age;
             DateTime birthDay = Convert.ToDateTime(stringbirthDay);
-            DateTime today = DateTime.Today;
-            age = today.Year - birthDay.Year;
-            age -= birthDay > today.AddYears(-age) ? 1 : 0;
+            age = Today().Year - birthDay.Year;
+            age -= birthDay > Today().AddYears(-age) ? 1 : 0;
             return age;
         }
 
@@ -180,7 +176,7 @@ namespace CramSchoolManagement.Commons
         {
             int age;
             DateTime birthDay = Convert.ToDateTime(stringbirthDay);
-            DateTime today = DateTime.Today.AddDays(1);
+            DateTime today = Today().AddDays(1);
             DateTime gradeage = Convert.ToDateTime(today.Year + "-04-01");
             age = gradeage.Year - birthDay.Year;
             if (gradeage.Month < birthDay.Month ||
@@ -208,8 +204,7 @@ namespace CramSchoolManagement.Commons
         /// <returns>学年</returns>
         public static string GradeCal(int age)
         {
-            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
-            var grade = masterdb.age_m.SingleOrDefault(x => x.age == age);
+            var grade = _masterdb.age_m.SingleOrDefault(x => x.age == age);
             if (grade != null)
             {
                 return grade.divisions_m.name + grade.grade;
@@ -217,52 +212,45 @@ namespace CramSchoolManagement.Commons
             return "計算不能";
         }
 
+
         /// <summary>
-        /// 自立チェック週入力確認
-        /// 入力した日時を週計算し、あるなしを判断する
+        /// 今月の最初日取得
         /// </summary>
-        /// <param name="students_id">生徒管理ID</param>
-        /// <returns>あればfalse,なければtrue</returns>
-        public static bool CheckIndependent(string students_id)
-        {
-            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
-            var indepentent = studentdb.students_independence.OrderByDescending(a => a.week).FirstOrDefault(a => a.students_id == students_id);
-            if (indepentent != null)
-            {
-                DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-                Calendar cal = dfi.Calendar;
-                int weeknum = cal.GetWeekOfYear(indepentent.week, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-                int todaynum = cal.GetWeekOfYear(DateTime.Today, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-
-                if (weeknum.Equals(todaynum))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
+        /// <returns>Date型 月の１日</returns>
         public static DateTime getFDM()
         {
-            DateTime Today = DateTime.Today;
-            DateTime dtFDM = new DateTime(Today.Year, Today.Month, 1);
+            DateTime dtFDM = new DateTime(Today().Year, Today().Month, 1);
             return dtFDM;
         }
 
+        /// <summary>
+        /// 指定年月の最初日取得
+        /// </summary>
+        /// <param name="year">年</param>
+        /// <param name="month">月</param>
+        /// <returns>Date型 月の１日</returns>
         public static DateTime getFDM(int year, int month)
         {
             DateTime dtFDM = new DateTime(year, month, 1);
             return dtFDM;
         }
 
+        /// <summary>
+        /// 今月の最終日取得
+        /// </summary>
+        /// <returns>Date型 月の最終日</returns>
         public static DateTime getLDM()
         {
-            DateTime Today = DateTime.Today;
-            DateTime dtLDM = new DateTime(Today.Year, Today.Month, DateTime.DaysInMonth(Today.Year, Today.Month));
+            DateTime dtLDM = new DateTime(Today().Year, Today().Month, DateTime.DaysInMonth(Today().Year, Today().Month));
             return dtLDM;
         }
 
+        /// <summary>
+        /// 指定年月の最終日取得
+        /// </summary>
+        /// <param name="year">年</param>
+        /// <param name="month">月</param>
+        /// <returns>Date型 月の最終日</returns>
         public static DateTime getLDM(int year, int month)
         {
             DateTime dtLDM = new DateTime(year, month, DateTime.DaysInMonth(year, month));
@@ -272,14 +260,12 @@ namespace CramSchoolManagement.Commons
 
         public static string CheckAttendRate(string students_id, int year, int month)
         {
-            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
-            Areas.Settings.Models.MastersModel masterdb = new Areas.Settings.Models.MastersModel();
+            
 
-            //DateTime thisday = DateTime.Parse(date);
             DateTime dtFDM = new DateTime(year, month, 1);
             DateTime dtLDM = new DateTime(year, month, DateTime.DaysInMonth(year, month));
-            var student_attend = studentdb.students_attendance.AsEnumerable().Where(x => x.attendance_day >= dtFDM && x.attendance_day <= dtLDM && x.students_id == students_id);
-            var month_attend = masterdb.atteds_m.SingleOrDefault(x => x.year_month == dtFDM);
+            var student_attend = _studentdb.students_attendance.AsEnumerable().Where(x => x.attendance_day >= dtFDM && x.attendance_day <= dtLDM && x.students_id == students_id);
+            var month_attend = _masterdb.atteds_m.SingleOrDefault(x => x.year_month == dtFDM);
             
 
             if (student_attend != null && month_attend != null)

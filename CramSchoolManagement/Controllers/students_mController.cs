@@ -289,7 +289,6 @@ namespace CramSchoolManagement.Controllers
 
         public ActionResult CheckIn(string id)
         {
-            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
             Areas.Students.Models.students_attendance attends = new Areas.Students.Models.students_attendance();
 
             attends.students_id = id;
@@ -312,8 +311,6 @@ namespace CramSchoolManagement.Controllers
 
         public ActionResult CheckOut(string id)
         {
-
-            Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
             Areas.Students.Models.students_attendance attends = studentdb.students_attendance.FirstOrDefault(x => x.students_id == id && x.attendance_day == _today);
 
             if (attends != null)
