@@ -193,7 +193,7 @@
       <publishTime>07/25/2016 12:56:25</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_grade/Index.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>07/29/2016 17:20:07</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Create.cshtml">
       <publishTime>07/25/2016 12:53:24</publishTime>
@@ -205,13 +205,13 @@
       <publishTime>07/25/2016 12:53:24</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>07/29/2016 14:13:53</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Index.cshtml">
-      <publishTime>07/28/2016 14:18:42</publishTime>
+      <publishTime>07/29/2016 14:13:53</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/ArchiveMonth.cshtml">
-      <publishTime>07/28/2016 12:04:52</publishTime>
+      <publishTime>07/29/2016 14:13:53</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Create.cshtml">
       <publishTime>07/27/2016 08:48:32</publishTime>
@@ -223,7 +223,7 @@
       <publishTime>07/27/2016 08:48:32</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Edit.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>07/29/2016 14:13:53</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Index.cshtml">
       <publishTime>07/28/2016 12:04:52</publishTime>
@@ -268,16 +268,16 @@
       <publishTime>07/25/2016 12:53:25</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>07/28/2016 15:17:06</publishTime>
+      <publishTime>07/29/2016 17:51:52</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>07/28/2016 15:17:06</publishTime>
+      <publishTime>07/29/2016 17:51:52</publishTime>
     </File>
     <File Include="bin/CodeForce.Barcodes.dll">
       <publishTime>07/25/2016 12:56:25</publishTime>
     </File>
     <File Include="bin/CramSchoolManagement.dll">
-      <publishTime>07/28/2016 15:15:51</publishTime>
+      <publishTime>07/29/2016 17:51:45</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>07/25/2016 12:53:25</publishTime>
@@ -517,7 +517,10 @@
       <publishTime>07/25/2016 12:56:25</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>07/28/2016 15:16:29</publishTime>
+      <publishTime>07/29/2016 17:51:46</publishTime>
+    </File>
+    <File Include="Scripts/jglycy-1.0.js">
+      <publishTime>07/29/2016 14:13:53</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
       <publishTime>07/25/2016 12:53:24</publishTime>
@@ -527,6 +530,9 @@
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
       <publishTime>07/25/2016 12:53:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.jtruncsubstr-1.0rc.js">
+      <publishTime>07/29/2016 14:13:53</publishTime>
     </File>
     <File Include="Scripts/jquery.table_transpose.js">
       <publishTime>07/28/2016 12:04:52</publishTime>
@@ -580,7 +586,7 @@
       <publishTime>07/28/2016 12:04:56</publishTime>
     </File>
     <File Include="Views/students_m/Index.cshtml">
-      <publishTime>07/28/2016 14:17:31</publishTime>
+      <publishTime>07/29/2016 16:15:49</publishTime>
     </File>
     <File Include="Views/students_m/List.cshtml">
       <publishTime>07/27/2016 17:32:22</publishTime>
@@ -592,7 +598,7 @@
       <publishTime>07/25/2016 12:53:24</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/28/2016 15:16:22</publishTime>
+      <publishTime>07/29/2016 17:34:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

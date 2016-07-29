@@ -49,7 +49,7 @@
         [Display(Name = "整理整頓をすることができる")]
         public decimal question09 { get; set; }
 
-        [Display(Name = "慶弔の大切さを知り、実践することが出来る")]
+        [Display(Name = "傾聴の大切さを知り、実践することが出来る")]
         public decimal question10 { get; set; }
 
         [Display(Name = "前向きなプラスワードを使うことが出来る")]
