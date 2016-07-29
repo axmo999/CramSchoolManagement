@@ -99,7 +99,7 @@
                         </td>
                         <td>
                             @{
-                                var today_attend = item.students_attendance.SingleOrDefault(x => x.attendance_day == today);
+                                var today_attend = item.students_attendance.FirstOrDefault(x => x.attendance_day == today);
                                 if (today_attend == null)
                                 {
                                     @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" });
