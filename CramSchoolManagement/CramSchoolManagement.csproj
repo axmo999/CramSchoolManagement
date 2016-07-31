@@ -405,7 +405,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\StudentsInfo\" />
     <Folder Include="Views\students_face\" />
   </ItemGroup>
   <PropertyGroup>

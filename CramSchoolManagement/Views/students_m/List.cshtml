@@ -22,12 +22,13 @@
         </th>
     </tr>
         @{
-            var student_attend_name_group = Model.GroupBy(x => x.students_id);
+            var student_attend_name_group = Model.GroupBy(x => x.students_m.display_name);
             foreach (var items in student_attend_name_group)
             {
-                string studentName = CramSchoolManagement.Commons.Utility.GetStudentName(items.Key);
+                string studentName = items.Key;
+                string studentID = items.FirstOrDefault().students_id.ToString();
                 <tr>
-                    <td>@Html.RouteLink(studentName, "Students_id_route", new { controller = "students_attendance", students_id = items.Key })</td>
+                    <td>@Html.RouteLink(studentName, "Students_id_route", new { controller = "students_attendance", students_id = studentID })</td>
                     <td>@items.Count()</td>
                     <td>@CramSchoolManagement.Commons.Utility.CheckAttendRate(items.Key, ViewBag.this_year, ViewBag.this_month)</td>
                 </tr>

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CramSchoolManagement.Areas.Students.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Helpers;
 
 namespace CramSchoolManagement.Areas.Students.Controllers
 {
@@ -162,52 +163,79 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                              x.week <= LDM
                     ).OrderByDescending(x => x.week);
 
+            ViewBag.rank1 = null;
+            ViewBag.rank2 = null;
+            ViewBag.rank3 = null;
+            ViewBag.rank4 = null;
+            ViewBag.total_ave = null;
+            ViewBag.ChartImage = null;
+
             students_independence student_independent = new students_independence();
-            student_independent.question01 = independence_month.Average(x => x.question01);
-            student_independent.question02 = independence_month.Average(x => x.question02);
-            student_independent.question03 = independence_month.Average(x => x.question03);
-            student_independent.question04 = independence_month.Average(x => x.question04);
-            student_independent.question05 = independence_month.Average(x => x.question05);
-            student_independent.question06 = independence_month.Average(x => x.question06);
-            student_independent.question07 = independence_month.Average(x => x.question07);
-            student_independent.question08 = independence_month.Average(x => x.question08);
-            student_independent.question09 = independence_month.Average(x => x.question09);
-            student_independent.question10 = independence_month.Average(x => x.question10);
-            student_independent.question11 = independence_month.Average(x => x.question11);
-            student_independent.question12 = independence_month.Average(x => x.question12);
-            student_independent.question13 = independence_month.Average(x => x.question13);
-            student_independent.question14 = independence_month.Average(x => x.question14);
-            student_independent.question15 = independence_month.Average(x => x.question15);
 
-            decimal total = independence_month.Count();
+            if (independence_month.Count() > 0)
+            {
+                student_independent.question01 = independence_month.Average(x => x.question01);
+                student_independent.question02 = independence_month.Average(x => x.question02);
+                student_independent.question03 = independence_month.Average(x => x.question03);
+                student_independent.question04 = independence_month.Average(x => x.question04);
+                student_independent.question05 = independence_month.Average(x => x.question05);
+                student_independent.question06 = independence_month.Average(x => x.question06);
+                student_independent.question07 = independence_month.Average(x => x.question07);
+                student_independent.question08 = independence_month.Average(x => x.question08);
+                student_independent.question09 = independence_month.Average(x => x.question09);
+                student_independent.question10 = independence_month.Average(x => x.question10);
+                student_independent.question11 = independence_month.Average(x => x.question11);
+                student_independent.question12 = independence_month.Average(x => x.question12);
+                student_independent.question13 = independence_month.Average(x => x.question13);
+                student_independent.question14 = independence_month.Average(x => x.question14);
+                student_independent.question15 = independence_month.Average(x => x.question15);
 
-            decimal rank1 = (student_independent.question01 
-                            + student_independent.question02
-                            + student_independent.question03
-                            + student_independent.question04
-                            + student_independent.question05) / 5;
+                decimal total = independence_month.Count();
 
-            
+                decimal rank1 = (student_independent.question01
+                                + student_independent.question02
+                                + student_independent.question03
+                                + student_independent.question04
+                                + student_independent.question05) / 5;
 
-            decimal rank2 = (student_independent.question06
-                            + student_independent.question07
-                            + student_independent.question08
-                            + student_independent.question09) / 4;
 
-            decimal rank3 = (student_independent.question10
-                            + student_independent.question11
-                            + student_independent.question12
-                            + student_independent.question13) / 4;
 
-            decimal rank4 = (student_independent.question14
-                            + student_independent.question15) / 2;
+                decimal rank2 = (student_independent.question06
+                                + student_independent.question07
+                                + student_independent.question08
+                                + student_independent.question09) / 4;
 
-            ViewBag.rank1 = rank1;
-            ViewBag.rank2 = rank2;
-            ViewBag.rank3 = rank3;
-            ViewBag.rank4 = rank4;
+                decimal rank3 = (student_independent.question10
+                                + student_independent.question11
+                                + student_independent.question12
+                                + student_independent.question13) / 4;
 
-            ViewBag.total_ave = (rank1 + rank2 + rank3 + rank4) / 4;
+                decimal rank4 = (student_independent.question14
+                                + student_independent.question15) / 2;
+
+                ViewBag.rank1 = rank1.ToString("0.0");
+                ViewBag.rank2 = rank2.ToString("0.0");
+                ViewBag.rank3 = rank3.ToString("0.0");
+                ViewBag.rank4 = rank4.ToString("0.0");
+
+                ViewBag.total_ave = (rank1 + rank2 + rank3 + rank4) / 4;
+
+                var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
+                chart.AddTitle("平均グラフ");
+                chart.AddSeries(
+                    name: "月平均",
+                    chartType: "Radar",
+                    xValue: new[] { "ランク１", "ランク２", "ランク３", "ランク４" },
+                    yValues: new[] { rank1, rank2, rank3, rank4 }
+                );
+                chart.SetYAxis("",0,5);
+
+                var image = chart.ToWebImage().GetBytes();
+
+                ViewBag.ChartImage = System.Convert.ToBase64String(image);
+            }
+
+
 
             var independent_list_final =  independence_month.ToList();
             independent_list_final.Add(student_independent);
@@ -219,6 +247,8 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                    ).ToList();
 
             ViewBag.attend_archive = independence_list_month;
+
+
 
             return View(independent_list_final);
         }

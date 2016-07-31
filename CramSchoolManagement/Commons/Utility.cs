@@ -30,7 +30,7 @@ namespace CramSchoolManagement.Commons
         /// </summary>
         private static Areas.Students.Models.StudentsModel _studentdb = new Areas.Students.Models.StudentsModel();
 
-        private static DateTime Today()
+        public static DateTime Today()
         {
             TimeZoneInfo tst;
 
@@ -86,27 +86,27 @@ namespace CramSchoolManagement.Commons
         /// </summary>
         /// <param name="students_id">生徒管理ID</param>
         /// <returns>生徒名</returns>
-        public static string GetStudentName(string students_id)
-        {
-            var student_person = _studentdb.students_m.Single(students_m => students_m.students_id == students_id);
-            string studentName = string.Empty;
-            if (student_person.last_name != null)
-            {
-                studentName = student_person.last_name.ToString();
-            }
+        //public static string GetStudentName(string students_id)
+        //{
+        //    var student_person = _studentdb.students_m.Single(students_m => students_m.students_id == students_id);
+        //    string studentName = string.Empty;
+        //    if (student_person.last_name != null)
+        //    {
+        //        studentName = student_person.last_name.ToString();
+        //    }
 
-            if (student_person.middle_name != null)
-            {
-                studentName += " " + student_person.middle_name.ToString();
-            }
+        //    if (student_person.middle_name != null)
+        //    {
+        //        studentName += " " + student_person.middle_name.ToString();
+        //    }
 
-            if (student_person.first_name != null)
-            {
-                studentName += " " + student_person.first_name.ToString();
-            }
+        //    if (student_person.first_name != null)
+        //    {
+        //        studentName += " " + student_person.first_name.ToString();
+        //    }
 
-            return studentName;
-        }
+        //    return studentName;
+        //}
 
 
         /// <summary>

@@ -22,26 +22,7 @@ namespace CramSchoolManagement.Controllers
         private CramSchoolManagement.Areas.Settings.Models.MastersModel setdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
         private CramSchoolManagement.Areas.Students.Models.StudentsModel studentdb = new Areas.Students.Models.StudentsModel();
 
-        private DateTime _today;
-
-        public students_mController()
-        {
-            TimeZoneInfo tst;
-
-            try
-            {
-                tst = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
-            }
-            catch (Exception)
-            {
-                tst = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
-            }
-
-            _today = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).Date;
-        }
-
-
-
+        private DateTime _today = CramSchoolManagement.Commons.Utility.Today();
 
         // GET: /students_m
         public ActionResult Index(long? school_id, long? school_grade, long? office_id)
@@ -50,7 +31,8 @@ namespace CramSchoolManagement.Controllers
                                             .Include(s => s.offices_m)
                                             .Include(s => s.students_attendance)
                                             .Include(s => s.students_independence)
-                                            .Include(s => s.students_guide).AsEnumerable();
+                                            .Include(s => s.students_guide)
+                                            .AsEnumerable();
 
             if (school_id != null)
             {
@@ -65,8 +47,6 @@ namespace CramSchoolManagement.Controllers
                 student_list = student_list.Where(s => s.office_id == office_id);
             }
 
-            //DateTime today = DateTime.Today;
-
             ViewBag.today = _today;
 
             int dow = (int)_today.DayOfWeek;
@@ -78,8 +58,6 @@ namespace CramSchoolManagement.Controllers
             ViewBag.FDM = Commons.Utility.getFDM();
             ViewBag.LDM = Commons.Utility.getLDM();
 
-            //var students_m_gender = db.students_m.Include(s => s.gender_m);
-            //var students_m_school = db.students_m.Include(s => s.schools_m);
             ViewBag.school_id = new SelectList(setdb.schools_m, "school_id", "name");
             ViewBag.school_grade = new SelectList(setdb.age_m, "age", "display_name");
             ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
@@ -144,7 +122,7 @@ namespace CramSchoolManagement.Controllers
                     }
 
                     students_m.create_user = User.Identity.Name.ToString();
-                    students_m.create_date = DateTime.Now.ToString();
+                    students_m.create_date =_today.ToString();
                     db.students_m.Add(students_m);
                     db.SaveChanges();
                 }
@@ -220,7 +198,7 @@ namespace CramSchoolManagement.Controllers
                         }
 
                         studentToUpdate.update_user = User.Identity.Name.ToString();
-                        studentToUpdate.update_date = DateTime.Now.ToString();
+                        studentToUpdate.update_date =_today.ToString();
                         db.Entry(studentToUpdate).State = EntityState.Modified;
                         //db.Entry(students_m).State = EntityState.Modified;
                         db.SaveChanges();
@@ -273,6 +251,8 @@ namespace CramSchoolManagement.Controllers
             studentdb.students_grade.RemoveRange(studentdb.students_grade.Where(x => x.students_id == id));
             studentdb.students_guide.RemoveRange(studentdb.students_guide.Where(x => x.students_id == id));
             studentdb.students_like_dislike.RemoveRange(studentdb.students_like_dislike.Where(x => x.students_id == id));
+            studentdb.students_independence.RemoveRange(studentdb.students_independence.Where(x => x.students_id == id));
+            studentdb.students_interview.RemoveRange(studentdb.students_interview.Where(x => x.students_id == id));
 
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -297,7 +277,7 @@ namespace CramSchoolManagement.Controllers
             attends.start_time = _today.ToString("HH:mm");
 
             attends.create_user = User.Identity.Name.ToString();
-            attends.create_date = DateTime.Now.ToString();
+            attends.create_date = _today.ToString();
 
             studentdb.students_attendance.Add(attends);
             studentdb.SaveChanges();
@@ -318,7 +298,7 @@ namespace CramSchoolManagement.Controllers
                 attends.end_time = _today.ToString("HH:mm");
 
                 attends.update_user = User.Identity.Name.ToString();
-                attends.update_date = DateTime.Now.ToString();
+                attends.update_date = _today.ToString();
                 studentdb.Entry(attends).State = EntityState.Modified;
                 studentdb.SaveChanges();
 
@@ -355,7 +335,7 @@ namespace CramSchoolManagement.Controllers
             DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM();
 
             var student_list = studentdb.students_attendance.Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM).Include(s => s.students_m);
-            var student_list_name = student_list.GroupBy(x => x.students_id).ToList();
+            //var student_list_name = student_list.GroupBy(x => x.students_id).ToList();
 
             ViewBag.AttendList_all = studentdb.students_attendance.GroupBy(
                         s => s.attendance_day.Year + "/" + s.attendance_day.Month

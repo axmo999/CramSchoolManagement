@@ -40,7 +40,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
 
 
-            return View(students_guide.OrderByDescending(m => m.guide_date).ToList());
+            return View(students_guide.OrderBy(m => m.guide_date).ToList());
         }
 
         // GET: Students/students_guide/Details/5

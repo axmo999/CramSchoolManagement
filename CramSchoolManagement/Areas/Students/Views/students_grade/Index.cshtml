@@ -13,24 +13,52 @@
 
 @foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name))
 {
+        string[] class_name = new string[group.Count()];
+        long[] class_score = new long[group.Count()];
+        
+        var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
+    
     <h3>@Html.Encode(group.Key)</h3>
     <h4>合計点数：@Html.Encode(group.Sum(p => p.exam_scores)) 点</h4>
 
+    var sortItems = group.OrderBy(x => x.class_id);
+    
     <div class="row">
 
-        @foreach (var item in group)
-        {
-            <div class="col-sm-2 col-xs-4">
-                <h5 class="text-center grade_border_title">@Html.DisplayFor(modelItem => item.classes_m.display_name)</h5>
-                <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.exam_scores) 点</p>
-                <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.exam_precedence) 位</p>
-                <p class="text-center">
-                    @Html.ActionLink("編集", "Edit", new { num = item.students_grade_id })
-                </p>
-            </div>
-        }
+        <div class="col-sm-12 col-md-8">
 
-        @*</table>*@
+            @foreach (var item in sortItems.Select((v, i) => new { v, i }))
+            {
+                <div class="col-sm-2 col-xs-4">
+                    <h5 class="text-center grade_border_title">@Html.DisplayFor(modelItem => item.v.classes_m.display_name)</h5>
+                    <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.v.exam_scores) 点</p>
+                    <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.v.exam_precedence) 位</p>
+                    <p class="text-center">
+                        @Html.ActionLink("編集", "Edit", new { num = item.v.students_grade_id })
+                    </p>
+                </div>
+                    class_name[item.i] = item.v.classes_m.display_name;
+                    class_score[item.i] = item.v.exam_scores;
+
+            }
+
+        </div>
+
+        <div class="col-sm-12 col-md-4">
+            @{
+                chart.AddTitle("点数グラフ");
+                chart.AddSeries(
+                    name: "点数グラフ",
+                    chartType: "Radar",
+                    xValue: class_name.AsEnumerable(),
+                    yValues: class_score.AsEnumerable()
+                );
+                chart.SetYAxis("", 0, 100);
+                var image = chart.ToWebImage().GetBytes();
+
+                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(image)" />
+            }
+        </div>
 
     </div>
 }

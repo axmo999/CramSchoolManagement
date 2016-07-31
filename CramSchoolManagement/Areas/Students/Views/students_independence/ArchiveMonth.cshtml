@@ -5,16 +5,23 @@
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
-<h2>@ViewBag.StudentName</h2>
-
-<h3>@ViewBag.this_year 年 @ViewBag.this_month 月</h3>
-
-<h4>今月平均値 総合：@ViewBag.total_ave</h4>
 <div class="row">
-    <span class="col-md-3 col-xs-6 lead ">ランク１：@ViewBag.rank1.ToString("0.0")</span>
-    <span class="col-md-3 col-xs-6 lead ">ランク２：@ViewBag.rank2.ToString("0.0")</span>
-    <span class="col-md-3 col-xs-6 lead ">ランク３：@ViewBag.rank3.ToString("0.0")</span>
-    <span class="col-md-3 col-xs-6 lead ">ランク４：@ViewBag.rank4.ToString("0.0")</span>
+    <div class="col-sm-12 col-md-6">
+        <h2>@ViewBag.StudentName</h2>
+
+        <h3>@ViewBag.this_year 年 @ViewBag.this_month 月</h3>
+
+        <h4>今月平均値 総合：@ViewBag.total_ave</h4>
+
+
+        <span class="col-md-3 col-xs-6 lead ">ランク１：@ViewBag.rank1</span>
+        <span class="col-md-3 col-xs-6 lead ">ランク２：@ViewBag.rank2</span>
+        <span class="col-md-3 col-xs-6 lead ">ランク３：@ViewBag.rank3</span>
+        <span class="col-md-3 col-xs-6 lead ">ランク４：@ViewBag.rank4</span>
+    </div>
+    <div class="col-sm-12 col-md-6 text-center">
+        <img src="data:image/jpeg;base64,@ViewBag.ChartImage" />
+    </div>
 </div>
 <p>
     @Html.ActionLink("新規登録", "Create")
