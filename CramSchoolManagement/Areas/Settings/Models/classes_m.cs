@@ -62,7 +62,7 @@
         {
             MastersModel MasterDB = new MastersModel();
             string divisionName = MasterDB.divisions_m.Single(x => x.division_id == division_id).name.ToString();
-            return divisionName + " " + name;
+            return divisionName + Environment.NewLine + name;
         }
     }
 }
