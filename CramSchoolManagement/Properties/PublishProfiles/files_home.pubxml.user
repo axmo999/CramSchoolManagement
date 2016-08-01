@@ -208,7 +208,7 @@
       <publishTime>07/31/2016 03:42:57</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/ArchiveMonth.cshtml">
-      <publishTime>08/02/2016 01:08:57</publishTime>
+      <publishTime>08/02/2016 02:06:46</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Create.cshtml">
       <publishTime>07/26/2016 22:51:49</publishTime>
@@ -265,16 +265,16 @@
       <publishTime>07/20/2016 00:28:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>08/02/2016 01:14:12</publishTime>
+      <publishTime>08/02/2016 02:07:05</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>08/02/2016 01:14:11</publishTime>
+      <publishTime>08/02/2016 02:07:05</publishTime>
     </File>
     <File Include="bin/CodeForce.Barcodes.dll">
       <publishTime>07/24/2016 14:55:26</publishTime>
     </File>
     <File Include="bin/CramSchoolManagement.dll">
-      <publishTime>08/02/2016 01:14:06</publishTime>
+      <publishTime>08/02/2016 02:06:57</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>07/20/2016 00:28:20</publishTime>
@@ -514,7 +514,7 @@
       <publishTime>07/24/2016 14:55:26</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>08/02/2016 01:14:07</publishTime>
+      <publishTime>08/02/2016 02:07:00</publishTime>
     </File>
     <File Include="Scripts/jglycy-1.0.js">
       <publishTime>07/29/2016 01:59:16</publishTime>
@@ -595,7 +595,7 @@
       <publishTime>07/20/2016 00:28:19</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/02/2016 01:14:06</publishTime>
+      <publishTime>08/02/2016 02:06:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

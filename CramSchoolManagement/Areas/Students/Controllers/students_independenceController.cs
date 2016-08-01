@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CramSchoolManagement.Areas.Students.Models;
 using Microsoft.AspNet.Identity;
-using System.Web.Helpers;
+//using System.Web.Helpers;
 
 namespace CramSchoolManagement.Areas.Students.Controllers
 {
@@ -220,19 +220,19 @@ namespace CramSchoolManagement.Areas.Students.Controllers
 
                 ViewBag.total_ave = (rank1 + rank2 + rank3 + rank4) / 4;
 
-                var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
-                chart.AddTitle("平均グラフ");
-                chart.AddSeries(
-                    name: "月平均",
-                    chartType: "Radar",
-                    xValue: new[] { "ランク１", "ランク２", "ランク３", "ランク４" },
-                    yValues: new[] { rank1, rank2, rank3, rank4 }
-                );
-                chart.SetYAxis("",0,5);
+                //var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
+                //chart.AddTitle("平均グラフ");
+                //chart.AddSeries(
+                //    name: "月平均",
+                //    chartType: "Radar",
+                //    xValue: new[] { "ランク１", "ランク２", "ランク３", "ランク４" },
+                //    yValues: new[] { rank1, rank2, rank3, rank4 }
+                //);
+                //chart.SetYAxis("",0,5);
 
-                var image = chart.ToWebImage().GetBytes();
+                //var image = chart.ToWebImage().GetBytes();
 
-                ViewBag.ChartImage = System.Convert.ToBase64String(image);
+                //ViewBag.ChartImage = System.Convert.ToBase64String(image);
             }
 
 

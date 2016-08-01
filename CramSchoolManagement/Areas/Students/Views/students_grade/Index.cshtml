@@ -16,7 +16,7 @@
         string[] class_name = new string[group.Count()];
         long[] class_score = new long[group.Count()];
         
-        var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
+        //var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
     
     <h3>@Html.Encode(group.Key)</h3>
     <h4>合計点数：@Html.Encode(group.Sum(p => p.exam_scores)) 点</h4>
@@ -44,7 +44,7 @@
 
         </div>
 
-        <div class="col-sm-12 col-md-4">
+        @*<div class="col-sm-12 col-md-4">
             @{
                 chart.AddTitle("点数グラフ");
                 chart.AddSeries(
@@ -58,7 +58,7 @@
 
                 <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(image)" />
             }
-        </div>
+        </div>*@
 
     </div>
 }
