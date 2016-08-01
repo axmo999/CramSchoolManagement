@@ -122,7 +122,9 @@ using CramSchoolManagement.Commons;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_independence> students_independence { get; set; }
-        
+
+
+        [NotMapped]
         [Display(Name = "生徒名")]
         public string display_name
         {

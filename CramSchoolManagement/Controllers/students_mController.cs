@@ -74,7 +74,12 @@ namespace CramSchoolManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_m students_m = db.students_m.Include(s => s.students_face).Include(s => s.schools_m).Include(s => s.offices_m).SingleOrDefault(s => s.students_id == id);
+            students_m students_m = db.students_m
+                                        .Include(s => s.students_face)
+                                        .Include(s => s.schools_m)
+                                        .Include(s => s.offices_m)
+                                        .Include(s => s.students_like_dislike)
+                                        .SingleOrDefault(s => s.students_id == id);
             if (students_m == null)
             {
                 return HttpNotFound();

@@ -131,12 +131,12 @@ namespace CramSchoolManagement.Commons
         /// </summary>
         /// <param name="class_id">教科管理番号</param>
         /// <returns>教科名</returns>
-        public static string GetClassName(long? class_id)
-        {
-            CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
-            string className = masterdb.classes_m.Single(x => x.class_id == class_id).display_name.ToString();
-            return className;
-        }
+        //public static string GetClassName(long? class_id)
+        //{
+        //    CramSchoolManagement.Areas.Settings.Models.MastersModel masterdb = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+        //    string className = masterdb.classes_m.Single(x => x.class_id == class_id).display_name.ToString();
+        //    return className;
+        //}
 
         /// <summary>
         /// 管理者フラグ ログインユーザーが管理者か判別します
