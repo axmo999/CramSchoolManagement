@@ -25,7 +25,7 @@
         var student_attend_name_group = Model.GroupBy(x => x.students_id);
         foreach (var items in student_attend_name_group)
         {
-            string studentName = CramSchoolManagement.Commons.Utility.GetStudentName(items.Key);
+            string studentName = items.FirstOrDefault(x => x.students_id == items.Key).students_m.display_name;
             <tr>
                 <td>@Html.RouteLink(studentName, "Students_id_route", new { controller = "students_attendance", action = "Archive", students_id = items.Key, year = ViewBag.this_year, month = ViewBag.this_month })</td>
                 <td>@items.Count()</td>
