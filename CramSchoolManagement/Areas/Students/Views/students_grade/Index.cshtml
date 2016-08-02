@@ -11,17 +11,60 @@
     @Html.ActionLink("新規成績登録", "Create")
 </p>
 
-@foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name))
+@{
+
+    @Scripts.Render("~/bundles/chart")
+
+    <script>
+
+        function viewChart(label, datas, id) {
+            var config = {
+                type: 'radar',
+                data: {
+                    labels: label,
+                    datasets: [{
+                        label: "点数グラフ",
+                        backgroundColor: "rgba(220,220,220,0.2)",
+                        pointBackgroundColor: "rgba(220,220,220,1)",
+                        data: datas
+                    } ]
+                },
+                options: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Radar Chart'
+                    },
+                    scale: {
+                        reverse: false,
+                        gridLines: {
+                            color: ['orange']
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+            window.myRadar = new Chart(document.getElementById(id), config);
+        };
+    </script>
+
+}
+
+@foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name).Select((value, l) => new { value, l }))
 {
-        string[] class_name = new string[group.Count()];
-        long[] class_score = new long[group.Count()];
+        string[] class_name = new string[group.value.Count()];
+        long[] class_score = new long[group.value.Count()];
         
         //var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
     
-    <h3>@Html.Encode(group.Key)</h3>
-    <h4>合計点数：@Html.Encode(group.Sum(p => p.exam_scores)) 点</h4>
+    <h3>@Html.Encode(group.value.Key)</h3>
+    <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
 
-    var sortItems = group.OrderBy(x => x.class_id);
+    var sortItems = group.value.OrderBy(x => x.class_id);
     
     <div class="row">
 
@@ -30,35 +73,31 @@
             @foreach (var item in sortItems.Select((v, i) => new { v, i }))
             {
                 <div class="col-sm-2 col-xs-4">
-                    <h5 class="text-center grade_border_title">@Html.DisplayFor(modelItem => item.v.classes_m.display_name)</h5>
+                    <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(item.v.classes_m.display_name).Replace("\n", "<br/>"))</h5>
                     <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.v.exam_scores) 点</p>
                     <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.v.exam_precedence) 位</p>
                     <p class="text-center">
                         @Html.ActionLink("編集", "Edit", new { num = item.v.students_grade_id })
                     </p>
                 </div>
-                    class_name[item.i] = item.v.classes_m.display_name;
+                    class_name[item.i] = item.v.classes_m.display_name.Replace("\r\n", " ");
                     class_score[item.i] = item.v.exam_scores;
 
             }
 
         </div>
 
-        @*<div class="col-sm-12 col-md-4">
-            @{
-                chart.AddTitle("点数グラフ");
-                chart.AddSeries(
-                    name: "点数グラフ",
-                    chartType: "Radar",
-                    xValue: class_name.AsEnumerable(),
-                    yValues: class_score.AsEnumerable()
-                );
-                chart.SetYAxis("", 0, 100);
-                var image = chart.ToWebImage().GetBytes();
+        <div class="col-sm-12 col-md-4">
+            <canvas id="@group.l" width="100px" height="100px"></canvas>
+        </div>
 
-                <img src="data:image/jpeg;base64,@System.Convert.ToBase64String(image)" />
+        <script>
+            @{
+                 var value = Newtonsoft.Json.JsonConvert.SerializeObject(class_name);
+                 var data = Newtonsoft.Json.JsonConvert.SerializeObject(class_score);
             }
-        </div>*@
+            viewChart(@value, @data, @group.l);
+        </script>
 
     </div>
 }
@@ -66,3 +105,6 @@
 <div>
     @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
 </div>
+
+
+

@@ -56,7 +56,7 @@
                     @Html.DisplayFor(modelItem => item.teachers_m.display_name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.classes_m.display_name)
+                    @Html.Raw(Html.Encode(item.classes_m.display_name).Replace("\n", "<br/>"))
                 </td>
                 <td jg="jTruncSubstr" jg:jtruncsubstr="length:70">
                     @Html.Raw(Html.Encode(item.guide_contents).Replace("\n", "<br/>"))
@@ -113,7 +113,5 @@
         });
 
     </script>
-
-
 
 }

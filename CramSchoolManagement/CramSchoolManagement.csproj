@@ -179,6 +179,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\chart\Chart.bundle.min.js" />
+    <Content Include="Content\chart\Chart.min.js" />
     <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.bootstrap.css" />
     <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.bootstrap.min.css" />
     <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.foundation.css" />
@@ -256,6 +258,8 @@
     <Content Include="Areas\Students\Views\Shared\_Students.cshtml" />
     <Content Include="Content\raty\jquery.raty.js" />
     <Content Include="Scripts\jglycy-1.0.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery.jtruncsubstr-1.0rc.js" />
     <Content Include="Scripts\jquery.table_transpose.js" />
     <Content Include="Views\students_m\Create.cshtml" />

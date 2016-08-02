@@ -8,7 +8,7 @@ namespace CramSchoolManagement
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-               "~/Scripts/jquery-{version}.js"));
+               "~/Scripts/jquery-2.2.4.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -48,6 +48,10 @@ namespace CramSchoolManagement
             bundles.Add(new ScriptBundle("~/bundles/jTrunc").Include(
                         "~/Scripts/jquery.jtruncsubstr-1.0rc.js",
                         "~/Scripts/jglycy-1.0.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/chart").Include(
+                        "~/Content/chart/Chart.bundle.min.js"
                 ));
 
         }
