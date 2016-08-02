@@ -1,5 +1,5 @@
 @model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_grade>
-
+@Scripts.Render("~/bundles/chart")
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
@@ -11,55 +11,10 @@
     @Html.ActionLink("新規成績登録", "Create")
 </p>
 
-@{
-
-    @Scripts.Render("~/bundles/chart")
-
-    <script>
-
-        function viewChart(label, datas, id) {
-            var config = {
-                type: 'radar',
-                data: {
-                    labels: label,
-                    datasets: [{
-                        label: "点数グラフ",
-                        backgroundColor: "rgba(220,220,220,0.2)",
-                        pointBackgroundColor: "rgba(220,220,220,1)",
-                        data: datas
-                    } ]
-                },
-                options: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Radar Chart'
-                    },
-                    scale: {
-                        reverse: false,
-                        gridLines: {
-                            color: ['orange']
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            };
-            window.myRadar = new Chart(document.getElementById(id), config);
-        };
-    </script>
-
-}
-
 @foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name).Select((value, l) => new { value, l }))
 {
         string[] class_name = new string[group.value.Count()];
-        long[] class_score = new long[group.value.Count()];
-        
-        //var chart = new Chart(width: 250, height: 250, theme: ChartTheme.Blue);
+        string[] class_score = new string[group.value.Count()];
     
     <h3>@Html.Encode(group.value.Key)</h3>
     <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
@@ -81,22 +36,33 @@
                     </p>
                 </div>
                     class_name[item.i] = item.v.classes_m.display_name.Replace("\r\n", " ");
-                    class_score[item.i] = item.v.exam_scores;
+                    class_score[item.i] = item.v.exam_scores.ToString();
 
             }
 
         </div>
 
         <div class="col-sm-12 col-md-4">
-            <canvas id="@group.l" width="100px" height="100px"></canvas>
+            <canvas id="@group.l" width="400" height="400"></canvas>
         </div>
 
         <script>
             @{
-                 var value = Newtonsoft.Json.JsonConvert.SerializeObject(class_name);
-                 var data = Newtonsoft.Json.JsonConvert.SerializeObject(class_score);
+                CramSchoolManagement.Areas.Students.Models.chartConfig config = new CramSchoolManagement.Areas.Students.Models.chartConfig();
+                CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataset = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
+                config.data.labels.AddRange(class_name);
+
+                dataset.label = group.value.Key;
+                dataset.backgroundColor = "rgba(255,255,0,0.8)";
+                dataset.pointBackgroundColor = "rgba(220,220,220,1)";
+                dataset.data = new List<string>();
+                dataset.data.AddRange(class_score);
+                
+                config.data.datasets.Add(dataset);
+
+                var value = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(config));
             }
-            viewChart(@value, @data, @group.l);
+            window.myRadar = new Chart(document.getElementById( @group.l), @value);
         </script>
 
     </div>

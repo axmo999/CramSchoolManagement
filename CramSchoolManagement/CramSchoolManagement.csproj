@@ -362,6 +362,7 @@
     <Compile Include="Areas\Students\Controllers\students_interviewController.cs" />
     <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
     <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
+    <Compile Include="Areas\Students\Models\chartConfig.cs" />
     <Compile Include="Areas\Students\Models\students_independence.cs" />
     <Compile Include="Areas\Students\Models\students_interview.cs" />
     <Compile Include="Controllers\StudentsInfoController.cs" />
