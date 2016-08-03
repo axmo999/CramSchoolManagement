@@ -318,6 +318,11 @@
     <Content Include="Areas\Students\Views\students_attendance\Archive.cshtml" />
     <Content Include="Views\students_m\List.cshtml" />
     <Content Include="Areas\Students\Views\students_independence\ArchiveMonth.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Index.cshtml" />
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Properties\PublishProfiles\files_home.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -337,6 +342,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Settings\Controllers\age_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\atteds_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\average_scores_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\classes_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\divisions_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\exams_mController.cs" />
@@ -348,6 +354,7 @@
     <Compile Include="Areas\Settings\Models\age_m.cs" />
     <Compile Include="Areas\Settings\Models\classes_m.cs" />
     <Compile Include="Areas\Settings\Models\divisions_m.cs" />
+    <Compile Include="Areas\Settings\Models\average_scores_m.cs" />
     <Compile Include="Areas\Settings\Models\gender_m.cs" />
     <Compile Include="Areas\Settings\Models\exams_m.cs" />
     <Compile Include="Areas\Settings\Models\MastersModel.cs" />

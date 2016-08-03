@@ -1,0 +1,53 @@
+﻿@model CramSchoolManagement.Areas.Settings.Models.average_scores_m
+
+@{
+    ViewBag.Title = "平均点数設定詳細";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+    string year = Model.exam_date.Year.ToString();
+    string month = Model.exam_date.Month.ToString();
+}
+
+<h2>@year 年 @month 月 @Html.Raw(Model.exams_m.name)</h2>
+
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.classes_m.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classes_m.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exams_m.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exams_m.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_scores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_scores)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.average_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

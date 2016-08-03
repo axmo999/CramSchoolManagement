@@ -1,0 +1,68 @@
+﻿@model CramSchoolManagement.Areas.Settings.Models.average_scores_m
+
+@{
+    ViewBag.Title = "平均点数登録";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+
+    var class_list = ViewBag.classes_list;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.exam_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.exam_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exam_id, "試験区分", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("exam_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.exam_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @for (int x = 0; x < class_list.Count; ++x)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" for="average_scores_m[@x].class_id">@Html.Raw(class_list[x].display_name)</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line hidden" id="average_scores_m[@x].class_id" name="average_scores_m[@x].class_id" type="number" value="@class_list[x].class_id">
+                    <input class="form-control text-box single-line" data-val="true" data-val-number="フィールド 試験点数 には数字を指定してください。" data-val-required="試験点数 フィールドが必要です。" id="average_scores_m[@x].exam_scores" name="average_scores_m[@x].exam_scores" type="number" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="average_scores_m[@x].exam_scores" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+        }
+
+        @*@foreach (var item in class_list.Select((v, i) => new { v, i }))
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" for="class_id">@Html.Raw(item.v.display_name)</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line hidden" id="class_id" name="class_id" type="number" value="@item.v.class_id">
+                    @Html.EditorFor(model => model.exam_scores, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.exam_scores, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="登録" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("平均点数設定一覧へ戻る", "Index")
+</div>

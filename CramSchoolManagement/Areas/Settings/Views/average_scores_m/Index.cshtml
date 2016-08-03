@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.average_scores_m>
+
+@{
+    ViewBag.Title = "平均点数設定一覧";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+    var date_group = Model.GroupBy(x => x.exam_date);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("平均点数設定新規作成", "Create")
+</p>
+
+@foreach (var date_items in date_group)
+{
+    var exam_group = date_items.GroupBy(x => x.exams_m.name);
+    <div class="row">
+
+        <h4>@date_items.Key.Year 年 @date_items.Key.Month 月</h4>
+
+        @foreach (var exam_items in exam_group)
+        {
+            <h5>@exam_items.Key</h5>
+
+            <div class="col-sm-12 col-md-8">
+
+                @foreach (var class_items in exam_items)
+                {
+                    <div class="col-sm-2 col-xs-4">
+                        <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(class_items.classes_m.display_name).Replace("\n", "<br/>"))</h5>
+                        <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => class_items.exam_scores) 点</p>
+                    </div>
+                }
+
+            </div>
+
+            <p class="text-center">
+                @Html.ActionLink("編集", "Edit", new { exam_date = date_items.Key, exam_id = date_items.FirstOrDefault(x => x.exams_m.name == exam_items.Key).exam_id })
+            </p>
+        }
+
+    </div>
+
+}
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.classes_m.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exams_m.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exam_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exam_scores)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.classes_m.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exams_m.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exam_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exam_scores)
+        </td>
+        <td>
+            @Html.ActionLink("編集", "Edit", new { id = item.average_id }) |
+            @Html.ActionLink("詳細", "Details", new { id = item.average_id }) |
+            @Html.ActionLink("削除", "Delete", new { id = item.average_id })
+        </td>
+    </tr>
+}
+
+</table>*@

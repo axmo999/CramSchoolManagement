@@ -21,5 +21,6 @@
         public virtual DbSet<teachers_m> teachers_m { get; set; }
         public virtual DbSet<age_m> age_m { get; set; }
         public virtual DbSet<atteds_m> atteds_m { get; set; }
+        public virtual DbSet<average_scores_m> average_scores_m { get; set; }
     }
 }

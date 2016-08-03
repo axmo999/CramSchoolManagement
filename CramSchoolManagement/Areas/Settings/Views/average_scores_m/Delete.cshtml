@@ -1,0 +1,89 @@
+﻿@model CramSchoolManagement.Areas.Settings.Models.average_scores_m
+
+@{
+    ViewBag.Title = "平均点数設定削除";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+}
+
+<h2>@Html.DisplayFor(x => x.exam_date) @Html.Raw(Model.exams_m.name)</h2>
+
+<h3>本当に削除してもよろしいですか？</h3>
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.classes_m.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classes_m.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exams_m.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exams_m.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam_scores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam_scores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="削除" class="btn btn-default" /> |
+            @Html.ActionLink("平均点数設定一覧へ戻る", "Index")
+        </div>
+    }
+</div>
