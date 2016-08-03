@@ -12,6 +12,9 @@
         [Display(Name = "平均成績管理番号")]
         public long average_id { get; set; }
 
+        [Display(Name = "学校管理番号")]
+        public long school_id { get; set; }
+
         [Display(Name = "試験日")]
         [DataType(DataType.Date)]
         public DateTime exam_date { get; set; }
@@ -40,5 +43,7 @@
         public virtual CramSchoolManagement.Areas.Settings.Models.exams_m exams_m { get; set; }
 
         public virtual CramSchoolManagement.Areas.Settings.Models.classes_m classes_m { get; set; }
+
+        public virtual CramSchoolManagement.Areas.Settings.Models.schools_m schools_m { get; set; }
     }
 }
