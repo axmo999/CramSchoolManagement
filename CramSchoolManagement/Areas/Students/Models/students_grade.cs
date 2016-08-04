@@ -20,6 +20,7 @@
         public string exam_date { get; set; }
 
         [Display(Name = "試験区分")]
+        [Required]
         public long exam_id { get; set; }
 
         [Display(Name = "教科番号")]

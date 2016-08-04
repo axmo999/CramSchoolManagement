@@ -43,7 +43,7 @@ namespace CramSchoolManagement.Commons
                 tst = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
             }
 
-            return TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst).Date;
+            return TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now.ToUniversalTime(), tst);
         }
 
         /// <summary>

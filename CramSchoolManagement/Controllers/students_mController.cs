@@ -278,7 +278,7 @@ namespace CramSchoolManagement.Controllers
 
             attends.students_id = id;
 
-            attends.attendance_day = _today;
+            attends.attendance_day = _today.Date;
             attends.start_time = _today.ToString("HH:mm");
 
             attends.create_user = User.Identity.Name.ToString();
@@ -296,7 +296,7 @@ namespace CramSchoolManagement.Controllers
 
         public ActionResult CheckOut(string id)
         {
-            Areas.Students.Models.students_attendance attends = studentdb.students_attendance.FirstOrDefault(x => x.students_id == id && x.attendance_day == _today);
+            Areas.Students.Models.students_attendance attends = studentdb.students_attendance.FirstOrDefault(x => x.students_id == id && x.attendance_day == _today.Date);
 
             if (attends != null)
             {

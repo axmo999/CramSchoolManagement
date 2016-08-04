@@ -83,7 +83,7 @@
                                     @Html.RouteLink("指導", "Students_id_route", new { controller = "students_guide", students_id = item.students_id })
                                 }
                             } |
-                            @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id }) |
+                            @Html.RouteLink("成績", "Students_id_route", new { controller = "students_grade", students_id = item.students_id, division_id = item.schools_m.division_id }) |
                             @Html.RouteLink("面談", "Students_id_route", new { controller = "students_interview", students_id = item.students_id }) |
                             @{
                                 var week_independent = item.students_independence.Where(x => x.week >= monday && x.week <= friday);
@@ -99,7 +99,7 @@
                         </td>
                         <td>
                             @{
-                                var today_attend = item.students_attendance.FirstOrDefault(x => x.attendance_day == today);
+                                var today_attend = item.students_attendance.FirstOrDefault(x => x.attendance_day == today.Date);
                                 if (today_attend == null)
                                 {
                                     @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" });

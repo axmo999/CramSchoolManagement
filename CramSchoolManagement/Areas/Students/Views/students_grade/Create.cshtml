@@ -22,7 +22,7 @@
         <div class="form-group" style="display: none;">
             @Html.LabelFor(model => model.students_id, "students_id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @value = ViewBag.students_id } })
+                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.students_id } })
                 @Html.ValidationMessageFor(model => model.students_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exam_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.Date.ToString("yyyy-MM-dd") } })
                 @Html.ValidationMessageFor(model => model.exam_date, "", new { @class = "text-danger" })
             </div>
         </div>

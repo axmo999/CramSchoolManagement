@@ -4,12 +4,13 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+    long division_id = ViewBag.division_id;
 }
 
 <h2>@ViewBag.StudentName</h2>
 
 <p>
-    @Html.ActionLink("新規成績登録", "Create")
+    @Html.ActionLink("新規成績登録", "Create", new { division_id = division_id })
 </p>
 
 @foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name).Select((value, l) => new { value, l }))
@@ -17,7 +18,9 @@
     List<string> class_name = new List<string>();
     List<string> class_score = new List<string>();
     
-    <h3>@Html.Encode(group.value.Key)</h3>
+    var selectData = group.value.FirstOrDefault(x => x.exams_m.name == group.value.Key);
+    
+    <h3>@Html.Encode(group.value.Key) <small>@Html.ActionLink("編集", "Edit", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date })</small></h3>
     <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
 
     var sortItems = group.value.OrderBy(x => x.class_id);
@@ -32,9 +35,6 @@
                     <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(item.v.classes_m.display_name).Replace("\n", "<br/>"))</h5>
                     <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.v.exam_scores) 点</p>
                     <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.v.exam_precedence) 位</p>
-                    <p class="text-center">
-                        @Html.ActionLink("編集", "Edit", new { num = item.v.students_grade_id })
-                    </p>
                 </div>
                 if (item.v.exam_precedence != 0 && item.v.class_id != 121 )
                 {
