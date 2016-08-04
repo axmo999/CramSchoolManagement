@@ -45,12 +45,14 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_grade/Create
-        public ActionResult Create(string students_id)
+        public ActionResult Create(string students_id, long? division_id)
         {
             ViewBag.students_id = students_id;
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name");
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
+            //ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+            var classes_list = db.classes_m.Where(x => x.division_id == division_id || x.division_id == 1);
+            ViewBag.classes_list = classes_list.ToList();
             return View();
         }
 
@@ -59,19 +61,24 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_grade_id,students_id,exam_date,exam_id,class_id,exam_scores,exam_precedence,create_user,create_date,update_user,update_date")] students_grade students_grade)
+        public ActionResult Create([Bind(Include = "students_grade_id,students_id,class_id,exam_scores,exam_precedence,create_user,create_date,update_user,update_date")] students_grade[] students_grade, string exam_date, long exam_id)
         {
             if (ModelState.IsValid)
             {
-                students_grade.create_user = User.Identity.Name.ToString();
-                students_grade.create_date = DateTime.Now.ToString();
-                db.students_grade.Add(students_grade);
+                foreach (var items in students_grade)
+                {
+                    items.exam_date = exam_date;
+                    items.exam_id = exam_id;
+                    items.create_user = User.Identity.Name.ToString();
+                    items.create_date = DateTime.Now.ToString();
+                    db.students_grade.Add(items);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", students_grade.exam_id);
-            ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
+            ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", exam_id);
+            //ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
             return View(students_grade);
         }
 

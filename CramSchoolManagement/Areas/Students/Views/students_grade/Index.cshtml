@@ -1,4 +1,5 @@
 @model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_grade>
+@using System.Collections
 @Scripts.Render("~/bundles/chart")
 @{
     ViewBag.Title = "Index";
@@ -13,8 +14,8 @@
 
 @foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name).Select((value, l) => new { value, l }))
 {
-        string[] class_name = new string[group.value.Count()];
-        string[] class_score = new string[group.value.Count()];
+    List<string> class_name = new List<string>();
+    List<string> class_score = new List<string>();
     
     <h3>@Html.Encode(group.value.Key)</h3>
     <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
@@ -35,9 +36,11 @@
                         @Html.ActionLink("編集", "Edit", new { num = item.v.students_grade_id })
                     </p>
                 </div>
-                    class_name[item.i] = item.v.classes_m.display_name.Replace("\r\n", " ");
-                    class_score[item.i] = item.v.exam_scores.ToString();
-
+                if (item.v.exam_precedence != 0 && item.v.class_id != 121 )
+                {
+                    class_name.Add(item.v.classes_m.display_name.Replace("\r\n", " "));
+                    class_score.Add(item.v.exam_scores.ToString());
+                }
             }
 
         </div>

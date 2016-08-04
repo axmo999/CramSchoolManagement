@@ -50,7 +50,7 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
         {
             ViewBag.class_id = new SelectList(db.classes_m, "class_id", "display_name");
             ViewBag.exam_id = new SelectList(db.exams_m, "exam_id", "name");
-            ViewBag.school_id = new SelectList(db.schools_m.Where(x => x.division_id == 3), "school_id", "name");
+            ViewBag.school_id = new SelectList(db.schools_m.Where(x => x.division_id == division_id), "school_id", "name");
             ViewBag.selectDivision = new SelectList(db.divisions_m, "division_id", "name", division_id);
             var classes_list = db.classes_m.Where(x => x.division_id == division_id);
             ViewBag.classes_list = classes_list.ToList();
@@ -80,7 +80,7 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
             }
             var classes_list = db.classes_m.AsEnumerable().Where(x => x.division_id == division_id);
             ViewBag.classes_list = classes_list;
-            ViewBag.school_id = new SelectList(db.schools_m.Where(x => x.division_id == 3), "school_id", "name", school_id);
+            ViewBag.school_id = new SelectList(db.schools_m.Where(x => x.division_id == division_id), "school_id", "name", school_id);
             ViewBag.class_id = new SelectList(db.classes_m, "class_id", "display_name", average_scores_m.Select(x => x.class_id));
             ViewBag.exam_id = new SelectList(db.exams_m, "exam_id", "name", exam_id);
             return View(average_scores_m);
@@ -99,7 +99,8 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
                 return HttpNotFound();
             }
             //ViewBag.class_id = new SelectList(db.classes_m, "class_id", "display_name");
-            ViewBag.school_id = new SelectList(db.schools_m.Where(x => x.division_id == 3), "school_id", "name", school_id);
+            long? division_id = average_scores_m[0].schools_m.division_id;
+            ViewBag.school_id = new SelectList(db.schools_m.Where(x => x.division_id == division_id), "school_id", "name", school_id);
             ViewBag.exam_id = new SelectList(db.exams_m, "exam_id", "name", exam_id);
             return View(average_scores_m);
         }
