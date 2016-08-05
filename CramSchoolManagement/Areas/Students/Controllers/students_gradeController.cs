@@ -55,6 +55,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             var classes_list = db.classes_m.Where(x => x.division_id == division_id || x.division_id == 1);
             ViewBag.classes_list = classes_list.ToList();
+            ViewBag.division_id = division_id;
             return View();
         }
 
@@ -63,7 +64,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_grade_id,students_id,class_id,exam_scores,exam_precedence,create_user,create_date,update_user,update_date")] students_grade[] students_grade, string exam_date, long exam_id)
+        public ActionResult Create([Bind(Include = "students_grade_id,students_id,class_id,exam_scores,exam_precedence,create_user,create_date,update_user,update_date")] students_grade[] students_grade, string exam_date, long exam_id, long? division_id)
         {
             if (ModelState.IsValid)
             {
@@ -76,16 +77,16 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                     db.students_grade.Add(items);
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { division_id = division_id });
             }
-
+            ViewBag.division_id = division_id;
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", exam_id);
             //ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
             return View(students_grade);
         }
 
         // GET: Students/students_grade/Edit/5
-        public ActionResult Edit(string students_id, long? exam_id, string exam_date)
+        public ActionResult Edit(string students_id, long? exam_id, string exam_date, long? division_id)
         {
             if (exam_id == null || exam_date == null)
             {
@@ -98,6 +99,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
 
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", exam_id);
+            ViewBag.division_id = division_id;
             //ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
             return View(students_grade);
@@ -108,7 +110,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_grade_id,students_id,class_id,exam_scores,exam_precedence,create_user,create_date")] students_grade[] students_grade, long exam_id, string exam_date)
+        public ActionResult Edit([Bind(Include = "students_grade_id,students_id,class_id,exam_scores,exam_precedence,create_user,create_date")] students_grade[] students_grade, long exam_id, string exam_date, long? division_id)
         {
             if (ModelState.IsValid)
             {
@@ -121,38 +123,44 @@ namespace CramSchoolManagement.Areas.Students.Controllers
                     db.Entry(items).State = EntityState.Modified;
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { division_id = division_id });
             }
             
             ViewBag.exam_id = new SelectList(setdb.exams_m, "exam_id", "name", exam_id);
+            ViewBag.division_id = division_id;
             //ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name", students_grade.class_id);
             return View(students_grade);
         }
 
         // GET: Students/students_grade/Delete/5
-        public ActionResult Delete(long? num)
+        public ActionResult Delete(string students_id, long? exam_id, string exam_date, long? division_id)
         {
-            if (num == null)
+            if (exam_id == null || exam_date == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            students_grade students_grade = db.students_grade.Find(num);
+            students_grade[] students_grade = db.students_grade.Where(x => x.students_id == students_id && x.exam_id == exam_id && x.exam_date == exam_date).ToArray();
             if (students_grade == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.division_id = division_id;
             return View(students_grade);
         }
 
         // POST: Students/students_grade/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long num)
+        public ActionResult DeleteConfirmed(string students_id, long? exam_id, string exam_date, long? division_id)
         {
-            students_grade students_grade = db.students_grade.Find(num);
-            db.students_grade.Remove(students_grade);
+            students_grade[] students_grade = db.students_grade.Where(x => x.students_id == students_id && x.exam_id == exam_id && x.exam_date == exam_date).ToArray();
+            foreach (var items in students_grade)
+            {
+                db.students_grade.Remove(items);
+            }
             db.SaveChanges();
-            return RedirectToAction("Index");
+            ViewBag.division_id = division_id;
+            return RedirectToAction("Index", new { division_id = division_id });
         }
 
         protected override void Dispose(bool disposing)

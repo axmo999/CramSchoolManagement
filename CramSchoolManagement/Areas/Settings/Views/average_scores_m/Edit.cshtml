@@ -143,5 +143,9 @@
             }*@
 
         <div>
+            @{
+                var selectData = Model.FirstOrDefault();
+            }
+            @Html.ActionLink("削除", "Delete", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date, school_id = selectData.school_id }) |
             @Html.ActionLink("平均点数設定一覧へ戻る", "Index")
         </div>

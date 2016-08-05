@@ -5,6 +5,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
     long division_id = ViewBag.division_id;
+    int l = 0;
 }
 
 <h2>@ViewBag.StudentName</h2>
@@ -13,43 +14,53 @@
     @Html.ActionLink("新規成績登録", "Create", new { division_id = division_id })
 </p>
 
-@foreach (var group in Model.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name).Select((value, l) => new { value, l }))
+@foreach (var dateGroup in Model.GroupBy(model => model.exam_date))
 {
-    List<string> class_name = new List<string>();
-    List<string> class_score = new List<string>();
+    <h3>@Html.Raw(dateGroup.Key)</h3>
     
-    var selectData = group.value.FirstOrDefault(x => x.exams_m.name == group.value.Key);
+    var examIdgroup = dateGroup.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name);
     
-    <h3>@Html.Encode(group.value.Key) <small>@Html.ActionLink("編集", "Edit", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date })</small></h3>
-    <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
+    foreach (var group in examIdgroup.Select((value, num) => new { value, num }))
+    {
+        List<string> class_name = new List<string>();
+        List<string> class_score = new List<string>();
 
-    var sortItems = group.value.OrderBy(x => x.class_id);
-    
-    <div class="row">
+        var selectData = group.value.FirstOrDefault(x => x.exams_m.name == group.value.Key);
 
-        <div class="col-sm-12 col-md-8">
+        <h3>@Html.Encode(group.value.Key) <small>@Html.ActionLink("編集", "Edit", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date, division_id = division_id })</small></h3>
+        <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
 
-            @foreach (var item in sortItems.Select((v, i) => new { v, i }))
-            {
-                <div class="col-sm-2 col-xs-4">
-                    <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(item.v.classes_m.display_name).Replace("\n", "<br/>"))</h5>
-                    <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.v.exam_scores) 点</p>
-                    <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.v.exam_precedence) 位</p>
-                </div>
-                if (item.v.exam_precedence != 0 && item.v.class_id != 121 )
+        var sortItems = group.value.OrderBy(x => x.class_id);
+
+        <div class="row">
+
+            <div class="col-sm-12 col-md-8">
+
+                @foreach (var item in sortItems.Select((v, i) => new { v, i }))
                 {
-                    class_name.Add(item.v.classes_m.display_name.Replace("\r\n", " "));
-                    class_score.Add(item.v.exam_scores.ToString());
+                    if (item.v.exam_precedence != 0)
+                    {
+                        <div class="col-sm-2 col-xs-4">
+                            <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(item.v.classes_m.display_name).Replace("\n", "<br/>"))</h5>
+                            <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.v.exam_scores) 点</p>
+                            <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.v.exam_precedence) 位</p>
+                        </div>
+
+                        if (item.v.class_id != 121)
+                        {
+                            class_name.Add(item.v.classes_m.display_name.Replace("\r\n", " "));
+                            class_score.Add(item.v.exam_scores.ToString());
+                        }
+                    }
                 }
-            }
 
-        </div>
+            </div>
 
-        <div class="col-sm-12 col-md-4">
-            <canvas id="@group.l" width="400" height="400"></canvas>
-        </div>
+            <div class="col-sm-12 col-md-4">
+                <canvas id="@l" width="400" height="400"></canvas>
+            </div>
 
-        <script>
+            <script>
             @{
                 CramSchoolManagement.Areas.Students.Models.chartConfig config = new CramSchoolManagement.Areas.Students.Models.chartConfig();
                 CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataset = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
@@ -60,16 +71,21 @@
                 dataset.pointBackgroundColor = "rgba(220,220,220,1)";
                 dataset.data = new List<string>();
                 dataset.data.AddRange(class_score);
-                
+
                 config.data.datasets.Add(dataset);
 
                 var value = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(config));
             }
-            window.myRadar = new Chart(document.getElementById( @group.l), @value);
-        </script>
+                window.myRadar = new Chart(document.getElementById(@l), @value);
+                l = l + 1;
+            </script>
 
-    </div>
+        </div>
+    }
+
 }
+
+
 
 <div>
     @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })

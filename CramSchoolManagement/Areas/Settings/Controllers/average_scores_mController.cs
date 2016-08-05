@@ -133,13 +133,13 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
         }
 
         // GET: Settings/average_scores_m/Delete/5
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(DateTime exam_date, long? exam_id, long? school_id)
         {
-            if (id == null)
+            if (exam_date == null || exam_id == null || school_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            average_scores_m average_scores_m = db.average_scores_m.Find(id);
+            average_scores_m[] average_scores_m = db.average_scores_m.Where(x => x.exam_date == exam_date && x.exam_id == exam_id && x.school_id == school_id).ToArray();
             if (average_scores_m == null)
             {
                 return HttpNotFound();
@@ -150,10 +150,13 @@ namespace CramSchoolManagement.Areas.Settings.Controllers
         // POST: Settings/average_scores_m/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(DateTime exam_date, long? exam_id, long? school_id)
         {
-            average_scores_m average_scores_m = db.average_scores_m.Find(id);
-            db.average_scores_m.Remove(average_scores_m);
+            average_scores_m[] average_scores_m = db.average_scores_m.Where(x => x.exam_date == exam_date && x.exam_id == exam_id && x.school_id == school_id).ToArray();
+            foreach (var items in average_scores_m)
+            {
+                db.average_scores_m.Remove(items);
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
