@@ -15,12 +15,12 @@
     <div class="form-horizontal">
         @foreach (var examDateItems in examDate_list)
         {
-            <h3>@DateTime.Parse(examDateItems.Key).Year 年 @DateTime.Parse(examDateItems.Key).Month 月</h3>
+            <h3>@examDateItems.Key.Year 年 @examDateItems.Key.Month 月</h3>
 
             <div class="form-group">
                 <label class="control-label col-md-2" for="exam_date">試験日</label>
                 <div class="col-md-10">
-                    <input class="form-control text-box single-line" data-val="true" data-val-date="フィールド DateTime は日付である必要があります。" data-val-required="DateTime フィールドが必要です。" id="exam_date" name="exam_date" type="date" value="@examDateItems.Key">
+                    <input class="form-control text-box single-line" data-val="true" data-val-date="フィールド DateTime は日付である必要があります。" data-val-required="DateTime フィールドが必要です。" id="exam_date" name="exam_date" type="date" value="@examDateItems.Key.ToString("yyyy-MM-dd")">
                     <span class="field-validation-valid text-danger" data-valmsg-for="exam_date" data-valmsg-replace="true"></span>
                 </div>
             </div>

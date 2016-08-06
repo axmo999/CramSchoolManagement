@@ -17,7 +17,7 @@
 
         [Display(Name = "試験日")]
         [DataType(DataType.Date)]
-        public string exam_date { get; set; }
+        public DateTime exam_date { get; set; }
 
         [Display(Name = "試験区分")]
         [Required]

@@ -5,6 +5,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
     long division_id = ViewBag.division_id;
+    CramSchoolManagement.Areas.Settings.Models.average_scores_m[] average_scores = ViewBag.average_scores;
     int l = 0;
 }
 
@@ -24,6 +25,7 @@
     {
         List<string> class_name = new List<string>();
         List<string> class_score = new List<string>();
+        List<string> class_agerage = new List<string>();
 
         var selectData = group.value.FirstOrDefault(x => x.exams_m.name == group.value.Key);
 
@@ -48,6 +50,17 @@
 
                         if (item.v.class_id != 121)
                         {
+                            var class_average_score = average_scores.SingleOrDefault(x => x.exam_date == item.v.exam_date && x.class_id == item.v.class_id && x.exam_id == item.v.exam_id && x.school_id == item.v.students_m.school_id);
+
+                            if (class_average_score != null)
+                            {
+                                class_agerage.Add(class_average_score.exam_scores.ToString());
+                            }
+                            else
+                            {
+                                class_agerage.Add("0");
+                            }
+                            
                             class_name.Add(item.v.classes_m.display_name.Replace("\r\n", " "));
                             class_score.Add(item.v.exam_scores.ToString());
                         }
@@ -64,6 +77,7 @@
             @{
                 CramSchoolManagement.Areas.Students.Models.chartConfig config = new CramSchoolManagement.Areas.Students.Models.chartConfig();
                 CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataset = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
+                CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataave = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
                 config.data.labels.AddRange(class_name);
 
                 dataset.label = group.value.Key;
@@ -72,12 +86,22 @@
                 dataset.data = new List<string>();
                 dataset.data.AddRange(class_score);
 
+                dataave.label = "平均値";
+                dataave.backgroundColor = "rgba(255,0,0,0.8)";
+                dataset.pointBackgroundColor = "rgba(200,200,200,1)";
+                dataave.data = new List<string>();
+                dataave.data.AddRange(class_agerage);
+
                 config.data.datasets.Add(dataset);
+                config.data.datasets.Add(dataave);
 
                 var value = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(config));
             }
                 window.myRadar = new Chart(document.getElementById(@l), @value);
-                l = l + 1;
+                @{
+                    l = l + 1;
+                }
+
             </script>
 
         </div>
