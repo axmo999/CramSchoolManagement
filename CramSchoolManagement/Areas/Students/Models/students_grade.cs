@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     public partial class students_grade
     {
@@ -45,5 +46,29 @@
         public virtual CramSchoolManagement.Areas.Settings.Models.exams_m exams_m { get; set; }
 
         public virtual CramSchoolManagement.Areas.Settings.Models.classes_m classes_m { get; set; }
+
+        public long average_score
+        {
+            get
+            {
+                return get_average();
+            }
+        }
+
+        public long get_average()
+        {
+            CramSchoolManagement.Areas.Settings.Models.MastersModel MasterDB = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+            var average_score = MasterDB.average_scores_m.SingleOrDefault(
+                                    x => x.exam_date == exam_date && 
+                                         x.exam_id == exam_id && 
+                                         x.class_id == class_id && 
+                                         x.school_id == students_m.school_id);
+            if (average_score != null)
+            {
+                return average_score.exam_scores;
+            }
+            return 0;
+
+        }
     }
 }

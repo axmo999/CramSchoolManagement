@@ -65,3 +65,69 @@ input[type=checkbox] {
   -webkit-transform: scale(1.5, 1.5);
   transform: scale(1.5, 1.5);
 }
+
+@media print {
+
+    @page { size: A4 }
+
+    h3 {
+        margin-top: 12px;
+    }
+
+    /*a {
+        display: none;
+    }*/
+
+    .page-header{
+        display: none;
+    }
+
+    a[href]:after {
+        content: "";
+    }
+    
+    abbr[title]:after {
+        content: "";
+    }
+
+    #student_info div.face {
+        display: none;
+    }
+
+    #student_info div.details{
+        display: none;
+    }
+
+    #independent h5{
+        display: none;
+    }
+
+    .print_display_none {
+        display: none;
+    }
+
+    h2{
+        font-size: 24px;
+    }
+
+    h3{
+        font-size: 20px;
+    }
+
+    h4{
+        font-size: 18px;
+    }
+    
+    .lead {
+        font-size: 18px;
+    }
+
+    .table {
+        margin-bottom: 0px;
+    }
+
+    table#independent{
+        font-size: 14px;
+    }
+
+}

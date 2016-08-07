@@ -15,38 +15,80 @@
 <p>
     @Html.ActionLink("新規登録", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.teachers_m.display_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.week)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.avr)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.teachers_m.display_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.week)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.avr)
-        </td>
-        <td>
-            @Html.ActionLink("詳細", "Details", new { num = item.independence_id })
-        </td>
-    </tr>
-}
-
+<table class="table" id="student_independent">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.teachers_m.display_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.week)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.avr)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teachers_m.display_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.week)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.avr)
+                </td>
+                <td>
+                    @Html.ActionLink("詳細", "Details", new { num = item.independence_id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 <div>
     @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
 </div>
+
+@section scripts{
+
+    @Styles.Render("~/Content/DataTablescss")
+    @Scripts.Render("~/bundles/DataTablesjs")
+
+    <script type="text/javascript">
+
+        $.extend($.fn.dataTable.defaults, {
+            language: {
+                "sProcessing": "処理中...",
+                "sLengthMenu": "_MENU_ 件表示",
+                "sZeroRecords": "データはありません。",
+                "sInfo": " _TOTAL_ 件中 _START_ から _END_ まで表示",
+                "sInfoEmpty": " 0 件中 0 から 0 まで表示",
+                "sInfoFiltered": "（全 _MAX_ 件より抽出）",
+                "sInfoPostFix": "",
+                "sSearch": "検索:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "先頭",
+                    "sPrevious": "前",
+                    "sNext": "次",
+                    "sLast": "最終"
+                }
+            }
+        });
+
+        jQuery(function ($) {
+
+            $("#student_independent").dataTable({
+                stateSave: true,
+                "order": [[0, "desc"]]
+            });
+        });
+
+    </script>
+
+}

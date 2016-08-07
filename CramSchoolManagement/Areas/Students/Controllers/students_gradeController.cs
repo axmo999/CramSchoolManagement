@@ -27,22 +27,18 @@ namespace CramSchoolManagement.Areas.Students.Controllers
 
             var average_m = setdb.average_scores_m.ToArray();
 
-
-
             //var studen_grade_join = students_grade_list.GroupJoin(
             //                                average_m,
             //                                (a) => new { a.exam_date.Date, a.exam_id, a.class_id, a.students_m.school_id },
             //                                (b) => new { b.exam_date.Date, b.exam_id, b.class_id, b.school_id },
-            //                                (a, b) => new { 
-            //                                    student_grade_id = a.students_grade_id,
-            //                                    exam_date = a.exam_date,
-            //                                    exam_id = a.exam_id,
-            //                                    class_id = a.class_id,
-            //                                    exam_scores = a.exam_scores,
-            //                                    exam_precedence = a.exam_precedence,
-            //                                    class_average = b.DefaultIfEmpty()
+            //                                (a, b) => new
+            //                                {
+            //                                    a,
+            //                                    average_score = b.DefaultIfEmpty()
             //                                }).ToList();
-            //var students_exam = db.students_grade.Include(s => s.exams_m);
+
+            var students_exam = db.students_grade.Include(s => s.exams_m);
+
             var students_class = db.students_grade.Include(s => s.classes_m);
 
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();

@@ -26,10 +26,10 @@
 <table class="table" id="student_list">
     <thead>
         <tr>
-            <th>
+            <th class="col-xs-2">
                 @Html.DisplayNameFor(model => model.interview_date)
             </th>
-            <th>
+            <th class="col-xs-2">
                 @Html.DisplayNameFor(model => model.teachers_m.display_name)
             </th>
             <th>
@@ -48,15 +48,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.teachers_m.display_name)
                 </td>
-                <td>
-                    @if (item.interview_contents == null || item.interview_contents.Length < 20)
-                    {
-                        @Html.DisplayFor(modelItem => item.interview_contents)
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.interview_contents).ToHtmlString().Substring(0, 20)
-                    }
+                <td jg="jTruncSubstr" jg:jtruncsubstr="length:70">
+                    @Html.DisplayFor(modelItem => item.interview_contents)
                 </td>
                 <td>
                     @Html.ActionLink("詳細", "Details", new { num = item.students_interview_id })
@@ -73,6 +66,8 @@
 
 
 @section scripts{
+
+@Scripts.Render("~/bundles/jTrunc")
 
 @Styles.Render("~/Content/DataTablescss")
 @Scripts.Render("~/bundles/DataTablesjs")

@@ -6,7 +6,7 @@
 }
 
 <div class="row">
-    <div class="col-sm-12 col-md-8">
+    <div class="col-xs-8">
         <h2>@ViewBag.StudentName</h2>
 
         <h3>@ViewBag.this_year 年 @ViewBag.this_month 月</h3>
@@ -19,7 +19,7 @@
         <span class="col-md-3 col-xs-6 lead ">ランク３：@ViewBag.rank3</span>
         <span class="col-md-3 col-xs-6 lead ">ランク４：@ViewBag.rank4</span>
     </div>
-    <div class="col-sm-12 col-md-4 text-center">
+    <div class="col-xs-4 text-center">
         <canvas id="rank" width="100" height="100"></canvas>
         <script>
             @{
@@ -51,9 +51,7 @@
 
     </div>
 </div>
-<p>
-    @Html.ActionLink("新規登録", "Create")
-</p>
+
 <table class="table" id="independent">
     <tr>
         <th>
@@ -124,18 +122,19 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td class="col-xs-1">
             @if (item.teachers_m == null)
             {
-                @Html.Raw("平均値") 
+                @Html.Raw("平均")
             }
-            else { @Html.DisplayFor(modelItem => item.teachers_m.display_name) }
-            
+            else
+            { @Html.DisplayFor(modelItem => item.teachers_m.display_name) }
+
         </td>
         <td>
             @if (item.week != DateTime.Parse("0001/01/01"))
             {
-                @Html.DisplayFor(modelItem => item.week)
+                @Html.Raw(item.week.ToString("MM-dd"))
             }
         </td>
         <td></td>
@@ -190,7 +189,7 @@
         <td>
             @if (item.teachers_m != null)
             {
-                @Html.ActionLink("編集", "Edit", new { num = item.independence_id })
+                @Html.ActionLink("編集", "Edit", new { num = item.independence_id }, new { @class = "print_display_none" })
             }
         </td>
     </tr>
@@ -198,22 +197,26 @@
 
 </table>
 
-<h4>過去の自立チェック一覧</h4>
-@{
-    ViewBag.attend_archive.Reverse();
-}
-@foreach (var item_archive in ViewBag.attend_archive)
-{
-    string title = item_archive;
-    string[] year_month = item_archive.Split('/');
-    <div class="btn-group">
-        @Html.ActionLink(title, "ArchiveMonth", new { year = year_month[0], month = year_month[1] }, new { @class = "btn btn-default" })
-    </div>
-}
+<div class="print_display_none">
 
-<hr />
+    <h4>過去の自立チェック一覧</h4>
+    @{
+        ViewBag.attend_archive.Reverse();
+    }
+    @foreach (var item_archive in ViewBag.attend_archive)
+    {
+        string title = item_archive;
+        string[] year_month = item_archive.Split('/');
+        <div class="btn-group">
+            @Html.ActionLink(title, "ArchiveMonth", new { year = year_month[0], month = year_month[1] }, new { @class = "btn btn-default" })
+        </div>
+    }
 
-<div>
+</div>
+
+<hr class="print_display_none" />
+
+<div class="print_display_none">
     @Html.ActionLink("一覧へ戻る", "Index", null, new { @class = "btn btn-primary" })
 </div>
 

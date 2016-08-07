@@ -7,14 +7,14 @@
 }
 @if(info != null)
 {
-    <div class="row">
-        <div class="col-sm-6">
+    <div class="row" id="student_info">
+        <div class="col-sm-6 face">
             @if (info.students_face.Any(f => f.FileType == "Image"))
             {
                 <img src="~/students_face?id=@info.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" class="img-rounded img-responsive" />
             }
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 details">
             <h2>@Html.DisplayFor(model => info.display_name)</h2>
             <h3>@Html.DisplayFor(model => info.schools_m.name)</h3>
             <div class="row">

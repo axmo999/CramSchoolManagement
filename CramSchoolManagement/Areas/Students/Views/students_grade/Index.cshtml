@@ -2,7 +2,7 @@
 @using System.Collections
 @Scripts.Render("~/bundles/chart")
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "生徒成績一覧";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
     long division_id = ViewBag.division_id;
     CramSchoolManagement.Areas.Settings.Models.average_scores_m[] average_scores = ViewBag.average_scores;
@@ -17,96 +17,99 @@
 
 @foreach (var dateGroup in Model.GroupBy(model => model.exam_date))
 {
-    <h3>@Html.Raw(dateGroup.Key)</h3>
-    
-    var examIdgroup = dateGroup.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name);
-    
-    foreach (var group in examIdgroup.Select((value, num) => new { value, num }))
-    {
-        List<string> class_name = new List<string>();
-        List<string> class_score = new List<string>();
-        List<string> class_agerage = new List<string>();
+    <section>
+        <h3>@Html.Raw(dateGroup.Key.Year)年 @Html.Raw(dateGroup.Key.Month)月</h3>
+        @{
+            var examIdgroup = dateGroup.OrderByDescending(item => item.exam_id).GroupBy(item => item.exams_m.name);
+        }
 
-        var selectData = group.value.FirstOrDefault(x => x.exams_m.name == group.value.Key);
+        @foreach (var group in examIdgroup.Select((value, num) => new { value, num }))
+        {
+            List<string> class_name = new List<string>();
+            List<string> class_score = new List<string>();
+            List<string> class_agerage = new List<string>();
 
-        <h3>@Html.Encode(group.value.Key) <small>@Html.ActionLink("編集", "Edit", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date, division_id = division_id })</small></h3>
-        <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
+            var selectData = group.value.FirstOrDefault(x => x.exams_m.name == group.value.Key);
 
-        var sortItems = group.value.OrderBy(x => x.class_id);
+            <h3>@Html.Encode(group.value.Key) <small>@Html.ActionLink("編集", "Edit", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date, division_id = division_id })</small></h3>
+            <h4>合計点数：@Html.Encode(group.value.Sum(p => p.exam_scores)) 点</h4>
 
-        <div class="row">
+            var sortItems = group.value.OrderBy(x => x.class_id);
 
-            <div class="col-sm-12 col-md-8">
+            <div class="row">
 
-                @foreach (var item in sortItems.Select((v, i) => new { v, i }))
-                {
-                    if (item.v.exam_precedence != 0)
+                <div class="col-md-8 col-xs-6">
+
+                    @foreach (var item in sortItems.Select((v, i) => new { v, i }))
                     {
-                        <div class="col-sm-2 col-xs-4">
-                            <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(item.v.classes_m.display_name).Replace("\n", "<br/>"))</h5>
-                            <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.v.exam_scores) 点</p>
-                            <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.v.exam_precedence) 位</p>
-                        </div>
-
-                        if (item.v.class_id != 121)
+                        if (item.v.exam_precedence != 0)
                         {
-                            var class_average_score = average_scores.SingleOrDefault(x => x.exam_date == item.v.exam_date && x.class_id == item.v.class_id && x.exam_id == item.v.exam_id && x.school_id == item.v.students_m.school_id);
+                            <div class="col-md-2 col-xs-4">
+                                <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(item.v.classes_m.display_name).Replace("\n", "<br/>"))</h5>
+                                <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => item.v.exam_scores) 点</p>
+                                <p class="text-center grade_border_precedence">@Html.DisplayFor(modelItem => item.v.exam_precedence) 位</p>
+                            </div>
 
-                            if (class_average_score != null)
+                            if (item.v.class_id != 121)
                             {
-                                class_agerage.Add(class_average_score.exam_scores.ToString());
+                                //var class_average_score = average_scores.SingleOrDefault(x => x.exam_date == item.v.exam_date && x.class_id == item.v.class_id && x.exam_id == item.v.exam_id && x.school_id == item.v.students_m.school_id);
+
+                                //if (class_average_score != null)
+                                //{
+                                //    class_agerage.Add(class_average_score.exam_scores.ToString());
+                                //}
+                                //else
+                                //{
+                                //    class_agerage.Add("0");
+                                //}
+
+                                class_name.Add(item.v.classes_m.display_name.Replace("\r\n", " "));
+                                class_score.Add(item.v.exam_scores.ToString());
+                                class_agerage.Add(item.v.average_score.ToString());
                             }
-                            else
-                            {
-                                class_agerage.Add("0");
-                            }
-                            
-                            class_name.Add(item.v.classes_m.display_name.Replace("\r\n", " "));
-                            class_score.Add(item.v.exam_scores.ToString());
                         }
                     }
+
+                </div>
+
+                <div class="col-md-4 col-xs-6">
+                    <canvas id="@l" width="400" height="400"></canvas>
+                </div>
+
+                <script>
+                @{
+                    CramSchoolManagement.Areas.Students.Models.chartConfig config = new CramSchoolManagement.Areas.Students.Models.chartConfig();
+                    CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataset = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
+                    CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataave = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
+                    config.data.labels.AddRange(class_name);
+
+                    dataset.label = group.value.Key;
+                    dataset.backgroundColor = "rgba(255,255,0,0.8)";
+                    dataset.pointBackgroundColor = "rgba(220,220,220,1)";
+                    dataset.data = new List<string>();
+                    dataset.data.AddRange(class_score);
+
+                    dataave.label = "学年平均値";
+                    dataave.backgroundColor = "rgba(255,0,0,0.8)";
+                    dataset.pointBackgroundColor = "rgba(200,200,200,1)";
+                    dataave.data = new List<string>();
+                    dataave.data.AddRange(class_agerage);
+
+                    config.data.datasets.Add(dataset);
+                    config.data.datasets.Add(dataave);
+
+                    var value = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(config));
                 }
-
-            </div>
-
-            <div class="col-sm-12 col-md-4">
-                <canvas id="@l" width="400" height="400"></canvas>
-            </div>
-
-            <script>
-            @{
-                CramSchoolManagement.Areas.Students.Models.chartConfig config = new CramSchoolManagement.Areas.Students.Models.chartConfig();
-                CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataset = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
-                CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataave = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
-                config.data.labels.AddRange(class_name);
-
-                dataset.label = group.value.Key;
-                dataset.backgroundColor = "rgba(255,255,0,0.8)";
-                dataset.pointBackgroundColor = "rgba(220,220,220,1)";
-                dataset.data = new List<string>();
-                dataset.data.AddRange(class_score);
-
-                dataave.label = "平均値";
-                dataave.backgroundColor = "rgba(255,0,0,0.8)";
-                dataset.pointBackgroundColor = "rgba(200,200,200,1)";
-                dataave.data = new List<string>();
-                dataave.data.AddRange(class_agerage);
-
-                config.data.datasets.Add(dataset);
-                config.data.datasets.Add(dataave);
-
-                var value = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(config));
-            }
                 window.myRadar = new Chart(document.getElementById(@l), @value);
                 @{
                     l = l + 1;
                 }
 
-            </script>
+                </script>
 
-        </div>
-    }
-
+            </div>
+        }
+    </section>
 }
 
 
