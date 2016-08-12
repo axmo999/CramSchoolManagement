@@ -1,0 +1,18 @@
+﻿
+@{
+    int year = ViewBag.this_year;
+    int month = ViewBag.this_month;
+    ViewBag.Title = year + "年 " + month + "月分" ;
+    Layout = "~/Views/Shared/_Print.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{
+    var student_guid = ViewBag.student_guid;
+    foreach (var items in student_guid)
+    {
+        //var student_guid_month = items.Where(x => x.guide_date);
+        string item;
+    }
+}

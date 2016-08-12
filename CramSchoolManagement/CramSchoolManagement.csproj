@@ -383,6 +383,7 @@
     <Compile Include="Areas\Students\Models\chartConfig.cs" />
     <Compile Include="Areas\Students\Models\students_independence.cs" />
     <Compile Include="Areas\Students\Models\students_interview.cs" />
+    <Compile Include="Controllers\MonthlyController.cs" />
     <Compile Include="Controllers\StudentsInfoController.cs" />
     <Compile Include="Controllers\students_faceController.cs" />
     <Compile Include="Controllers\students_mController.cs" />
@@ -421,6 +422,8 @@
     <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\students_m\ArchiveList.cshtml" />
+    <Content Include="Views\Shared\_Print.cshtml" />
+    <Content Include="Views\Monthly\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
