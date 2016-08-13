@@ -1,0 +1,85 @@
+﻿@page {
+    size: A4;
+}
+
+body {
+  width: 210mm; /* needed for Chrome */
+}
+
+footer {
+    display: none;
+}
+
+.sheet {
+  width: 210mm;
+  height: 296mm; /* 1mm余裕をもたせる */
+  page-break-after: always;
+  padding: 5px 20px;
+}
+
+.student_guids_contents p {
+    padding: 10px;
+    border-bottom: thin solid gray;
+}
+
+.page-header{
+  display: none;
+}
+
+table#independent_table{
+    font-size: 14px;
+}
+
+h2{
+    font-size: 24px;
+    padding: .5em .75em;
+	border: 1px solid #ccc;
+}
+
+h3 {
+    margin-top: 12px;
+    font-size: 20px;
+    padding: .25em 0 .5em .75em;
+	border-left: 6px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+h4{
+    font-size: 18px;
+}
+
+.student_guids h4{
+    padding: .5em .75em;
+    background-color: #f6f6f6;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+    margin-bottom: 0px;
+}
+
+#independent_table h5{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+    
+.lead {
+    font-size: 18px;
+}
+
+.table {
+    margin-bottom: 0px;
+}
+
+canvas.rank {
+    padding: 10px;
+}
+
+@media screen {
+  body {
+    background: #eee;
+  }
+  .sheet {
+    background: white; /* 背景を白く */
+    box-shadow: 0 .5mm 2mm rgba(0,0,0,.3); /* ドロップシャドウ */
+    margin: 5mm;
+  }
+}

@@ -54,6 +54,13 @@ namespace CramSchoolManagement
                         "~/Content/chart/Chart.bundle.min.js"
                 ));
 
+            bundles.Add(new StyleBundle("~/Content/print").Include(
+                        "~/Content/print.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Content/knockout").Include(
+                        "~/Content/knockout/knockout-3.4.0.js"
+                ));
         }
     }
 }

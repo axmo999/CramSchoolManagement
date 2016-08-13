@@ -1,0 +1,352 @@
+﻿@Scripts.Render("~/bundles/chart")
+@{
+    int year = ViewBag.this_year;
+    int month = ViewBag.this_month;
+    ViewBag.Title = year + "年 " + month + "月分" ;
+    Layout = "~/Views/Shared/_Print.cshtml";
+}
+
+@{
+    IEnumerable<CramSchoolManagement.Areas.Students.Models.students_attendance> student_attend = ViewBag.students_attend_list;
+
+    IEnumerable<CramSchoolManagement.Areas.Students.Models.students_guide> student_guid = ViewBag.students_guid_list;
+
+    IEnumerable<CramSchoolManagement.Areas.Students.Models.students_independence> student_independence = ViewBag.student_independence_list;
+}
+
+<section id="monthly_attend" class="sheet">
+
+    <h2>@ViewBag.Title　出席リスト</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                生徒名
+            </th>
+            <th>
+                出席回数
+            </th>
+            <th>
+                出席率
+            </th>
+        </tr>
+        @{
+            var student_attend_name_group = student_attend.OrderBy(x => x.students_m.display_name).GroupBy(x => x.students_id);
+            foreach (var items in student_attend_name_group)
+            {
+                string studentName = items.FirstOrDefault(x => x.students_id == items.Key).students_m.display_name;
+                <tr>
+                    <td>@studentName.ToString()</td>
+                    <td>@items.Count()</td>
+                    <td>@CramSchoolManagement.Commons.Utility.CheckAttendRate(items.Key, ViewBag.this_year, ViewBag.this_month)</td>
+                </tr>
+            }
+        }
+    </table>
+
+</section>
+
+
+<section id="monthly_guid" class="sheet">
+
+    @{
+        var student_guid_name_group = student_guid.OrderBy(x => x.students_m.display_name).GroupBy(x => x.students_id);
+
+        foreach (var items in student_guid_name_group)
+        {
+            <section class="student_guids sheet">
+                @{
+            string studentName = items.FirstOrDefault(x => x.students_id == items.Key).students_m.display_name;
+                }
+                <h2>@ViewBag.Title　生徒指導リスト</h2>
+                <h3>@studentName.ToString()</h3>
+
+                @{
+            var guid_contents = items.OrderByDescending(x => x.guide_date).ToArray();
+                }
+                @foreach (var guides in guid_contents)
+                {
+                    <div class="student_guids_contents">
+                        <h4>@guides.guide_date.ToString("yyyy/MM/dd") | @guides.teachers_m.display_name | @guides.classes_m.display_name</h4>
+                        <p>@guides.guide_contents.Replace("\n", "<br/>")</p>
+                    </div>
+                }
+            </section>
+        }
+    }
+
+</section>
+
+
+
+<section id="monthly_independent" class="sheet">
+
+    @{
+        var student_independent_name_group = student_independence.OrderBy(x => x.students_m.display_name).GroupBy(x => x.students_id);
+
+        foreach (var items in student_independent_name_group)
+        {
+            <section class="student_independent sheet">
+
+                @{
+            string studentName = items.FirstOrDefault(x => x.students_id == items.Key).students_m.display_name;
+                }
+
+                @{
+            var independent_contents = items.OrderByDescending(x => x.week).ToList();
+
+            CramSchoolManagement.Areas.Students.Models.students_independence student_independent = new CramSchoolManagement.Areas.Students.Models.students_independence();
+
+            if (independent_contents.Count() > 0)
+            {
+                student_independent.question01 = independent_contents.Average(x => x.question01);
+                student_independent.question02 = independent_contents.Average(x => x.question02);
+                student_independent.question03 = independent_contents.Average(x => x.question03);
+                student_independent.question04 = independent_contents.Average(x => x.question04);
+                student_independent.question05 = independent_contents.Average(x => x.question05);
+                student_independent.question06 = independent_contents.Average(x => x.question06);
+                student_independent.question07 = independent_contents.Average(x => x.question07);
+                student_independent.question08 = independent_contents.Average(x => x.question08);
+                student_independent.question09 = independent_contents.Average(x => x.question09);
+                student_independent.question10 = independent_contents.Average(x => x.question10);
+                student_independent.question11 = independent_contents.Average(x => x.question11);
+                student_independent.question12 = independent_contents.Average(x => x.question12);
+                student_independent.question13 = independent_contents.Average(x => x.question13);
+                student_independent.question14 = independent_contents.Average(x => x.question14);
+                student_independent.question15 = independent_contents.Average(x => x.question15);
+
+                decimal total = independent_contents.Count();
+
+                decimal rank1 = (student_independent.question01
+                                + student_independent.question02
+                                + student_independent.question03
+                                + student_independent.question04
+                                + student_independent.question05) / 5;
+
+
+
+                decimal rank2 = (student_independent.question06
+                                + student_independent.question07
+                                + student_independent.question08
+                                + student_independent.question09) / 4;
+
+                decimal rank3 = (student_independent.question10
+                                + student_independent.question11
+                                + student_independent.question12
+                                + student_independent.question13) / 4;
+
+                decimal rank4 = (student_independent.question14
+                                + student_independent.question15) / 2;
+
+                decimal total_ave = (rank1 + rank2 + rank3 + rank4) / 4;
+
+                independent_contents.Add(student_independent);
+
+                <div class="row">
+                    <div class="col-xs-8">
+
+                        <h2>@ViewBag.Title</h2>
+                        <h3>@studentName.ToString()</h3>
+
+                        <h4>今月平均値 総合：@total_ave</h4>
+
+                        <span class="col-xs-6 rank ">ランク１平均：@rank1</span>
+                        <span class="col-xs-6 rank ">ランク２平均：@rank2</span>
+                        <span class="col-xs-6 rank ">ランク３平均：@rank3</span>
+                        <span class="col-xs-6 rank ">ランク４平均：@rank4</span>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                        <canvas class="rank_view" width="100" height="100"></canvas>
+                        <script>
+                                    @{
+                                        string[] labels = new string[4]{"ランク１", "ランク２", "ランク３", "ランク４"};
+                                        string[] scores = new string[4] { "0", "0", "0", "0" };
+                                        if (rank1 != null && rank2 != null && rank3 != null && rank4 != null)
+                                        {
+                                            scores = new string[4] { rank1.ToString(), rank2.ToString(), rank3.ToString(), rank4.ToString() };
+                                        }
+
+                                        CramSchoolManagement.Areas.Students.Models.chartConfig config = new CramSchoolManagement.Areas.Students.Models.chartConfig();
+                                        CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataset = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
+                                        config.data.labels.AddRange(labels);
+
+                                        dataset.label = "平均ランク";
+                                        dataset.backgroundColor = "rgba(255,255,0,0.8)";
+                                        dataset.pointBackgroundColor = "rgba(220,220,220,1)";
+                                        dataset.data = new List<string>();
+                                        dataset.data.AddRange(scores);
+
+                                        config.options.scale.ticks.max = 5;
+
+                                        config.data.datasets.Add(dataset);
+
+                                        var value = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(config));
+                                    }
+                            window.myRadar = new Chart(document.getElementsByClassName("rank_view"), @value);
+                        </script>
+
+                    </div>
+                </div>
+
+                    <table class="table" id="independent_table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => student_independent.teachers_m.display_name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => student_independent.week)
+                            </th>
+                            <th>
+                                <h5>基本的な事の徹底</h5>
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question01)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question02)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question03)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question04)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question05)
+                            </th>
+                            <th>
+                                <h5>基本的な事の習慣化</h5>
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question06)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question07)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question08)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question09)
+                            </th>
+                            <th>
+                                <h5>コミュニケーション能力基礎</h5>
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question10)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question11)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question12)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question13)
+                            </th>
+                            <th>
+                                <h5>大きな目標を達成する為に必要な事</h5>
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question14)
+                            </th>
+                            <th class="counter">
+                                @Html.DisplayNameFor(model => student_independent.question15)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var indepent_items in independent_contents)
+                        {
+                            <tr>
+                                <td class="col-xs-1">
+                                    @if (indepent_items.teachers_m == null)
+                                    {
+                                        @Html.Raw("平均")
+                                    }
+                                    else
+                                    { @Html.DisplayFor(modelItem => indepent_items.teachers_m.display_name) }
+
+                                </td>
+                                <td>
+                                    @if (indepent_items.week != DateTime.Parse("0001/01/01"))
+                                    {
+                                        @Html.Raw(indepent_items.week.ToString("MM-dd"))
+                                    }
+                                </td>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question01)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question02)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question03)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question04)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question05)
+                                </td>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question06)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question07)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question08)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question09)
+                                </td>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question10)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question11)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question12)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question13)
+                                </td>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question14)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => indepent_items.question15)
+                                </td>
+                                <td></td>
+                            </tr>
+                        }
+                    </table>
+            }
+
+                }
+            </section>
+        }
+
+    }
+
+</section>
+
+
+
+@section scripts{
+
+    @Scripts.Render("~/Content/table")
+
+    <script type="text/javascript">
+
+        $("#independent_table").table_transpose();
+
+    </script>
+
+}

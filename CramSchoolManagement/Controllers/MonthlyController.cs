@@ -23,9 +23,43 @@ namespace CramSchoolManagement.Controllers
         /// <summary>環境依存対応Today</summary>
         private DateTime _today = CramSchoolManagement.Commons.Utility.Today();
 
+        // GET: Index
+
+        public ActionResult Index()
+        {
+            var year_group = studentdb
+                            .students_attendance
+                            .GroupBy(x => x.attendance_day.Year)
+                            .Select(x => x.Key)
+                            .ToList();
+
+            //var attend_date_year_group = from studentdb.students_attendance
+
+            SelectList YearList = new SelectList(year_group);
+
+            ViewBag.year = YearList;
+
+            return View();
+        }
+
+        public ActionResult GetMonth(int Year)
+        {
+            var month_group = studentdb
+                        .students_attendance
+                        .Where(x => x.attendance_day.Year == Year)
+                        .GroupBy(x => x.attendance_day.Month)
+                        .Select(x => x.Key)
+                        .ToList();
+
+            SelectList MonthList = new SelectList(month_group);
+
+            return Json(MonthList, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: Monthly
-        public ActionResult Index(int year, int month)
+        [HttpPost]
+        public ActionResult Print(int year, int month)
         {
             // 変数より月の最初と最終日を設定
             DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
@@ -37,14 +71,27 @@ namespace CramSchoolManagement.Controllers
                                 .Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM)
                                 .Include(s => s.students_m);
 
-            string[] students_list = student_attend_list.Select(x => x.students_id).Distinct().ToArray();
+            ViewBag.students_attend_list = student_attend_list;
 
-            // 出席リストより指導リストを作成
-            var student_guid = student_attend_list.Include(x => x.students_m.students_guide).Select(x => x.students_m.students_guide).ToList();
+            // 出席リストより生徒を抽出
+            var students_list = student_attend_list.Select(x => x.students_id).Distinct().ToArray();
 
-            //var student_guid_lsit = student_guid.Where(s => s >= FDM && s.guide_date <= LDM);
+            // 生徒リストより指導リストを作成
+            var students_guid = studentdb
+                                .students_guide
+                                .Where(x => students_list.Contains(x.students_id) &&
+                                x.guide_date >= FDM && x.guide_date <= LDM
+                                ).ToList();
 
-            ViewBag.student_independence_list = student_attend_list.Select(x => x.students_m.students_independence).ToList();
+            ViewBag.students_guid_list = students_guid;
+
+            var student_independence = studentdb
+                                        .students_independence
+                                        .Where(x => students_list.Contains(x.students_id) &&
+                                        x.week >= FDM && x.week <= LDM
+                                        );
+
+            ViewBag.student_independence_list = student_independence;
 
             ViewBag.this_year = year;
             ViewBag.this_month = month;
