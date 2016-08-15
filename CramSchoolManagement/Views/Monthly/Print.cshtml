@@ -47,7 +47,7 @@
 </section>
 
 
-<section id="monthly_guid" class="sheet">
+<section id="monthly_guid">
 
     @{
         var student_guid_name_group = student_guid.OrderBy(x => x.students_m.display_name).GroupBy(x => x.students_id);
@@ -56,18 +56,49 @@
         {
             <section class="student_guids sheet">
                 @{
-            string studentName = items.FirstOrDefault(x => x.students_id == items.Key).students_m.display_name;
+                    string studentName = items.FirstOrDefault(x => x.students_id == items.Key).students_m.display_name;
                 }
                 <h2>@ViewBag.Title　生徒指導リスト</h2>
                 <h3>@studentName.ToString()</h3>
 
                 @{
-            var guid_contents = items.OrderByDescending(x => x.guide_date).ToArray();
+                    var guid_contents = items.OrderByDescending(x => x.guide_date).ToArray();
                 }
                 @foreach (var guides in guid_contents)
                 {
+                    string guidDate;
+                    string teacher;
+                    string classes;
+                    
+                    if(guides.guide_date.ToString("yyyy/MM/dd") != null)
+                    {
+                        guidDate = guides.guide_date.ToString("yyyy/MM/dd");
+                    }
+                    else
+                    {
+                        guidDate = "";
+                    }
+
+                    if (!String.IsNullOrEmpty(guides.Id))
+                    {
+                        teacher = guides.teachers_m.display_name;
+                    }
+                    else
+                    {
+                        teacher = "";
+                    }
+
+                    if (guides.classes_m.display_name != null)
+                    {
+                        classes = guides.classes_m.display_name;
+                    }
+                    else
+                    {
+                        classes = "";
+                    }
+                    
                     <div class="student_guids_contents">
-                        <h4>@guides.guide_date.ToString("yyyy/MM/dd") | @guides.teachers_m.display_name | @guides.classes_m.display_name</h4>
+                        <h4>@Html.Display(guidDate) | @Html.Display(teacher) | @Html.Display(classes)</h4>
                         <p>@guides.guide_contents.Replace("\n", "<br/>")</p>
                     </div>
                 }
@@ -77,9 +108,7 @@
 
 </section>
 
-
-
-<section id="monthly_independent" class="sheet">
+<section id="monthly_independent">
 
     @{
         var student_independent_name_group = student_independence.OrderBy(x => x.students_m.display_name).GroupBy(x => x.students_id);

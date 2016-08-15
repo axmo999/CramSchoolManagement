@@ -13,6 +13,7 @@ footer {
 .sheet {
   width: 210mm;
   height: 296mm; /* 1mm余裕をもたせる */
+  /*page-break-before: always;*/
   page-break-after: always;
   padding: 5px 20px;
 }

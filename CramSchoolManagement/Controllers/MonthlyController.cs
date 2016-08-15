@@ -25,7 +25,7 @@ namespace CramSchoolManagement.Controllers
 
         // GET: Index
 
-        public ActionResult Index()
+        public ActionResult Index(int? Year)
         {
             var year_group = studentdb
                             .students_attendance
@@ -39,26 +39,26 @@ namespace CramSchoolManagement.Controllers
 
             ViewBag.year = YearList;
 
-            return View();
-        }
-
-        public ActionResult GetMonth(int Year)
-        {
-            var month_group = studentdb
+            if (Year != null)
+            {
+                var month_group = studentdb
                         .students_attendance
                         .Where(x => x.attendance_day.Year == Year)
                         .GroupBy(x => x.attendance_day.Month)
                         .Select(x => x.Key)
                         .ToList();
 
-            SelectList MonthList = new SelectList(month_group);
+                SelectList MonthList = new SelectList(month_group);
 
-            return Json(MonthList, JsonRequestBehavior.AllowGet);
+                ViewBag.month = MonthList;
+            }
+
+
+            return View();
         }
 
 
         // GET: Monthly
-        [HttpPost]
         public ActionResult Print(int year, int month)
         {
             // 変数より月の最初と最終日を設定
@@ -79,7 +79,7 @@ namespace CramSchoolManagement.Controllers
             // 生徒リストより指導リストを作成
             var students_guid = studentdb
                                 .students_guide
-                                .Where(x => students_list.Contains(x.students_id) &&
+                                .Where(x => 
                                 x.guide_date >= FDM && x.guide_date <= LDM
                                 ).ToList();
 
@@ -89,7 +89,7 @@ namespace CramSchoolManagement.Controllers
                                         .students_independence
                                         .Where(x => students_list.Contains(x.students_id) &&
                                         x.week >= FDM && x.week <= LDM
-                                        );
+                                        ).ToList();
 
             ViewBag.student_independence_list = student_independence;
 
