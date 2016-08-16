@@ -1,8 +1,10 @@
 ﻿using CramSchoolManagement.Models;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,6 +24,10 @@ namespace CramSchoolManagement.Controllers
 
         /// <summary>環境依存対応Today</summary>
         private DateTime _today = CramSchoolManagement.Commons.Utility.Today();
+
+        //ReportDataSource rd;
+
+        //LocalReport lr;
 
         // GET: Index
 
@@ -97,6 +103,113 @@ namespace CramSchoolManagement.Controllers
             ViewBag.this_month = month;
 
             return View();
+        }
+
+        public ActionResult GetReport(int year, int month)
+        {
+            try
+            {
+                //lr = new LocalReport();
+                string reportPath = null;
+                reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyAttend.rdlc"));
+                //lr.ReportPath = reportPath;
+
+                DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+                DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
+
+                // 当月の設定出席回数を取得
+                Decimal attend_count = setdb.atteds_m.SingleOrDefault(x => x.year_month == FDM).count;
+
+                // 当月の出席リストを取得
+                var student_attend_list = studentdb
+                                    .students_attendance
+                                    .Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM)
+                                    .Include(s => s.students_m)
+                                    .GroupBy(x => x.students_id)
+                                    .Select(x => new { name = x.FirstOrDefault().students_m, count = x.Count().ToString() })
+                                    .ToList()
+                                    .Select(x => new { name = x.name.display_name, count = x.count, per = Convert.ToDecimal(x.count) / attend_count * 100 + "%" })
+                                    .ToList();
+
+                //rd = new ReportDataSource("DataSet1", student_attend);
+                //lr.DataSources.Add(rd);
+
+                ReportViewer rptViewer = new ReportViewer();
+                rptViewer.ProcessingMode = ProcessingMode.Local;
+
+                rptViewer.LocalReport.ReportPath = reportPath;
+                rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_attend_list));
+
+                ViewBag.Report = rptViewer;
+
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+
+            //string reportType = "pdf";
+            //string mimeType;
+            //string encoding;
+            //string fileNameExtension;
+
+            //string deviceInfo =
+
+            //"<DeviceInfo>" +
+
+            //"  <OutputFormat>" + reportType + "</OutputFormat>" +
+
+            //"  <PageWidth>11.5in</PageWidth>" +
+
+            //"  <PageHeight>8.30in</PageHeight>" +
+
+            //"  <MarginTop>0in</MarginTop>" +
+
+            //"  <MarginLeft>0in</MarginLeft>" +
+
+            //"  <MarginRight>0in</MarginRight>" +
+
+            //"  <MarginBottom>0in</MarginBottom>" +
+
+            //"</DeviceInfo>";
+
+            //Warning[] warnings;
+
+            //string[] streams;
+
+            //byte[] renderedBytes;
+
+            //renderedBytes = lr.Render(
+
+            //    reportType,
+
+            //    deviceInfo,
+
+            //    out mimeType,
+
+            //    out encoding,
+
+            //    out fileNameExtension,
+
+            //    out streams,
+
+            //    out warnings);
+
+            return View();
+
+        }
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                student_m_db.Dispose();
+                studentdb.Dispose();
+                setdb.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

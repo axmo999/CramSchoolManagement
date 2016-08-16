@@ -70,7 +70,7 @@
                     string teacher;
                     string classes;
                     
-                    if(guides.guide_date.ToString("yyyy/MM/dd") != null)
+                    if(guides.guide_date != null)
                     {
                         guidDate = guides.guide_date.ToString("yyyy/MM/dd");
                     }
@@ -79,16 +79,16 @@
                         guidDate = "";
                     }
 
-                    if (!String.IsNullOrEmpty(guides.Id))
+                    if (guides.teachers_m != null)
                     {
                         teacher = guides.teachers_m.display_name;
                     }
                     else
                     {
-                        teacher = "";
+                        teacher = guides.Id;
                     }
 
-                    if (guides.classes_m.display_name != null)
+                    if (guides.classes_m != null)
                     {
                         classes = guides.classes_m.display_name;
                     }
@@ -98,7 +98,7 @@
                     }
                     
                     <div class="student_guids_contents">
-                        <h4>@Html.Display(guidDate) | @Html.Display(teacher) | @Html.Display(classes)</h4>
+                        <h4>@Html.Raw(guidDate) | @Html.Raw(teacher) | @Html.Raw(classes)</h4>
                         <p>@guides.guide_contents.Replace("\n", "<br/>")</p>
                     </div>
                 }
