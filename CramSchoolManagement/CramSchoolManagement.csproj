@@ -342,6 +342,17 @@
     <Content Include="Areas\Settings\Views\average_scores_m\Details.cshtml" />
     <Content Include="Areas\Settings\Views\average_scores_m\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\average_scores_m\Index.cshtml" />
+    <Content Include="Models\dataTable.xsc">
+      <DependentUpon>dataTable.xsd</DependentUpon>
+    </Content>
+    <None Include="Models\dataTable.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataTable.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Models\dataTable.xss">
+      <DependentUpon>dataTable.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Properties\PublishProfiles\files_home.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -402,6 +413,15 @@
     <Compile Include="Areas\Students\Models\students_grade.cs" />
     <Compile Include="Areas\Students\Models\students_guide.cs" />
     <Compile Include="Areas\Students\Models\students_like_dislike.cs" />
+    <Compile Include="Models\dataTable.cs">
+      <DependentUpon>dataTable.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\dataTable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataTable.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\students_face.cs" />
     <Compile Include="Models\Students_mModel.cs" />
     <Compile Include="Models\students_m.cs" />
@@ -436,7 +456,8 @@
     <Content Include="Views\Monthly\Print.cshtml" />
     <Content Include="Views\Monthly\Index.cshtml" />
     <Content Include="Views\Monthly\Reports.cshtml" />
-    <Content Include="Views\Monthly\GetReport.cshtml" />
+    <Content Include="Views\Monthly\GetReportAttend.cshtml" />
+    <Content Include="Views\Monthly\GetReportGuid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

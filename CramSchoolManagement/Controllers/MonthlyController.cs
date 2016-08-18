@@ -105,15 +105,11 @@ namespace CramSchoolManagement.Controllers
             return View();
         }
 
-        public ActionResult GetReport(int year, int month)
+        public ActionResult GetReportAttend(int year, int month)
         {
             try
             {
-                //lr = new LocalReport();
-                string reportPath = null;
-                reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyAttend.rdlc"));
-                //lr.ReportPath = reportPath;
-
+                // 変数より月の最初と最終日を設定
                 DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
                 DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
 
@@ -128,17 +124,28 @@ namespace CramSchoolManagement.Controllers
                                     .GroupBy(x => x.students_id)
                                     .Select(x => new { name = x.FirstOrDefault().students_m, count = x.Count().ToString() })
                                     .ToList()
-                                    .Select(x => new { name = x.name.display_name, count = x.count, per = Convert.ToDecimal(x.count) / attend_count * 100 + "%" })
+                                    .Select(x => new { name = x.name.display_name, count = x.count, per = Convert.ToDecimal(x.count) / attend_count * 100 + "%", school = x.name.schools_m.name, grade = x.name.grade, division = Convert.ToInt32(x.name.schools_m.division_id) })
                                     .ToList();
 
-                //rd = new ReportDataSource("DataSet1", student_attend);
-                //lr.DataSources.Add(rd);
-
+                // レポート設定
                 ReportViewer rptViewer = new ReportViewer();
                 rptViewer.ProcessingMode = ProcessingMode.Local;
+                rptViewer.SizeToReportContent = true;
+                rptViewer.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
 
+                string reportPath = null;
+                reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyAttend.rdlc"));
                 rptViewer.LocalReport.ReportPath = reportPath;
                 rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_attend_list));
+
+                List<ReportParameter> ListParameters = new List<ReportParameter>();
+                ReportParameter paramYear = new ReportParameter("Year", year.ToString());
+                ReportParameter paramMonth = new ReportParameter("Month", month.ToString());
+                ListParameters.Add(paramYear);
+                ListParameters.Add(paramMonth);
+
+                rptViewer.LocalReport.SetParameters(ListParameters);
 
                 ViewBag.Report = rptViewer;
 
@@ -148,52 +155,70 @@ namespace CramSchoolManagement.Controllers
                 return View();
             }
 
-            //string reportType = "pdf";
-            //string mimeType;
-            //string encoding;
-            //string fileNameExtension;
+            return View();
 
-            //string deviceInfo =
+        }
 
-            //"<DeviceInfo>" +
+        public ActionResult GetReportGuid(int year, int month)
+        {
+            try
+            {
+                // 変数より月の最初と最終日を設定
+                DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+                DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
 
-            //"  <OutputFormat>" + reportType + "</OutputFormat>" +
+                // 当月の指導リストを取得
+                var student_guid_list = studentdb
+                                    .students_guide
+                                    .Where(x => x.guide_date >= FDM && x.guide_date <= LDM)
+                                    .Include(s => s.students_m)
+                                    .Select(x => new { 
+                                                        students_m = x.students_m,
+                                                        guide_date = x.guide_date,
+                                                        classes_m = x.classes_m,
+                                                        guide_contents = x.guide_contents,
+                                                        teachers_m = x.teachers_m
+                                    })
+                                    .ToList()
+                                    .Select(x => new { 
+                                                        name = x.students_m.display_name,
+                                                        school = x.students_m.schools_m.name,
+                                                        grade = x.students_m.grade,
+                                                        division = x.students_m.schools_m.division_id,
+                                                        date = x.guide_date,
+                                                        classes = x.classes_m.display_name,
+                                                        guid = x.guide_contents,
+                                                        teacher = x.teachers_m.display_admin
+                                    })
+                                    .ToList();
 
-            //"  <PageWidth>11.5in</PageWidth>" +
+                // レポート設定
+                ReportViewer rptViewer = new ReportViewer();
+                rptViewer.ProcessingMode = ProcessingMode.Local;
+                rptViewer.SizeToReportContent = true;
+                rptViewer.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
 
-            //"  <PageHeight>8.30in</PageHeight>" +
+                string reportPath = null;
+                reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyGuid.rdlc"));
+                rptViewer.LocalReport.ReportPath = reportPath;
+                rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_guid_list));
 
-            //"  <MarginTop>0in</MarginTop>" +
+                //List<ReportParameter> ListParameters = new List<ReportParameter>();
+                //ReportParameter paramYear = new ReportParameter("Year", year.ToString());
+                //ReportParameter paramMonth = new ReportParameter("Month", month.ToString());
+                //ListParameters.Add(paramYear);
+                //ListParameters.Add(paramMonth);
 
-            //"  <MarginLeft>0in</MarginLeft>" +
+                //rptViewer.LocalReport.SetParameters(ListParameters);
 
-            //"  <MarginRight>0in</MarginRight>" +
+                ViewBag.Report = rptViewer;
 
-            //"  <MarginBottom>0in</MarginBottom>" +
-
-            //"</DeviceInfo>";
-
-            //Warning[] warnings;
-
-            //string[] streams;
-
-            //byte[] renderedBytes;
-
-            //renderedBytes = lr.Render(
-
-            //    reportType,
-
-            //    deviceInfo,
-
-            //    out mimeType,
-
-            //    out encoding,
-
-            //    out fileNameExtension,
-
-            //    out streams,
-
-            //    out warnings);
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
 
             return View();
 
