@@ -476,6 +476,7 @@
     <EmbeddedResource Include="Reports\StudentMonthlyGuid.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StudentMonthlyIndependent.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -31,7 +31,7 @@ namespace CramSchoolManagement.Controllers
 
         // GET: Index
 
-        public ActionResult Index(int? Year)
+        public ActionResult Index(int? Year, int? Month)
         {
             var year_group = studentdb
                             .students_attendance
@@ -57,6 +57,28 @@ namespace CramSchoolManagement.Controllers
                 SelectList MonthList = new SelectList(month_group);
 
                 ViewBag.month = MonthList;
+
+                var reportsName = new Dictionary<string, string>
+                {
+                    {"GetReportAttend", "出席一覧表"},
+                    {"GetReportGuid", "指導一覧表"}
+                };
+
+                SelectList ReportsList = new SelectList(reportsName, "Key", "Value");
+
+                ViewBag.reports = ReportsList;
+
+
+            }
+            if (Month != null)
+            {
+                List<string> reportsName = new List<string>();
+                reportsName.Add("GetReportAttend");
+                reportsName.Add("GetReportGuid");
+
+                SelectList ReportsList = new SelectList(reportsName);
+
+                ViewBag.reports = ReportsList;
             }
 
 
@@ -105,61 +127,206 @@ namespace CramSchoolManagement.Controllers
             return View();
         }
 
-        public ActionResult GetReportAttend(int year, int month)
+        public ActionResult GetReportAttend(int? Year, int? Month)
         {
-            try
+            var year_group = studentdb
+                        .students_attendance
+                        .GroupBy(x => x.attendance_day.Year)
+                        .Select(x => x.Key)
+                        .OrderByDescending(x => x)
+                        .ToList();
+            if (Year.HasValue)
             {
-                // 変数より月の最初と最終日を設定
-                DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
-                DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
-
-                // 当月の設定出席回数を取得
-                Decimal attend_count = setdb.atteds_m.SingleOrDefault(x => x.year_month == FDM).count;
-
-                // 当月の出席リストを取得
-                var student_attend_list = studentdb
-                                    .students_attendance
-                                    .Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM)
-                                    .Include(s => s.students_m)
-                                    .GroupBy(x => x.students_id)
-                                    .Select(x => new { name = x.FirstOrDefault().students_m, count = x.Count().ToString() })
-                                    .ToList()
-                                    .Select(x => new { name = x.name.display_name, count = x.count, per = Convert.ToDecimal(x.count) / attend_count * 100 + "%", school = x.name.schools_m.name, grade = x.name.grade, division = Convert.ToInt32(x.name.schools_m.division_id) })
-                                    .ToList();
-
-                // レポート設定
-                ReportViewer rptViewer = new ReportViewer();
-                rptViewer.ProcessingMode = ProcessingMode.Local;
-                rptViewer.SizeToReportContent = true;
-                rptViewer.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-                rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
-
-                string reportPath = null;
-                reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyAttend.rdlc"));
-                rptViewer.LocalReport.ReportPath = reportPath;
-                rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_attend_list));
-
-                List<ReportParameter> ListParameters = new List<ReportParameter>();
-                ReportParameter paramYear = new ReportParameter("Year", year.ToString());
-                ReportParameter paramMonth = new ReportParameter("Month", month.ToString());
-                ListParameters.Add(paramYear);
-                ListParameters.Add(paramMonth);
-
-                rptViewer.LocalReport.SetParameters(ListParameters);
-
-                ViewBag.Report = rptViewer;
-
+                SelectList YearList = new SelectList(year_group, Year.Value);
+                ViewBag.year = YearList;
             }
-            catch (Exception ex)
+            else
             {
-                return View();
+                SelectList YearList = new SelectList(year_group);
+                ViewBag.year = YearList;
+            }
+
+            if (Year.HasValue && !Month.HasValue)
+            {
+                var month_group = studentdb
+                        .students_attendance
+                        .Where(x => x.attendance_day.Year == Year)
+                        .GroupBy(x => x.attendance_day.Month)
+                        .Select(x => x.Key)
+                        .OrderByDescending(x => x)
+                        .ToList();
+
+                SelectList MonthList = new SelectList(month_group);
+
+                ViewBag.month = MonthList;
+            }
+            else if (Year.HasValue && Month.HasValue)
+            {
+                int year = Year.Value;
+                int month = Month.Value;
+                try
+                {
+                    // 変数より月の最初と最終日を設定
+                    DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+                    DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
+
+                    // 当月の設定出席回数を取得
+                    Decimal attend_count = setdb.atteds_m.SingleOrDefault(x => x.year_month == FDM).count;
+
+                    // 当月の出席リストを取得
+                    var student_attend_list = studentdb
+                                        .students_attendance
+                                        .Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM)
+                                        .Include(s => s.students_m)
+                                        .GroupBy(x => x.students_id)
+                                        .Select(x => new { name = x.FirstOrDefault().students_m, count = x.Count().ToString() })
+                                        .ToList()
+                                        .Select(x => new { name = x.name.display_name, count = x.count, per = Convert.ToDecimal(x.count) / attend_count * 100 + "%", school = x.name.schools_m.name, grade = x.name.grade, division = Convert.ToInt32(x.name.schools_m.division_id) })
+                                        .ToList();
+
+                    // レポート設定
+                    ReportViewer rptViewer = new ReportViewer();
+                    rptViewer.ProcessingMode = ProcessingMode.Local;
+                    rptViewer.SizeToReportContent = true;
+                    rptViewer.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                    rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+
+                    string reportPath = null;
+                    reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyAttend.rdlc"));
+                    rptViewer.LocalReport.ReportPath = reportPath;
+                    rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_attend_list));
+
+                    List<ReportParameter> ListParameters = new List<ReportParameter>();
+                    ReportParameter paramYear = new ReportParameter("Year", year.ToString());
+                    ReportParameter paramMonth = new ReportParameter("Month", month.ToString());
+                    ListParameters.Add(paramYear);
+                    ListParameters.Add(paramMonth);
+
+                    rptViewer.LocalReport.SetParameters(ListParameters);
+
+                    rptViewer.LocalReport.DisplayName = year + "年" + month + "月分出席一覧表";
+
+                    ViewBag.Report = rptViewer;
+
+                }
+                catch (Exception ex)
+                {
+                    return View();
+                }
+            }
+            
+
+            return View();
+
+        }
+
+        public ActionResult GetReportGuid(int? Year, int? Month)
+        {
+            var year_group = studentdb
+                        .students_guide
+                        .GroupBy(x => x.guide_date.Year)
+                        .Select(x => x.Key)
+                        .OrderByDescending(x => x)
+                        .ToList();
+            if (Year.HasValue)
+            {
+                SelectList YearList = new SelectList(year_group, Year.Value);
+                ViewBag.year = YearList;
+            }
+            else
+            {
+                SelectList YearList = new SelectList(year_group);
+                ViewBag.year = YearList;
+            }
+
+            if (Year.HasValue && !Month.HasValue)
+            {
+                var month_group = studentdb
+                        .students_guide
+                        .Where(x => x.guide_date.Year == Year)
+                        .GroupBy(x => x.guide_date.Month)
+                        .Select(x => x.Key)
+                        .OrderByDescending(x => x)
+                        .ToList();
+
+                SelectList MonthList = new SelectList(month_group);
+
+                ViewBag.month = MonthList;
+            }
+            else if (Year.HasValue && Month.HasValue)
+            {
+                int year = Year.Value;
+                int month = Month.Value;
+
+                try
+                {
+                    // 変数より月の最初と最終日を設定
+                    DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+                    DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
+
+                    // 当月の指導リストを取得
+                    var student_guid_list = studentdb
+                                        .students_guide
+                                        .Where(x => x.guide_date >= FDM && x.guide_date <= LDM)
+                                        .Include(s => s.students_m)
+                                        .Select(x => new
+                                        {
+                                            students_m = x.students_m,
+                                            guide_date = x.guide_date,
+                                            classes_m = x.classes_m,
+                                            guide_contents = x.guide_contents,
+                                            teachers_m = x.teachers_m
+                                        })
+                                        .ToList()
+                                        .Select(x => new
+                                        {
+                                            name = x.students_m.display_name,
+                                            school = x.students_m.schools_m.name,
+                                            grade = x.students_m.grade,
+                                            division = x.students_m.schools_m.division_id,
+                                            date = x.guide_date.ToString("yyyy-MM-dd"),
+                                            classes = x.classes_m.display_name,
+                                            guid = x.guide_contents,
+                                            teacher = x.teachers_m.display_name
+                                        })
+                                        .ToList();
+
+                    // レポート設定
+                    ReportViewer rptViewer = new ReportViewer();
+                    rptViewer.ProcessingMode = ProcessingMode.Local;
+                    rptViewer.SizeToReportContent = true;
+                    rptViewer.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                    rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+
+                    string reportPath = null;
+                    reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyGuid.rdlc"));
+                    rptViewer.LocalReport.ReportPath = reportPath;
+                    rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_guid_list));
+
+                    List<ReportParameter> ListParameters = new List<ReportParameter>();
+                    ReportParameter paramYear = new ReportParameter("Year", year.ToString());
+                    ReportParameter paramMonth = new ReportParameter("Month", month.ToString());
+                    ListParameters.Add(paramYear);
+                    ListParameters.Add(paramMonth);
+
+                    rptViewer.LocalReport.SetParameters(ListParameters);
+
+                    rptViewer.LocalReport.DisplayName = year + "年" + month + "月分指導一覧表";
+
+                    ViewBag.Report = rptViewer;
+
+                }
+                catch (Exception ex)
+                {
+                    return View();
+                }
             }
 
             return View();
 
         }
 
-        public ActionResult GetReportGuid(int year, int month)
+        public ActionResult GetReportIndependent(int year, int month)
         {
             try
             {
@@ -168,27 +335,29 @@ namespace CramSchoolManagement.Controllers
                 DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
 
                 // 当月の指導リストを取得
-                var student_guid_list = studentdb
-                                    .students_guide
-                                    .Where(x => x.guide_date >= FDM && x.guide_date <= LDM)
+                var student_independent_list = studentdb
+                                    .students_independence
+                                    .Where(x => x.week >= FDM && x.week <= LDM)
                                     .Include(s => s.students_m)
-                                    .Select(x => new { 
-                                                        students_m = x.students_m,
-                                                        guide_date = x.guide_date,
-                                                        classes_m = x.classes_m,
-                                                        guide_contents = x.guide_contents,
-                                                        teachers_m = x.teachers_m
+                                    .Select(x => new
+                                    {
+                                        students_m = x.students_m,
+                                        guide_date = x.week,
+                                        //classes_m = x.classes_m,
+                                        //guide_contents = x.guide_contents,
+                                        teachers_m = x.teachers_m
                                     })
                                     .ToList()
-                                    .Select(x => new { 
-                                                        name = x.students_m.display_name,
-                                                        school = x.students_m.schools_m.name,
-                                                        grade = x.students_m.grade,
-                                                        division = x.students_m.schools_m.division_id,
-                                                        date = x.guide_date,
-                                                        classes = x.classes_m.display_name,
-                                                        guid = x.guide_contents,
-                                                        teacher = x.teachers_m.display_admin
+                                    .Select(x => new
+                                    {
+                                        name = x.students_m.display_name,
+                                        school = x.students_m.schools_m.name,
+                                        grade = x.students_m.grade,
+                                        division = x.students_m.schools_m.division_id,
+                                        date = x.guide_date.ToString("yyyy-MM-dd"),
+                                        //classes = x.classes_m.display_name,
+                                        //guid = x.guide_contents,
+                                        teacher = x.teachers_m.display_name
                                     })
                                     .ToList();
 
@@ -202,15 +371,17 @@ namespace CramSchoolManagement.Controllers
                 string reportPath = null;
                 reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyGuid.rdlc"));
                 rptViewer.LocalReport.ReportPath = reportPath;
-                rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_guid_list));
+                //rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_guid_list));
 
-                //List<ReportParameter> ListParameters = new List<ReportParameter>();
-                //ReportParameter paramYear = new ReportParameter("Year", year.ToString());
-                //ReportParameter paramMonth = new ReportParameter("Month", month.ToString());
-                //ListParameters.Add(paramYear);
-                //ListParameters.Add(paramMonth);
+                List<ReportParameter> ListParameters = new List<ReportParameter>();
+                ReportParameter paramYear = new ReportParameter("Year", year.ToString());
+                ReportParameter paramMonth = new ReportParameter("Month", month.ToString());
+                ListParameters.Add(paramYear);
+                ListParameters.Add(paramMonth);
 
-                //rptViewer.LocalReport.SetParameters(ListParameters);
+                rptViewer.LocalReport.SetParameters(ListParameters);
+
+                rptViewer.LocalReport.DisplayName = year + "年" + month + "月分自立チェック一覧表";
 
                 ViewBag.Report = rptViewer;
 

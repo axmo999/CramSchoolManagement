@@ -428,7 +428,7 @@
             <Direction>Descending</Direction>
           </SortExpression>
         </SortExpressions>
-        <Top>1.45204cm</Top>
+        <Top>0.36725cm</Top>
         <Left>0.53332cm</Left>
         <Height>2.12604cm</Height>
         <Width>16.52417cm</Width>
@@ -439,7 +439,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.09375in</Height>
+    <Height>1.09375in</Height>
     <Style />
   </Body>
   <Width>6.92509in</Width>
@@ -492,69 +492,6 @@
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="TotalPages">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Globals!TotalPages</Value>
-                  <Style>
-                    <FontFamily>Meiryo UI</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>TotalPages</rd:DefaultName>
-          <Top>0.17639cm</Top>
-          <Left>16.81609cm</Left>
-          <Height>0.6cm</Height>
-          <Width>0.5cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="PageNumber">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Globals!PageNumber</Value>
-                  <Style>
-                    <FontFamily>Meiryo UI</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0.17639cm</Top>
-          <Left>15.84456cm</Left>
-          <Height>0.6cm</Height>
-          <Width>0.5cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="ReportName">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -576,7 +513,6 @@
           <Left>0.53332cm</Left>
           <Height>0.6cm</Height>
           <Width>3.4525cm</Width>
-          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -613,7 +549,7 @@
           <Left>4.41911cm</Left>
           <Height>0.6cm</Height>
           <Width>5.54271cm</Width>
-          <ZIndex>3</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -624,28 +560,42 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="Textbox4">
+        <Textbox Name="PageNumber">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>/</Value>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style>
+                    <FontFamily>Meiryo UI</FontFamily>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value> / </Value>
+                  <Style>
+                    <FontFamily>Meiryo UI</FontFamily>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!TotalPages</Value>
                   <Style>
                     <FontFamily>Meiryo UI</FontFamily>
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <rd:DefaultName>PageNumber</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>16.41512cm</Left>
+          <Left>14.05749cm</Left>
           <Height>0.6cm</Height>
-          <Width>0.33042cm</Width>
-          <ZIndex>4</ZIndex>
+          <Width>3cm</Width>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
