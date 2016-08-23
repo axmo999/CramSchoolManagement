@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace CramSchoolManagement.Models {
+namespace CramSchoolManagement.App_Data {
     
     
     /// <summary>

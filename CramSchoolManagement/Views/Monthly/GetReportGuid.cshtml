@@ -5,7 +5,10 @@
 }
 
 <h2>@ViewBag.Title</h2>
-
+@if (ViewBag.Error != null)
+{
+    @Html.Raw(ViewBag.Error)
+}
 @if (ViewBag.Report != null)
 {
     @Html.ReportViewer(ViewBag.Report as Microsoft.Reporting.WebForms.ReportViewer, new { @width = "100%", @height = "100%" })

@@ -666,7 +666,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>dataTable</rd:DataSetName>
-        <rd:SchemaPath>C:\work\CramSchoolManagement\CramSchoolManagement\Models\dataTable.xsd</rd:SchemaPath>
+        <rd:SchemaPath>|DataDirectory|\dataTable.xsd</rd:SchemaPath>
         <rd:TableName>attend</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

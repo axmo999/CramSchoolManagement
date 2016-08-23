@@ -127,6 +127,12 @@ namespace CramSchoolManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 月別出席リスト作成
+        /// </summary>
+        /// <param name="Year"></param>
+        /// <param name="Month"></param>
+        /// <returns></returns>
         public ActionResult GetReportAttend(int? Year, int? Month)
         {
             var year_group = studentdb
@@ -192,7 +198,7 @@ namespace CramSchoolManagement.Controllers
                     rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
 
                     string reportPath = null;
-                    reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyAttend.rdlc"));
+                    reportPath = Path.Combine(Server.MapPath("~/App_Data/Reports/StudentMonthlyAttend.rdlc"));
                     rptViewer.LocalReport.ReportPath = reportPath;
                     rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_attend_list));
 
@@ -211,6 +217,7 @@ namespace CramSchoolManagement.Controllers
                 }
                 catch (Exception ex)
                 {
+                    ViewBag.Error = ex;
                     return View();
                 }
             }
@@ -299,7 +306,7 @@ namespace CramSchoolManagement.Controllers
                     rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
 
                     string reportPath = null;
-                    reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyGuid.rdlc"));
+                    reportPath = Path.Combine(Server.MapPath("~/App_Data/Reports/StudentMonthlyGuid.rdlc"));
                     rptViewer.LocalReport.ReportPath = reportPath;
                     rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_guid_list));
 
@@ -318,6 +325,7 @@ namespace CramSchoolManagement.Controllers
                 }
                 catch (Exception ex)
                 {
+                    ViewBag.Error = ex;
                     return View();
                 }
             }
@@ -369,7 +377,7 @@ namespace CramSchoolManagement.Controllers
                 rptViewer.Height = System.Web.UI.WebControls.Unit.Percentage(100);
 
                 string reportPath = null;
-                reportPath = Path.Combine(Server.MapPath("~/Reports/StudentMonthlyGuid.rdlc"));
+                reportPath = Path.Combine(Server.MapPath("~/App_Data/Reports/StudentMonthlyGuid.rdlc"));
                 rptViewer.LocalReport.ReportPath = reportPath;
                 //rptViewer.LocalReport.DataSources.Add(new ReportDataSource("dataTable", student_guid_list));
 
@@ -388,6 +396,7 @@ namespace CramSchoolManagement.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Error = ex;
                 return View();
             }
 

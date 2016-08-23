@@ -32,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -342,16 +343,19 @@
     <Content Include="Areas\Settings\Views\average_scores_m\Details.cshtml" />
     <Content Include="Areas\Settings\Views\average_scores_m\Edit.cshtml" />
     <Content Include="Areas\Settings\Views\average_scores_m\Index.cshtml" />
-    <Content Include="Models\dataTable.xsc">
+    <Content Include="App_Data\dataTable.xsc">
       <DependentUpon>dataTable.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Models\dataTable.xsd">
+    <Content Include="App_Data\dataTable.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dataTable.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Models\dataTable.xss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\dataTable.xss">
       <DependentUpon>dataTable.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Properties\PublishProfiles\files_home.pubxml" />
@@ -413,14 +417,16 @@
     <Compile Include="Areas\Students\Models\students_grade.cs" />
     <Compile Include="Areas\Students\Models\students_guide.cs" />
     <Compile Include="Areas\Students\Models\students_like_dislike.cs" />
-    <Compile Include="Models\dataTable.cs">
+    <Compile Include="App_Data\dataTable.cs">
       <DependentUpon>dataTable.xsd</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Models\dataTable.Designer.cs">
+    <Compile Include="App_Data\dataTable.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dataTable.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\students_face.cs" />
     <Compile Include="Models\Students_mModel.cs" />
@@ -467,16 +473,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="Views\students_face\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\StudentMonthlyAttend.rdlc">
+    <Content Include="App_Data\Reports\StudentMonthlyAttend.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\StudentMonthlyGuid.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Reports\StudentMonthlyGuid.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\StudentMonthlyIndependent.rdlc" />
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Reports\StudentMonthlyIndependent.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

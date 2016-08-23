@@ -6,14 +6,14 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div class="row btn-group btn-group-lg">
+@*<div class="row btn-group btn-group-lg">
     @Html.ActionLink("出席一覧表", "GetReportAttend", null, new { @class = "btn btn-default" })
 
     @Html.ActionLink("指導一覧表", "GetReportGuid", null, new { @class = "btn btn-default" })
-</div>
+</div>*@
 
 
-@*@using (Html.BeginForm("Print", "Monthly", null, FormMethod.Get))
+@using (Html.BeginForm("Print", "Monthly", null, FormMethod.Get))
 {
     <div class="form-horizontal">
         <div class="form-group">
@@ -26,9 +26,9 @@
                 @Html.DropDownList("month", null, "月を選択してください", new { })
             </div>
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.DropDownList("reports", null, "レポートを選択してください", new { })
-            </div>
+            </div>*@
             
             <div class="form-group">
                 <input type="submit" value="月別報告書作成" class="btn btn-default" />
@@ -37,5 +37,5 @@
 
 
     </div>
-}*@
+}
 
