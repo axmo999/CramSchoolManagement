@@ -31,6 +31,10 @@
         @Html.DropDownList("school_grade", null, "", htmlAttributes: new { @class = "form-control" })
     </div>
     <div class="form-group">
+        @Html.Label("validate_flg", "全生徒表示", htmlAttributes: new { @class = "control-label" })
+        @Html.CheckBox("validate_flg", htmlAttributes: new { @class = "form-control", @style = "margin: 0;" })
+    </div>
+    <div class="form-group">
         <input type="submit" value="検索" class="btn btn-info" />
     </div>
 
@@ -103,11 +107,12 @@
                                 var today_attend = item.students_attendance.FirstOrDefault(x => x.attendance_day == today.Date);
                                 if (today_attend == null)
                                 {
-                                    @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" });
+                                    @Html.ActionLink("出席", "CheckIn", new { id = item.students_id }, new { @class = "btn btn-info btn-sm" })
+                                    @Html.ActionLink("欠席", "Absence", new { id = item.students_id }, new { @class = "btn btn-danger btn-sm", @style = "margin-left: 10px;" })
                                 }
                                 else if(today_attend.end_time == null)
                                 {
-                                    @Html.ActionLink("退席", "CheckOut", new { id = item.students_id }, new { @class = "btn btn-warning btn-sm" });
+                                    @Html.ActionLink("退席", "CheckOut", new { id = item.students_id }, new { @class = "btn btn-warning btn-sm" })
                                 }
                                 else
                                 {

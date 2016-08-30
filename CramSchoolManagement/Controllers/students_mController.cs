@@ -25,7 +25,7 @@ namespace CramSchoolManagement.Controllers
         private DateTime _today = CramSchoolManagement.Commons.Utility.Today();
 
         // GET: /students_m
-        public ActionResult Index(long? school_id, long? school_grade, long? office_id)
+        public ActionResult Index(long? school_id, long? school_grade, long? office_id, bool? validate_flg)
         {
             var student_list = db.students_m.Include(s => s.schools_m)
                                             .Include(s => s.offices_m)
@@ -45,6 +45,10 @@ namespace CramSchoolManagement.Controllers
             if (office_id != null)
             {
                 student_list = student_list.Where(s => s.office_id == office_id);
+            }
+            if (validate_flg == null || validate_flg == false)
+            {
+                student_list = student_list.Where(s => s.validate_flg == false);
             }
 
             ViewBag.today = _today;
@@ -173,12 +177,12 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri")] students_m students_m, string id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg")] students_m students_m, string id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
                 var studentToUpdate = db.students_m.Find(id);
-                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date", "attend_mon", "attend_tue", "attend_wed", "attend_thurs", "attend_fri" }))
+                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date", "attend_mon", "attend_tue", "attend_wed", "attend_thurs", "attend_fri", "validate_flg" }))
                 {
                     try
                     {
@@ -318,6 +322,30 @@ namespace CramSchoolManagement.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Absence(string id)
+        {
+            Areas.Students.Models.students_attendance attends = new Areas.Students.Models.students_attendance();
+
+            attends.students_id = id;
+
+            attends.attendance_day = _today.Date;
+            attends.start_time = _today.ToString("HH:mm");
+            attends.end_time = _today.ToString("HH:mm");
+
+            attends.create_user = User.Identity.Name.ToString();
+            attends.create_date = _today.ToString();
+
+            studentdb.students_attendance.Add(attends);
+            studentdb.SaveChanges();
+
+            students_m students_m = db.students_m.Find(id);
+
+            TempData["Message"] = students_m.display_name + "は欠席しました。";
+
+            return RedirectToAction("Index");
+        }
+
 
         public ActionResult StudentBarCode(string id)
         {

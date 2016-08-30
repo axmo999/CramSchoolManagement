@@ -94,6 +94,9 @@ using CramSchoolManagement.Commons;
         [Display(Name = "金曜日")]
         public bool attend_fri { get; set; }
 
+        [Display(Name = "有効フラグ")]
+        public bool validate_flg { get; set; }
+
         public string create_user { get; set; }
 
         public string create_date { get; set; }
