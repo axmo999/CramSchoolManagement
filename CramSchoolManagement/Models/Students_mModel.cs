@@ -39,5 +39,7 @@
                 .WithRequired(e => e.students_m)
                 .WillCascadeOnDelete(false);
         }
+
+        public System.Data.Entity.DbSet<CramSchoolManagement.Areas.Settings.Models.teachers_m> teachers_m { get; set; }
     }
 }

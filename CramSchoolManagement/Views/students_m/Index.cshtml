@@ -100,7 +100,8 @@
                                 {
                                     @Html.RouteLink("自立", "Students_id_route", new { controller = "students_independence", students_id = item.students_id })
                                 }
-}     
+} |
+                            @Html.RouteLink("月次", "Students_id_route", new { controller = "monthly_reports", students_id = item.students_id })
                         </td>
                         <td>
                             @{

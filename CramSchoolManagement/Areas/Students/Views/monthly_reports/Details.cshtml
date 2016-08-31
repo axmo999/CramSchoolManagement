@@ -1,0 +1,91 @@
+﻿@model CramSchoolManagement.Models.monthly_reports
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Honoka.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>monthly_reports</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.students_m.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.students_m.last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teachers_m.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teachers_m.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.monthly_report_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.monthly_report_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.study_contents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.study_contents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.life_contents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.life_contents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.update_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.update_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.monthly_report_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

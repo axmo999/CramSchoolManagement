@@ -406,6 +406,8 @@
     <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
     <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
     <Compile Include="Areas\Students\Models\chartConfig.cs" />
+    <Compile Include="Areas\Students\Controllers\monthly_reportsController.cs" />
+    <Compile Include="Areas\Students\Models\monthly_reports.cs" />
     <Compile Include="Areas\Students\Models\students_independence.cs" />
     <Compile Include="Areas\Students\Models\students_interview.cs" />
     <Compile Include="Controllers\MonthlyController.cs" />
@@ -464,6 +466,11 @@
     <Content Include="Views\Monthly\Reports.cshtml" />
     <Content Include="Views\Monthly\GetReportAttend.cshtml" />
     <Content Include="Views\Monthly\GetReportGuid.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Create.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Details.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

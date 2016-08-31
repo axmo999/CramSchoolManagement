@@ -18,6 +18,7 @@
         public virtual DbSet<students_interview> students_interview { get; set; }
         public virtual DbSet<students_like_dislike> students_like_dislike { get; set; }
         public virtual DbSet<students_independence> students_independence { get; set; }
+        public virtual DbSet<monthly_reports> monthly_reports { get; set; }
 
         public virtual DbSet<CramSchoolManagement.Models.students_m> students_m { get; set; }
         public virtual DbSet<CramSchoolManagement.Areas.Settings.Models.classes_m> classes_m { get; set; }
