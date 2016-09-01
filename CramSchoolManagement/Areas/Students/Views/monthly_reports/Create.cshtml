@@ -2,67 +2,120 @@
 
 @{
     ViewBag.Title = "学習生活面作成";
-    Layout = "/Areas/Students/Views/Shared/_Students.cshtml";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
 <h2>@ViewBag.StudentName</h2>
+<h4>@ViewBag.Title</h4>
+<hr />
+<div class="row">
+    <div id="leftContents" class="col-md-6 col-xs-12">
+        <div id="search">
+            @using (Html.BeginForm("Create", "monthly_reports", null, FormMethod.Get))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.TextBox("Year", null, new { @placeholder="年を入力して下さい" }) | @Html.TextBox("Month", null, new { @placeholder="月を入力して下さい"})
+                    </div>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>@ViewBag.Title</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.monthly_report_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.monthly_report_date, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.ToString("yyy-MM-dd") } })
-                @Html.ValidationMessageFor(model => model.monthly_report_date, "", new { @class = "text-danger" })
-            </div>
+                    <div class="form-group">
+                        <input type="submit" value="指導検索" class="btn btn-default" />
+                    </div>
+                </div>
+            }
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id, "Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group" style="display: none;">
-            @Html.LabelFor(model => model.students_id, "students_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.students_id } })
-                @Html.ValidationMessageFor(model => model.students_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div id="guide_list">
+            @if (ViewBag.guidelist != null)
+            {
+                List<CramSchoolManagement.Areas.Students.Models.students_guide> guideList = new List<CramSchoolManagement.Areas.Students.Models.students_guide>();
+                guideList = ViewBag.guidelist;
+                var classList = guideList.Where(x => x.classes_m.name != "総合").ToList();
+                var lifeList = guideList.Where(x => x.classes_m.name == "総合").ToList();
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.study_contents, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.study_contents, 5, 6, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.study_contents, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="classList">
+                    @foreach (var item in classList)
+                    {
+                        <div class="items">
+                            <h4>@Html.Raw(item.guide_date.ToString("yyyy-MM-dd")) | @Html.Raw(item.classes_m.display_name) | @Html.Raw(item.teachers_m.display_name)</h4>
+                            <p>@Html.Raw(item.guide_contents)</p>
+                        </div>
+                    }
+                </div>
+                <hr />
+                <div class="lifeList">
+                    @foreach (var item in lifeList)
+                    {
+                        <div class="items">
+                            <h4>@Html.Raw(item.guide_date.ToString("yyyy-MM-dd")) | @Html.Raw(item.classes_m.display_name) | @Html.Raw(item.teachers_m.display_name)</h4>
+                            <p>@Html.Raw(item.guide_contents)</p>
+                        </div>
+                    }
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.life_contents, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.life_contents, 5, 6, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.life_contents, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            }
         </div>
     </div>
-}
+
+
+    <div id="rightContents" class="col-md-6 col-xs-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.monthly_report_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.monthly_report_date, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.ToString("yyy-MM-dd") } })
+                        @Html.ValidationMessageFor(model => model.monthly_report_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Id, "Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    @Html.LabelFor(model => model.students_id, "students_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.students_id } })
+                        @Html.ValidationMessageFor(model => model.students_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.study_contents, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.study_contents, 5, 6, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.study_contents, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.life_contents, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.life_contents, 5, 6, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.life_contents, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="作成" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("一覧へ戻る", "Index")
 </div>

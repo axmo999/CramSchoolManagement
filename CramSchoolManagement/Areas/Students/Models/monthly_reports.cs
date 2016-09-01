@@ -36,11 +36,11 @@
 
         public string create_user { get; set; }
 
-        public string create_date { get; set; }
+        public DateTime create_date { get; set; }
 
         public string update_user { get; set; }
 
-        public string update_date { get; set; }
+        public DateTime update_date { get; set; }
 
         public virtual CramSchoolManagement.Models.students_m students_m { get; set; }
 

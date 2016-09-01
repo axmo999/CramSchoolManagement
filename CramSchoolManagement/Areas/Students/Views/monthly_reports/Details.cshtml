@@ -1,14 +1,14 @@
-﻿@model CramSchoolManagement.Models.monthly_reports
+﻿@model CramSchoolManagement.Areas.Students.Models.monthly_reports
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Honoka.cshtml";
+    ViewBag.Title = "学習生活面詳細";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.StudentName</h2>
 
 <div>
-    <h4>monthly_reports</h4>
+    <h4>@ViewBag.Title</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -86,6 +86,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.monthly_report_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("編集", "Edit", new { id = Model.monthly_report_id }) |
+    @Html.ActionLink("削除", "Delete", new { id = Model.monthly_report_id }) |
+    @Html.ActionLink("一覧へ戻る", "Index")
 </p>

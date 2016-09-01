@@ -47,11 +47,27 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: monthly_reports/Create
-        public ActionResult Create(string students_id)
+        public ActionResult Create(string students_id, int? Year, int? Month)
         {
             ViewBag.students_id = students_id;
             ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", User.Identity.GetUserId());
             ViewBag.StudentName = db.students_m.Single(m => m.students_id == students_id).display_name.ToString();
+
+            List<students_guide> guidelist = new List<students_guide>();
+
+            if (Year.HasValue && Month.HasValue)
+            {
+                int year = Year.Value;
+                int month = Month.Value;
+
+                DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
+                DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
+
+                guidelist = db.students_guide.Where(m => m.students_id == students_id && m.guide_date >= FDM && m.guide_date <= LDM).OrderByDescending(m => m.guide_date).Include(s => s.students_m).ToList();
+            }
+
+            ViewBag.guidelist = guidelist;
+
             return View();
         }
 
@@ -65,7 +81,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             if (ModelState.IsValid)
             {
                 monthly_reports.create_user = User.Identity.Name.ToString();
-                monthly_reports.create_date = DateTime.Now.ToString();
+                monthly_reports.create_date = DateTime.Now;
                 db.monthly_reports.Add(monthly_reports);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -104,7 +120,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             if (ModelState.IsValid)
             {
                 monthly_reports.update_user = User.Identity.Name.ToString();
-                monthly_reports.update_date = DateTime.Now.ToString();
+                monthly_reports.update_date = DateTime.Now;
                 db.Entry(monthly_reports).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
