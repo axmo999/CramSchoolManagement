@@ -1,4 +1,4 @@
-﻿@model CramSchoolManagement.Areas.Settings.Models.atteds_m
+﻿@model CramSchoolManagement.Areas.Settings.Models.attend_group_m
 
 @{
     ViewBag.Title = "Details";
@@ -8,47 +8,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>atteds_m</h4>
+    <h4>attend_group_m</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.year_month)
+            @Html.DisplayNameFor(model => model.group_id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.year_month)
+            @Html.DisplayFor(model => model.group_id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.g0_count)
+            @Html.DisplayNameFor(model => model.age_id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.g0_count)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.g1_count)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.g1_count)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.g2_count)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.g2_count)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.g3_count)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.g3_count)
+            @Html.DisplayFor(model => model.age_id)
         </dd>
 
         <dt>
@@ -86,6 +62,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.attend_id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.attend_group_id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

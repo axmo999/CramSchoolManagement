@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CramSchoolManagement.Models.tweet
+
+@{
     ViewBag.Title = "生徒管理システム";
     Layout = "~/Views/Shared/_Honoka.cshtml";
 }
@@ -8,4 +10,60 @@
     <p>上の生徒一覧より、生徒の一覧を表示します。</p>
     <p>入力したい生徒カラムの右側より、入力項目をクリックします。</p>
     <p>必要項目を入力し完了です。</p>
+</div>
+
+<div class="row">
+
+    <div class="tweet_contents col-xs-6">
+
+    </div>
+
+    <div class="tweet_input col-xs-6">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                <hr />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tweet_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.tweet_date, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.ToString("yyy-MM-dd") } })
+                        @Html.ValidationMessageFor(model => model.tweet_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.office_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("office_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.office_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tweet_comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.tweet_comment, 5, 6, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.tweet_comment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="作成" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
 </div>

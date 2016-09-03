@@ -97,6 +97,9 @@ using CramSchoolManagement.Commons;
         [Display(Name = "有効フラグ")]
         public bool validate_flg { get; set; }
 
+        [Display(Name = "週一フラグ")]
+        public bool week_flg { get; set; }
+
         public string create_user { get; set; }
 
         public string create_date { get; set; }

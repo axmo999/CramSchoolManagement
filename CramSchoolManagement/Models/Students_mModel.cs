@@ -17,6 +17,8 @@
 
         public virtual DbSet<students_face> students_face { get; set; }
 
+        public virtual DbSet<tweet> tweet { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<students_m>()

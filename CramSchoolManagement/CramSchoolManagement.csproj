@@ -357,6 +357,11 @@
       <DependentUpon>dataTable.xsd</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Settings\Views\attend_group_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Index.cshtml" />
     <None Include="Properties\PublishProfiles\files.pubxml" />
     <None Include="Properties\PublishProfiles\files_home.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -378,6 +383,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Settings\Controllers\age_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\atteds_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\attend_group_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\average_scores_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\classes_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\divisions_mController.cs" />
@@ -387,6 +393,7 @@
     <Compile Include="Areas\Settings\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Settings\Controllers\schools_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\teachers_mController.cs" />
+    <Compile Include="Areas\Settings\Models\attend_group_m.cs" />
     <Compile Include="Areas\Settings\Models\age_m.cs" />
     <Compile Include="Areas\Settings\Models\classes_m.cs" />
     <Compile Include="Areas\Settings\Models\divisions_m.cs" />
@@ -431,6 +438,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\students_face.cs" />
+    <Compile Include="Models\tweet.cs" />
     <Compile Include="Models\Students_mModel.cs" />
     <Compile Include="Models\students_m.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />

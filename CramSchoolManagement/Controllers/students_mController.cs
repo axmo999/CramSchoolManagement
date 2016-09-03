@@ -109,7 +109,7 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri")] students_m students_m, HttpPostedFileBase face_img)
+        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg, week_flg")] students_m students_m, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
@@ -177,12 +177,12 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg")] students_m students_m, string id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg, week_flg")] students_m students_m, string id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
                 var studentToUpdate = db.students_m.Find(id);
-                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date", "attend_mon", "attend_tue", "attend_wed", "attend_thurs", "attend_fri", "validate_flg" }))
+                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date", "attend_mon", "attend_tue", "attend_wed", "attend_thurs", "attend_fri", "validate_flg", "week_flg" }))
                 {
                     try
                     {
@@ -387,7 +387,7 @@ namespace CramSchoolManagement.Controllers
             DateTime FDM = CramSchoolManagement.Commons.Utility.getFDM(year, month);
             DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
 
-            var student_list = studentdb.students_attendance.Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM).Include(s => s.students_m);
+            var student_list = studentdb.students_attendance.Where(x => x.attendance_day >= FDM && x.attendance_day <= LDM && x.start_time != x.end_time).Include(s => s.students_m);
             var student_list_name = student_list.GroupBy(x => x.students_id).ToList();
 
             ViewBag.AttendList_all = studentdb.students_attendance.GroupBy(

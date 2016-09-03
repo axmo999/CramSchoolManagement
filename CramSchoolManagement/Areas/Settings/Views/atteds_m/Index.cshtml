@@ -15,9 +15,23 @@
         <th>
             @Html.DisplayNameFor(model => model.year_month)
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.count)
+            @Html.DisplayNameFor(model => model.g0_count)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.g1_count)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.g2_count)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.g3_count)
+        </th>
+
         <th></th>
     </tr>
 
@@ -26,8 +40,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.year_month)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.count)
+            @Html.DisplayFor(modelItem => item.g0_count)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.g1_count)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.g2_count)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.g3_count)
         </td>
         <td>
             @Html.ActionLink("編集", "Edit", new { id=item.attend_id }) |

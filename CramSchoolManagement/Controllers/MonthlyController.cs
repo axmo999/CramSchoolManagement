@@ -177,7 +177,7 @@ namespace CramSchoolManagement.Controllers
                     DateTime LDM = CramSchoolManagement.Commons.Utility.getLDM(year, month);
 
                     // 当月の設定出席回数を取得
-                    Decimal attend_count = setdb.atteds_m.SingleOrDefault(x => x.year_month == FDM).count;
+                    Decimal attend_count = setdb.atteds_m.SingleOrDefault(x => x.year_month == FDM).g0_count;
 
                     // 当月の出席リストを取得
                     var student_attend_list = studentdb
