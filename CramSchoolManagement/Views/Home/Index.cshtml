@@ -13,26 +13,46 @@
 </div>
 
 <div class="row">
+    
+    <h3>掲示板</h3>
 
-    <div class="tweet_contents col-xs-6">
+    <div class="tweet_contents col-xs-8" style="height: 400px; overflow-y: auto;">    
 
+        @{
+            List<CramSchoolManagement.Models.tweet> tweets_list = ViewBag.tweet_list;
+
+            foreach (var items in tweets_list.OrderByDescending(x => x.tweet_id))
+            {
+                <blockquote class="blockquote">
+                    <p class ="tweet_cont m-b-0">@Html.Raw(items.tweet_comment)</p>
+                    <footer class="tweet_foot blockquote-footer">
+                        @Html.Raw(items.teachers_m.display_name)
+                        <cite title="Source Title">
+                            @Html.Raw(items.tweet_date)
+                        </cite>
+                    </footer>
+                </blockquote>
+            }
+
+        }
     </div>
 
-    <div class="tweet_input col-xs-6">
+    <div class="tweet_input col-xs-4">
         @using (Html.BeginForm())
         {
-            <div class="form-horizontal">
-                <hr />
+            @Html.AntiForgeryToken()
 
-                <div class="form-group">
+            <div class="form-horizontal">
+
+                @*<div class="form-group">
                     @Html.LabelFor(model => model.tweet_date, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.tweet_date, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.ToString("yyy-MM-dd") } })
                         @Html.ValidationMessageFor(model => model.tweet_date, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
-                <div class="form-group">
+                <div class="form-group" style="display: none;">
                     @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
@@ -40,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="display: none;">
                     @Html.LabelFor(model => model.office_id, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("office_id", null, htmlAttributes: new { @class = "form-control" })
@@ -49,16 +69,16 @@
                 </div>
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.tweet_comment, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.tweet_comment, 5, 6, new { @class = "form-control" })
+                <div class="form-group" style="border: none;">
+                    @Html.LabelFor(model => model.tweet_comment, htmlAttributes: new { @class = "col-xs-12" })
+                    <div class="col-xs-12">
+                        @Html.TextAreaFor(model => model.tweet_comment, 8, 6, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.tweet_comment, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                <div class="form-group" style="border: none;">
+                    <div class="col-md-12">
                         <input type="submit" value="作成" class="btn btn-default" />
                     </div>
                 </div>

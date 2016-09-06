@@ -43,7 +43,7 @@ namespace CramSchoolManagement.Controllers
 
             SelectList YearList = new SelectList(year_group);
 
-            ViewBag.year = YearList;
+            //ViewBag.year = YearList;
 
             if (Year != null)
             {

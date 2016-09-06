@@ -32,6 +32,15 @@ namespace CramSchoolManagement.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            if (Request.Cookies["office_id"] != null)
+            {
+                ViewBag.office_id = new SelectList(db.offices_m, "office_id", "name", Request.Cookies["office_id"].Value);
+            }
+            else
+            {
+                ViewBag.office_id = new SelectList(db.offices_m, "office_id", "name");
+            }
+            
             return View();
         }
 
@@ -44,7 +53,7 @@ namespace CramSchoolManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(teachers_m model, string returnUrl)
+        public async Task<ActionResult> Login(teachers_m model, string returnUrl, string office_id)
         {
             if (!ModelState.IsValid)
             {
@@ -80,6 +89,15 @@ namespace CramSchoolManagement.Controllers
             // 認証情報を設定
             var authentication = this.HttpContext.GetOwinContext().Authentication;
             authentication.SignIn(identify);
+
+            // 教室情報をクッキーへ設定
+            HttpCookie cookie = new HttpCookie("office_id");
+            cookie.Value = office_id;
+            //cookie.Secure = true;
+            cookie.HttpOnly = true;
+            cookie.Expires = DateTime.Now.AddDays(90);
+
+            this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
             // 元のページへリダイレクト
             return RedirectToLocal(returnUrl); ;

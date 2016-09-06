@@ -19,11 +19,44 @@ namespace CramSchoolManagement.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var tweet_list = db.tweet;
+            ViewBag.tweet_list = db.tweet.ToList();
 
             ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", User.Identity.GetUserId());
 
-            return View(tweet_list);
+            if (Request.Cookies["office_id"] != null)
+            {
+                ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", Request.Cookies["office_id"].Value);
+                ViewBag.tweet_list = db.tweet.Where(x => x.office_id == Convert.ToInt32(Request.Cookies["office_id"].Value)).ToList();
+            }
+            else
+            {
+                ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
+                ViewBag.tweet_list = db.tweet.ToList();
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index([Bind(Include = "Id,office_id,tweet_comment")] tweet tweet)
+        {
+            if (ModelState.IsValid)
+            {
+                tweet.tweet_date = _today;
+                tweet.create_user = User.Identity.Name.ToString();
+                tweet.create_date = _today;
+                db.tweet.Add(tweet);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.tweet_list = db.tweet.ToList();
+
+            ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", User.Identity.GetUserId());
+
+            ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name");
+
+            return View();
         }
 
     }

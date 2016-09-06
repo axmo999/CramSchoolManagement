@@ -11,7 +11,7 @@ using CramSchoolManagement.Commons;
     {
         [Key]
         [Display(Name = "つぶやき管理番号")]
-        public string tweet_id { get; set; }
+        public long tweet_id { get; set; }
 
         [Required]
         [Display(Name = "講師管理番号")]
@@ -25,8 +25,9 @@ using CramSchoolManagement.Commons;
         [DataType(DataType.Date)]
         public DateTime tweet_date { get; set; }
 
+        [Required]
         [StringLength(2147483647)]
-        [Display(Name = "つぶやき内容")]
+        [Display(Name = "つぶやく")]
         public string tweet_comment { get; set; }
 
         public string create_user { get; set; }
