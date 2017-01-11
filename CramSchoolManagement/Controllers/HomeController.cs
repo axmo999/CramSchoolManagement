@@ -25,8 +25,9 @@ namespace CramSchoolManagement.Controllers
 
             if (Request.Cookies["office_id"] != null)
             {
+                int office_num = Convert.ToInt32(Request.Cookies["office_id"].Value);
                 ViewBag.office_id = new SelectList(setdb.offices_m, "office_id", "name", Request.Cookies["office_id"].Value);
-                ViewBag.tweet_list = db.tweet.Where(x => x.office_id == Convert.ToInt32(Request.Cookies["office_id"].Value)).ToList();
+                ViewBag.tweet_list = db.tweet.Where(x => x.office_id == office_num).ToList();
             }
             else
             {

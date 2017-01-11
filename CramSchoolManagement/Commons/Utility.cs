@@ -183,7 +183,11 @@ namespace CramSchoolManagement.Commons
                 (gradeage.Month == birthDay.Month &&
                 gradeage.Day < birthDay.Day))
             {
-                age--;
+                --age;
+            }
+            if (today < gradeage)
+            {
+                --age;
             }
             if (age < 6)
             {

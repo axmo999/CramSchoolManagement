@@ -10,583 +10,613 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Data/csm.db">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="App_Data/dataTable.xsc">
-      <publishTime>08/19/2016 15:02:31</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="App_Data/dataTable.xsd">
-      <publishTime>08/22/2016 14:50:55</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="App_Data/dataTable.xss">
-      <publishTime>08/19/2016 15:02:31</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="App_Data/Reports/StudentMonthlyAttend.rdlc">
-      <publishTime>08/22/2016 14:34:59</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="App_Data/Reports/StudentMonthlyGuid.rdlc">
-      <publishTime>08/22/2016 14:35:30</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="App_Data/Reports/StudentMonthlyIndependent.rdlc">
-      <publishTime>08/22/2016 14:44:57</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/age_m/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/age_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/age_m/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/age_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/age_m/Index.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/atteds_m/Create.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/atteds_m/Delete.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/atteds_m/Details.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/atteds_m/Edit.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/atteds_m/Index.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Settings/Views/attend_group_m/Create.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Settings/Views/attend_group_m/Delete.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Settings/Views/attend_group_m/Details.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Settings/Views/attend_group_m/Edit.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Settings/Views/attend_group_m/Index.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/average_scores_m/Create.cshtml">
-      <publishTime>08/04/2016 08:38:52</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/average_scores_m/Delete.cshtml">
-      <publishTime>08/05/2016 16:23:54</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/average_scores_m/Details.cshtml">
-      <publishTime>08/03/2016 11:45:24</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/average_scores_m/Edit.cshtml">
-      <publishTime>08/05/2016 16:25:53</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/average_scores_m/Index.cshtml">
-      <publishTime>08/04/2016 08:38:52</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/classes_m/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/classes_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/classes_m/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/classes_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/classes_m/Index.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/divisions_m/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/divisions_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/divisions_m/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/divisions_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/divisions_m/Index.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/exams_m/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/exams_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/exams_m/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:18</publishTime>
     </File>
     <File Include="Areas/Settings/Views/exams_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/exams_m/Index.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/gender_m/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/gender_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/gender_m/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/gender_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/gender_m/Index.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/offices_m/Create.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/offices_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/offices_m/Details.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/offices_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/offices_m/Index.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/schools_m/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/schools_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/schools_m/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/schools_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/schools_m/Index.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Settings/Views/Settings/Index.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/Shared/_Settings.cshtml">
-      <publishTime>08/04/2016 10:13:37</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/teachers_m/Create.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/teachers_m/Delete.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/teachers_m/Details.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/teachers_m/Edit.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/teachers_m/Index.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Settings/Views/web.config">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
+    </File>
+    <File Include="Areas/Students/Views/monthly_reports/Create.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Students/Views/monthly_reports/Delete.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Students/Views/monthly_reports/Details.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Students/Views/monthly_reports/Edit.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
+    </File>
+    <File Include="Areas/Students/Views/monthly_reports/Index.cshtml">
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/Shared/_StudentHeader.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/Shared/_Students.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_attendance/Archive.cshtml">
-      <publishTime>07/27/2016 15:57:13</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_attendance/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_attendance/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_attendance/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_attendance/Edit.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_attendance/Index.cshtml">
-      <publishTime>07/27/2016 15:56:27</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_grade/Create.cshtml">
-      <publishTime>08/05/2016 16:09:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_grade/Delete.cshtml">
-      <publishTime>08/05/2016 16:09:16</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_grade/Details.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_grade/Edit.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_grade/Index.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Edit.cshtml">
-      <publishTime>07/29/2016 14:13:53</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_guide/Index.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/ArchiveMonth.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Create.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Delete.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Details.cshtml">
-      <publishTime>07/27/2016 08:48:32</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Edit.cshtml">
-      <publishTime>07/29/2016 14:13:53</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_independence/Index.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_interview/Create.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_interview/Delete.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_interview/Details.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_interview/Edit.cshtml">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_interview/Index.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_like_dislike/Create.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_like_dislike/Delete.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_like_dislike/Details.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_like_dislike/Edit.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/students_like_dislike/Index.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/web.config">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Areas/Students/Views/_ViewStart.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>07/25/2016 12:53:25</publishTime>
+      <publishTime>09/08/2016 14:27:20</publishTime>
     </File>
     <File Include="bin/App_Data/dataTable.xsc">
-      <publishTime>08/19/2016 15:02:31</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="bin/App_Data/dataTable.xsd">
-      <publishTime>08/22/2016 14:50:55</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="bin/App_Data/dataTable.xss">
-      <publishTime>08/19/2016 15:02:31</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="bin/App_Data/Reports/StudentMonthlyAttend.rdlc">
-      <publishTime>08/22/2016 14:34:59</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="bin/App_Data/Reports/StudentMonthlyGuid.rdlc">
-      <publishTime>08/22/2016 14:35:30</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="bin/App_Data/Reports/StudentMonthlyIndependent.rdlc">
-      <publishTime>08/22/2016 14:44:57</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>08/29/2016 16:53:09</publishTime>
+      <publishTime>01/06/2017 16:36:12</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>08/29/2016 16:53:09</publishTime>
+      <publishTime>01/06/2017 16:36:06</publishTime>
     </File>
     <File Include="bin/CodeForce.Barcodes.dll">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="bin/CramSchoolManagement.dll">
-      <publishTime>08/29/2016 16:52:51</publishTime>
+      <publishTime>01/06/2017 16:27:14</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>07/25/2016 12:53:25</publishTime>
+      <publishTime>09/08/2016 14:27:23</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>07/25/2016 12:53:25</publishTime>
+      <publishTime>09/08/2016 14:27:22</publishTime>
     </File>
     <File Include="bin/ja/EntityFramework.resources.dll">
-      <publishTime>07/25/2016 12:53:25</publishTime>
+      <publishTime>09/08/2016 14:27:23</publishTime>
     </File>
     <File Include="bin/ja/System.Web.Helpers.resources.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/ja/System.Web.Mvc.resources.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:24</publishTime>
     </File>
     <File Include="bin/ja/System.Web.Razor.resources.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:26</publishTime>
     </File>
     <File Include="bin/ja/System.Web.Webpages.Deployment.resources.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/ja/System.Web.Webpages.Razor.resources.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/ja/System.Web.Webpages.resources.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
-      <publishTime>07/25/2016 12:53:25</publishTime>
+      <publishTime>09/08/2016 14:27:24</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
-      <publishTime>07/25/2016 12:53:25</publishTime>
+      <publishTime>09/08/2016 14:27:24</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:24</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>07/25/2016 12:53:27</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>07/25/2016 12:53:28</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
-      <publishTime>07/25/2016 12:53:28</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>07/25/2016 12:53:28</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>07/25/2016 12:53:28</publishTime>
+      <publishTime>09/08/2016 14:27:27</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WebForms.DLL">
-      <publishTime>08/16/2016 17:06:28</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="bin/MySql.Data.dll">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="bin/MySql.Data.Entity.EF6.dll">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>07/25/2016 12:53:29</publishTime>
+      <publishTime>09/08/2016 14:27:28</publishTime>
     </File>
     <File Include="bin/Owin.dll">
-      <publishTime>07/25/2016 12:53:29</publishTime>
+      <publishTime>09/08/2016 14:27:28</publishTime>
     </File>
     <File Include="bin/PagedList.dll">
-      <publishTime>08/04/2016 08:38:52</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="bin/PagedList.Mvc.dll">
-      <publishTime>08/04/2016 08:38:52</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="bin/ReportViewerForMvc.dll">
-      <publishTime>08/16/2016 17:06:28</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
-      <publishTime>07/25/2016 12:53:31</publishTime>
+      <publishTime>09/08/2016 14:27:30</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.EF6.dll">
-      <publishTime>07/25/2016 12:53:31</publishTime>
+      <publishTime>09/08/2016 14:27:30</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.Linq.dll">
-      <publishTime>07/25/2016 12:53:31</publishTime>
+      <publishTime>09/08/2016 14:27:31</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:26</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:24</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:26</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:26</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Deployment.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:26</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:26</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Razor.dll">
-      <publishTime>07/25/2016 12:53:26</publishTime>
+      <publishTime>09/08/2016 14:27:26</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>07/25/2016 12:53:31</publishTime>
+      <publishTime>09/08/2016 14:27:31</publishTime>
     </File>
     <File Include="bin/x64/SQLite.Interop.dll">
-      <publishTime>07/25/2016 12:53:30</publishTime>
+      <publishTime>09/08/2016 14:27:29</publishTime>
     </File>
     <File Include="bin/x86/SQLite.Interop.dll">
-      <publishTime>07/25/2016 12:53:30</publishTime>
+      <publishTime>09/08/2016 14:27:29</publishTime>
     </File>
     <File Include="bin/zxing.dll">
-      <publishTime>07/25/2016 12:56:27</publishTime>
+      <publishTime>09/08/2016 15:03:03</publishTime>
     </File>
     <File Include="bin/zxing.presentation.dll">
-      <publishTime>07/25/2016 12:56:28</publishTime>
+      <publishTime>09/08/2016 15:03:03</publishTime>
     </File>
     <File Include="Content/chart/Chart.bundle.min.js">
-      <publishTime>08/02/2016 11:44:58</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/chart/Chart.min.js">
-      <publishTime>08/02/2016 11:44:58</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/dataTables.bootstrap.css">
-      <publishTime>07/28/2016 12:19:48</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/dataTables.bootstrap.min.css">
-      <publishTime>07/28/2016 12:19:48</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/dataTables.foundation.css">
-      <publishTime>07/28/2016 12:19:49</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/dataTables.foundation.min.css">
-      <publishTime>07/28/2016 12:19:49</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/dataTables.jqueryui.css">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/dataTables.jqueryui.min.css">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/jquery.dataTables.css">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/jquery.dataTables.min.css">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/css/jquery.dataTables_themeroller.css">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/images/sort_asc.png">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/images/sort_asc_disabled.png">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/images/sort_both.png">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/images/sort_desc.png">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/images/sort_desc_disabled.png">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/dataTables.bootstrap.js">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/dataTables.bootstrap.min.js">
-      <publishTime>07/28/2016 12:19:50</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/dataTables.foundation.js">
-      <publishTime>07/28/2016 12:19:51</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/dataTables.foundation.min.js">
-      <publishTime>07/28/2016 12:19:51</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/dataTables.jqueryui.js">
-      <publishTime>07/28/2016 12:19:51</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/dataTables.jqueryui.min.js">
-      <publishTime>07/28/2016 12:19:51</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/jquery.dataTables.js">
-      <publishTime>07/28/2016 12:19:51</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/DataTables-1.10.12/js/jquery.dataTables.min.js">
-      <publishTime>07/28/2016 12:19:51</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/datatables.css">
-      <publishTime>07/28/2016 15:02:27</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/datatables.js">
-      <publishTime>07/28/2016 12:04:56</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/datatables.min.css">
-      <publishTime>07/28/2016 15:02:56</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/DataTables/datatables.min.js">
-      <publishTime>07/28/2016 12:04:56</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/PagedList.css">
-      <publishTime>08/04/2016 08:38:52</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/print.css">
-      <publishTime>08/15/2016 17:11:24</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/raty/images/cancel-off.png">
-      <publishTime>07/27/2016 08:48:33</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/raty/images/cancel-on.png">
-      <publishTime>07/27/2016 08:48:33</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/raty/images/star-half.png">
-      <publishTime>07/27/2016 08:48:33</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/raty/images/star-off.png">
-      <publishTime>07/27/2016 08:48:33</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/raty/images/star-on.png">
-      <publishTime>07/27/2016 08:48:33</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/raty/jquery.raty.js">
-      <publishTime>07/27/2016 08:48:33</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/site.css">
-      <publishTime>08/13/2016 14:42:51</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/themes/honoka/css/bootstrap.css">
-      <publishTime>07/25/2016 12:56:25</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Content/themes/honoka/css/bootstrap.min.css">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Content/themes/honoka/fonts/glyphicons-halflings-regular.eot">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Content/themes/honoka/fonts/glyphicons-halflings-regular.svg">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Content/themes/honoka/fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Content/themes/honoka/fonts/glyphicons-halflings-regular.woff">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Content/themes/honoka/fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Content/themes/honoka/js/bootstrap.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Content/themes/honoka/js/bootstrap.min.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Models/dataTable.xsc">
       <publishTime>08/19/2016 15:02:31</publishTime>
@@ -595,118 +625,118 @@
       <publishTime>08/19/2016 15:02:31</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>08/16/2016 17:06:30</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>08/29/2016 16:52:59</publishTime>
+      <publishTime>01/06/2017 16:28:56</publishTime>
     </File>
     <File Include="ReportViewerWebForm.aspx">
-      <publishTime>08/16/2016 17:06:30</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Scripts/jglycy-1.0.js">
-      <publishTime>07/29/2016 14:13:53</publishTime>
+      <publishTime>09/08/2016 15:02:58</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Scripts/jquery-2.2.4.min.js">
-      <publishTime>08/02/2016 12:22:10</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Scripts/jquery-3.1.0.min.js">
-      <publishTime>08/02/2016 12:15:34</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Scripts/jquery.jtruncsubstr-1.0rc.js">
-      <publishTime>07/29/2016 14:13:53</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Scripts/jquery.table_transpose.js">
-      <publishTime>07/28/2016 12:04:52</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>08/05/2016 09:28:32</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Login/Login.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Login/Manage.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Views/Login/_ChangePasswordPartial.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Views/Login/_SetPasswordPartial.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Views/Monthly/GetReportAttend.cshtml">
-      <publishTime>08/22/2016 15:11:18</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Monthly/GetReportGuid.cshtml">
-      <publishTime>08/22/2016 15:11:30</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Monthly/Index.cshtml">
-      <publishTime>08/23/2016 17:07:55</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Monthly/Print.cshtml">
-      <publishTime>08/16/2016 09:28:13</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Monthly/Reports.cshtml">
-      <publishTime>08/16/2016 12:29:49</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Shared/_Honoka.cshtml">
-      <publishTime>08/23/2016 17:07:43</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Views/Shared/_Print.cshtml">
-      <publishTime>08/13/2016 14:20:30</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/students_m/ArchiveList.cshtml">
-      <publishTime>08/02/2016 09:11:02</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/students_m/Create.cshtml">
-      <publishTime>07/28/2016 12:19:57</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/students_m/Delete.cshtml">
-      <publishTime>07/28/2016 12:04:56</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/students_m/Details.cshtml">
-      <publishTime>08/29/2016 15:30:35</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/students_m/Edit.cshtml">
-      <publishTime>08/29/2016 15:32:10</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/students_m/Index.cshtml">
-      <publishTime>08/29/2016 15:55:43</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/students_m/List.cshtml">
-      <publishTime>08/08/2016 16:53:39</publishTime>
+      <publishTime>09/08/2016 15:02:59</publishTime>
     </File>
     <File Include="Views/web.config">
-      <publishTime>07/25/2016 12:53:25</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>07/25/2016 12:53:24</publishTime>
+      <publishTime>09/08/2016 14:27:19</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/29/2016 16:52:57</publishTime>
+      <publishTime>09/08/2016 15:27:14</publishTime>
     </File>
   </ItemGroup>
 </Project>
