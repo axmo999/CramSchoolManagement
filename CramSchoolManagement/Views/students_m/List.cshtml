@@ -30,7 +30,7 @@
                 <tr>
                     <td>@Html.RouteLink(studentName, "Students_id_route", new { controller = "students_attendance", students_id = studentID })</td>
                     <td>@items.Count()</td>
-                    <td>@CramSchoolManagement.Commons.Utility.CheckAttendRate(items.Key, ViewBag.this_year, ViewBag.this_month)</td>
+                    <td>@CramSchoolManagement.Commons.Utility.CheckAttendRate(studentID, ViewBag.this_year, ViewBag.this_month)</td>
                 </tr>
             }
          }

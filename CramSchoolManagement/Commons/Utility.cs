@@ -279,8 +279,14 @@ namespace CramSchoolManagement.Commons
                                  ;
             //var month_attend = _masterdb.atteds_m.SingleOrDefault(x => x.year_month == dtFDM);
 
+            //if (student_attend.Count() != 0)
+            //{
+            //    string studentName = student_attend.FirstOrDefault().students_m.display_name;
+            //}
 
-            if (student_attend != null && need_count != null)
+
+
+            if (student_attend.Count() != 0 && need_count != null)
             {
 
                 decimal week1 = need_count.g0_count == 0 ? 1 : need_count.g0_count;
