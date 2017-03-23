@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <NuGetPackageImportStamp>a05a171a</NuGetPackageImportStamp>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,10 +41,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CodeForce.Barcodes, Version=2.0.4230.38711, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeForceLib.Barcodes.2.0\lib\CodeForce.Barcodes.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -85,6 +93,18 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -93,6 +113,19 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReportViewerForMvc, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportViewerForMvc.1.0.1\lib\net45\ReportViewerForMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.SQLite, Version=1.0.102.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.MSIL.1.0.102.0\lib\net451\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
@@ -113,22 +146,32 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -145,9 +188,6 @@
     <Reference Include="System.Web.Webpages.Razor">
       <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Helpers">
-      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
@@ -156,6 +196,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\chart\Chart.bundle.min.js" />
+    <Content Include="Content\chart\Chart.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\images\sort_asc.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\images\sort_both.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\images\sort_desc.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\dataTables.bootstrap.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\dataTables.foundation.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\dataTables.foundation.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\dataTables.jqueryui.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\jquery.dataTables.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.12\js\jquery.dataTables.min.js" />
+    <Content Include="Content\DataTables\datatables.css" />
+    <Content Include="Content\DataTables\datatables.js" />
+    <Content Include="Content\DataTables\datatables.min.css" />
+    <Content Include="Content\DataTables\datatables.min.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\print.css" />
+    <Content Include="Content\raty\images\cancel-off.png" />
+    <Content Include="Content\raty\images\cancel-on.png" />
+    <Content Include="Content\raty\images\star-half.png" />
+    <Content Include="Content\raty\images\star-off.png" />
+    <Content Include="Content\raty\images\star-on.png" />
+    <Content Include="Content\site.css" />
     <Content Include="Content\themes\honoka\css\bootstrap.css" />
     <Content Include="Content\themes\honoka\css\bootstrap.min.css" />
     <Content Include="Content\themes\honoka\fonts\glyphicons-halflings-regular.svg" />
@@ -199,6 +275,13 @@
     <Content Include="Areas\Settings\Views\teachers_m\Index.cshtml" />
     <Content Include="Areas\Students\Views\web.config" />
     <Content Include="Areas\Students\Views\Shared\_Students.cshtml" />
+    <Content Include="Content\raty\jquery.raty.js" />
+    <Content Include="ReportViewerWebForm.aspx" />
+    <Content Include="Scripts\jglycy-1.0.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-3.1.0.min.js" />
+    <Content Include="Scripts\jquery.jtruncsubstr-1.0rc.js" />
+    <Content Include="Scripts\jquery.table_transpose.js" />
     <Content Include="Views\students_m\Create.cshtml" />
     <Content Include="Views\students_m\Delete.cshtml" />
     <Content Include="Views\students_m\Details.cshtml" />
@@ -232,6 +315,55 @@
     <Content Include="Areas\Settings\Views\age_m\Index.cshtml" />
     <Content Include="Areas\Students\Views\Shared\_StudentHeader.cshtml" />
     <Content Include="Areas\Students\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_interview\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\offices_m\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Create.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Details.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\atteds_m\Index.cshtml" />
+    <Content Include="Areas\Students\Views\students_attendance\Archive.cshtml" />
+    <Content Include="Views\students_m\List.cshtml" />
+    <Content Include="Areas\Students\Views\students_independence\ArchiveMonth.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\average_scores_m\Index.cshtml" />
+    <Content Include="App_Data\dataTable.xsc">
+      <DependentUpon>dataTable.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\dataTable.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataTable.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\dataTable.xss">
+      <DependentUpon>dataTable.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Settings\Views\attend_group_m\Create.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Delete.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Details.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Edit.cshtml" />
+    <Content Include="Areas\Settings\Views\attend_group_m\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\files.pubxml" />
+    <None Include="Properties\PublishProfiles\files_home.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -240,33 +372,52 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Settings\Controllers\age_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\atteds_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\attend_group_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\average_scores_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\classes_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\divisions_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\exams_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\gender_mController.cs" />
+    <Compile Include="Areas\Settings\Controllers\offices_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Settings\Controllers\schools_mController.cs" />
     <Compile Include="Areas\Settings\Controllers\teachers_mController.cs" />
+    <Compile Include="Areas\Settings\Models\attend_group_m.cs" />
     <Compile Include="Areas\Settings\Models\age_m.cs" />
     <Compile Include="Areas\Settings\Models\classes_m.cs" />
     <Compile Include="Areas\Settings\Models\divisions_m.cs" />
+    <Compile Include="Areas\Settings\Models\average_scores_m.cs" />
     <Compile Include="Areas\Settings\Models\gender_m.cs" />
     <Compile Include="Areas\Settings\Models\exams_m.cs" />
     <Compile Include="Areas\Settings\Models\MastersModel.cs" />
+    <Compile Include="Areas\Settings\Models\atteds_m.cs" />
+    <Compile Include="Areas\Settings\Models\offices_m.cs" />
     <Compile Include="Areas\Settings\Models\schools_m.cs" />
     <Compile Include="Areas\Settings\Models\teachers_m.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Areas\Students\Controllers\students_attendanceController.cs" />
     <Compile Include="Areas\Students\Controllers\students_gradeController.cs" />
+    <Compile Include="Areas\Students\Controllers\students_independenceController.cs" />
+    <Compile Include="Areas\Students\Controllers\students_interviewController.cs" />
     <Compile Include="Areas\Students\Controllers\students_guideController.cs" />
     <Compile Include="Areas\Students\Controllers\students_like_dislikeController.cs" />
+    <Compile Include="Areas\Students\Models\chartConfig.cs" />
+    <Compile Include="Areas\Students\Controllers\monthly_reportsController.cs" />
+    <Compile Include="Areas\Students\Models\monthly_reports.cs" />
+    <Compile Include="Areas\Students\Models\students_independence.cs" />
+    <Compile Include="Areas\Students\Models\students_interview.cs" />
+    <Compile Include="Controllers\MonthlyController.cs" />
     <Compile Include="Controllers\StudentsInfoController.cs" />
     <Compile Include="Controllers\students_faceController.cs" />
     <Compile Include="Controllers\students_mController.cs" />
@@ -275,7 +426,19 @@
     <Compile Include="Areas\Students\Models\students_grade.cs" />
     <Compile Include="Areas\Students\Models\students_guide.cs" />
     <Compile Include="Areas\Students\Models\students_like_dislike.cs" />
+    <Compile Include="App_Data\dataTable.cs">
+      <DependentUpon>dataTable.xsd</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Data\dataTable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataTable.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Models\students_face.cs" />
+    <Compile Include="Models\tweet.cs" />
     <Compile Include="Models\Students_mModel.cs" />
     <Compile Include="Models\students_m.cs" />
     <Compile Include="Areas\Students\StudentsAreaRegistration.cs" />
@@ -304,16 +467,43 @@
     <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\students_m\ArchiveList.cshtml" />
+    <Content Include="Views\Shared\_Print.cshtml" />
+    <Content Include="Views\Monthly\Print.cshtml" />
+    <Content Include="Views\Monthly\Index.cshtml" />
+    <Content Include="Views\Monthly\Reports.cshtml" />
+    <Content Include="Views\Monthly\GetReportAttend.cshtml" />
+    <Content Include="Views\Monthly\GetReportGuid.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Create.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Delete.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Details.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Edit.cshtml" />
+    <Content Include="Areas\Students\Views\monthly_reports\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\StudentsInfo\" />
+    <Folder Include="App_Code\" />
     <Folder Include="Views\students_face\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Reports\StudentMonthlyAttend.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Reports\StudentMonthlyGuid.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Reports\StudentMonthlyIndependent.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -326,16 +516,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>23970</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:23099/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

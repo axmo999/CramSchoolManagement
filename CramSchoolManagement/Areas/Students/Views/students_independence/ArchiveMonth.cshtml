@@ -1,0 +1,234 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_independence>
+@Scripts.Render("~/bundles/chart")
+@{
+    ViewBag.Title = "自立チェック月まとめ";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-8">
+        <h2>@ViewBag.StudentName</h2>
+
+        <h3>@ViewBag.this_year 年 @ViewBag.this_month 月</h3>
+
+        <h4>今月平均値 総合：@ViewBag.total_ave</h4>
+
+
+        <span class="col-md-3 col-xs-6 lead ">ランク１：@ViewBag.rank1</span>
+        <span class="col-md-3 col-xs-6 lead ">ランク２：@ViewBag.rank2</span>
+        <span class="col-md-3 col-xs-6 lead ">ランク３：@ViewBag.rank3</span>
+        <span class="col-md-3 col-xs-6 lead ">ランク４：@ViewBag.rank4</span>
+    </div>
+    <div class="col-xs-4 text-center">
+        <canvas id="rank" width="100" height="100"></canvas>
+        <script>
+            @{
+                string[] labels = new string[4]{"ランク１", "ランク２", "ランク３", "ランク４"};
+                string[] scores = new string[4] { "0", "0", "0", "0" };
+                if (ViewBag.rank1 != null && ViewBag.rank2 != null && ViewBag.rank3 != null && ViewBag.rank4 != null)
+                {
+                    scores = new string[4] { ViewBag.rank1, ViewBag.rank2, ViewBag.rank3, ViewBag.rank4 };
+                }
+                
+                CramSchoolManagement.Areas.Students.Models.chartConfig config = new CramSchoolManagement.Areas.Students.Models.chartConfig();
+                CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset dataset = new CramSchoolManagement.Areas.Students.Models.chartConfig.Dataset();
+                config.data.labels.AddRange(labels);
+
+                dataset.label = "平均ランク";
+                dataset.backgroundColor = "rgba(255,255,0,0.8)";
+                dataset.pointBackgroundColor = "rgba(220,220,220,1)";
+                dataset.data = new List<string>();
+                dataset.data.AddRange(scores);
+
+                config.options.scale.ticks.max = 5;
+
+                config.data.datasets.Add(dataset);
+
+                var value = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(config));
+            }
+            window.myRadar = new Chart(document.getElementById("rank"), @value);
+        </script>
+
+    </div>
+</div>
+
+<table class="table" id="independent">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.week)
+        </th>
+        <th>
+            <h5>基本的な事の徹底</h5>
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question01)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question02)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question03)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question04)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question05)
+        </th>
+        <th>
+            <h5>基本的な事の習慣化</h5>
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question06)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question07)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question08)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question09)
+        </th>
+        <th>
+            <h5>コミュニケーション能力基礎</h5>
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question10)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question11)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question12)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question13)
+        </th>
+        <th>
+            <h5>大きな目標を達成する為に必要な事</h5>
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question14)
+        </th>
+        <th class="counter">
+            @Html.DisplayNameFor(model => model.question15)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="col-xs-1">
+            @if (item.teachers_m == null)
+            {
+                @Html.Raw("平均")
+            }
+            else
+            { @Html.DisplayFor(modelItem => item.teachers_m.display_name) }
+
+        </td>
+        <td>
+            @if (item.week != DateTime.Parse("0001/01/01"))
+            {
+                @Html.Raw(item.week.ToString("MM-dd"))
+            }
+        </td>
+        <td></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question01)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question02)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question03)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question04)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question05)
+        </td>
+        <td></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question06)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question07)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question08)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question09)
+        </td>
+        <td></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question10)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question11)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question12)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question13)
+        </td>
+        <td></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question14)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question15)
+        </td>
+        <td>
+            @if (item.teachers_m != null)
+            {
+                @Html.ActionLink("編集", "Edit", new { num = item.independence_id }, new { @class = "print_display_none" })
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="print_display_none">
+
+    <h4>過去の自立チェック一覧</h4>
+    @{
+        ViewBag.attend_archive.Reverse();
+    }
+    @foreach (var item_archive in ViewBag.attend_archive)
+    {
+        string title = item_archive;
+        string[] year_month = item_archive.Split('/');
+        <div class="btn-group">
+            @Html.ActionLink(title, "ArchiveMonth", new { year = year_month[0], month = year_month[1] }, new { @class = "btn btn-default" })
+        </div>
+    }
+
+</div>
+
+<hr class="print_display_none" />
+
+<div class="print_display_none">
+    @Html.ActionLink("一覧へ戻る", "Index", null, new { @class = "btn btn-primary" })
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/Content/table")
+
+    <script type="text/javascript">
+
+        $("#independent").table_transpose();
+
+    </script>
+
+}

@@ -15,6 +15,14 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        <div class="form-group" style="display: none;">
+            @Html.LabelFor(model => model.students_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @Value = Guid.NewGuid().ToString(), @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.students_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -66,6 +74,23 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.club, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.club, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.club, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.office_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("office_id", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.gender_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.office_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.Label("顔写真", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" id="face_img" name="face_img" />
@@ -101,7 +126,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.hope_school, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("hope_school", null, htmlAttributes: new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.hope_school, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.hope_school, "", new { @class = "text-danger" })
             </div>
@@ -110,7 +135,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.enter_school, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("enter_school", null, htmlAttributes: new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.enter_school, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.enter_school, "", new { @class = "text-danger" })
             </div>
@@ -121,6 +146,58 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.note, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row row-eq-height btn-group form-group" data-toggle="buttons" style="margin-top: 10px;">
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <p class="btn control-label">出席可能曜日</p>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_mon)
+                    @Html.DisplayNameFor(model => model.attend_mon)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_tue)
+                    @Html.DisplayNameFor(model => model.attend_tue)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_wed)
+                    @Html.DisplayNameFor(model => model.attend_wed)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_thurs)
+                    @Html.DisplayNameFor(model => model.attend_thurs)
+                </label>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-2">
+                <label class="control-label btn">
+                    @Html.CheckBoxFor(model => model.attend_fri)
+                    @Html.DisplayNameFor(model => model.attend_fri)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.validate_flg, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.validate_flg, new { })
+                @Html.ValidationMessageFor(model => model.validate_flg, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.week_flg, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.week_flg, new { })
+                @Html.ValidationMessageFor(model => model.week_flg, "", new { @class = "text-danger" })
             </div>
         </div>
 

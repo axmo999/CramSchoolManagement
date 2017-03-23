@@ -19,6 +19,9 @@
             <h4 class="col-xs-6">誕生日：@DateTime.Parse(Model.birthday).ToString("yyyy年MM月dd日")</h4>
             <h4 class="col-xs-6">年齢：@CramSchoolManagement.Commons.Utility.AgeCal((Model.birthday)) 歳</h4>
             <h4 class="col-xs-6">学年：@Html.DisplayFor(model => model.grade)</h4>
+            <h4 class="col-xs-6">部活：@Html.DisplayFor(model => model.club)</h4>
+            <h4 class="col-xs-6">教室：@Html.DisplayFor(model => model.offices_m.name)</h4>
+            <h4 class="col-xs-12">備考：@Html.DisplayFor(model => model.note)</h4>
         </div>
     </div>
 </div>
@@ -42,12 +45,12 @@
 
 <div class="row row-eq-height">
     <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.hope_school)</p>
-    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.schools_m.name)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.hope_school_name)</p>
 </div>
 
 <div class="row row-eq-height">
     <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.enter_school)</p>
-    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.schools_m.name)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.DisplayFor(model => model.enter_school_name)</p>
 </div>
 
 <div class="row row-eq-height">
@@ -56,16 +59,52 @@
 </div>
 
 <div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">出席可能曜日</p>
+    <div class="btn-group col col-xs-12 col-sm-9 col-md-10">
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            @Html.CheckBoxFor(model => model.attend_mon, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+            @Html.DisplayNameFor(model => model.attend_mon)
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            @Html.CheckBoxFor(model => model.attend_tue, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+            @Html.DisplayNameFor(model => model.attend_tue)
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            @Html.CheckBoxFor(model => model.attend_wed, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+            @Html.DisplayNameFor(model => model.attend_wed)
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            @Html.CheckBoxFor(model => model.attend_thurs, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+            @Html.DisplayNameFor(model => model.attend_thurs)
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            @Html.CheckBoxFor(model => model.attend_fri, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+            @Html.DisplayNameFor(model => model.attend_fri)
+        </div>
+    </div>
+    </div>
+
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.validate_flg)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.CheckBoxFor(model => model.validate_flg, new { @checked = Model.validate_flg, @class = "", @disabled = "disabled" })</p>
+</div>
+
+<div class="row row-eq-height">
+    <p class="col col-xs-12 col-sm-3 col-md-2">@Html.DisplayNameFor(model => model.week_flg)</p>
+    <p class="col col-xs-12 col-sm-9 col-md-10">@Html.CheckBoxFor(model => model.week_flg, new { @checked = Model.week_flg, @class = "", @disabled = "disabled" })</p>
+</div>
+
+<div class="row row-eq-height">
     <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">好きな科目</p></div>
     @foreach (var x in Model.students_like_dislike.Where(s => s.like_dislike == CramSchoolManagement.Commons.Utility.likedislike_items["好き"]))
     {
         <div class="col-xs-12 col-sm-3 col-md-2">
             <p class="btn btn-success center-block">
-                @CramSchoolManagement.Commons.Utility.GetClassName(x.class_id)
+                @Html.Raw(x.classes_m.display_name)
             </p>
         </div>
     }
-    </div>
+</div>
 
 <div class="row row-eq-height" style="margin-top: 10px;">
     <div class="col col-xs-12 col-sm-12 col-md-2"><p class="btn">苦手な科目</p></div>
@@ -73,7 +112,7 @@
     {
         <div class="col-xs-12 col-sm-3 col-md-2">
             <p class="btn btn-warning center-block">
-                @CramSchoolManagement.Commons.Utility.GetClassName(x.class_id)
+                @Html.Raw(x.classes_m.display_name)
             </p>
         </div>
     }
@@ -88,43 +127,7 @@
 </div>
 
     <hr />
-        @*<div>
-            <dl class="dl-horizontal">
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.create_user)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.create_user)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.create_date)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.create_date)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.update_user)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.update_user)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.update_date)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.update_date)
-                </dd>
-
-            </dl>
-        </div>*@
         <p>
             @Html.ActionLink("編集する", "Edit", new { id = Model.students_id }, new { @class = "btn btn-standard" }) |
             @Html.ActionLink("削除", "Delete", new { id = Model.students_id }, new { @class = "btn btn-danger" }) |

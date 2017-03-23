@@ -19,10 +19,13 @@
             @Html.DisplayNameFor(model => model.first_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.middle_name)
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.gender_m.gender_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.administrator_flag)
         </th>
         <th></th>
     </tr>
@@ -36,10 +39,13 @@
             @Html.DisplayFor(modelItem => item.first_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.middle_name)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.gender_m.gender_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.display_admin)
         </td>
         <td>
             @Html.ActionLink("編集", "Edit", new { id=item.Id }) |

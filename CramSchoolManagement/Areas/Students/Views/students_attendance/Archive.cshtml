@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.students_attendance>
+
+@{
+    ViewBag.Title = "生徒出席一覧";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>@ViewBag.StudentName</h2>
+
+<h3>@ViewBag.this_year 年 @ViewBag.this_month 月 出席率：@ViewBag.attend_rate</h3>
+
+<p>
+    @Html.ActionLink("出席登録", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.attendance_day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.Raw(item.attendance_day.ToString("yyyy-MM-dd"))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_time)
+        </td>
+        <td>
+            @Html.ActionLink("編集", "Edit", new { num = item.students_attendance_id }) |
+            @Html.ActionLink("削除", "Delete", new { num = item.students_attendance_id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<h4>過去の出席</h4>
+@{
+    ViewBag.attend_archive.Reverse();
+}
+@foreach (var item_archive in ViewBag.attend_archive)
+{
+    string title = item_archive;
+    string[] year_month = item_archive.Split('/');
+    <div class="btn-group">
+        @Html.ActionLink(title, "Archive", new { year = year_month[0], month = year_month[1] }, new { @class = "btn btn-default" })
+    </div>
+}
+
+<hr />
+
+<div>
+    @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
+</div>

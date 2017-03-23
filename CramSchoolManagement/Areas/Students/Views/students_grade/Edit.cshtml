@@ -1,8 +1,9 @@
-@model CramSchoolManagement.Areas.Students.Models.students_grade
+@model CramSchoolManagement.Areas.Students.Models.students_grade[]
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "生徒成績編集";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+    var examDate_list = Model.GroupBy(x => x.exam_date);
 }
 
 <h2>@ViewBag.StudentName</h2>
@@ -12,44 +13,113 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>生徒成績編集</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.students_grade_id)
-        @Html.HiddenFor(model => model.create_user)
-        @Html.HiddenFor(model => model.create_date)
+        @foreach (var examDateItems in examDate_list)
+        {
+            <h3>@examDateItems.Key.Year 年 @examDateItems.Key.Month 月</h3>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.exam_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.exam_date, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" for="exam_date">試験日</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" data-val-date="フィールド DateTime は日付である必要があります。" data-val-required="DateTime フィールドが必要です。" id="exam_date" name="exam_date" type="date" value="@examDateItems.Key.ToString("yyyy-MM-dd")">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="exam_date" data-valmsg-replace="true"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.exam_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("exam_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.exam_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            foreach (var examIdItems in examDateItems.GroupBy(x => x.exams_m.name))
+            {
+                <h4>@examIdItems.Key</h4>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.class_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("class_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.class_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="exam_id">試験区分</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("exam_id", null, htmlAttributes: new { @class = "form-control" })
+                        <span class="field-validation-valid text-danger" data-valmsg-for="exam_id" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.exam_scores, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.exam_scores, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.exam_scores, "", new { @class = "text-danger" })
+                foreach (var examClassItems in examIdItems.Select((v, i) => new { v, i }))
+                {
+                    <input id="students_grade[@examClassItems.i].students_grade_id" name="students_grade[@examClassItems.i].students_grade_id" type="hidden" value="@Html.Raw(examClassItems.v.students_grade_id)">
+                    <input id="students_grade[@examClassItems.i].create_user" name="students_grade[@examClassItems.i].create_user" type="hidden" value="@Html.Raw(examClassItems.v.create_user)">
+                    <input id="students_grade[@examClassItems.i].create_date" name="students_grade[@examClassItems.i].create_date" type="hidden" value="@Html.Raw(examClassItems.v.create_date)">
+                    <input id="students_grade[@examClassItems.i].class_id" name="students_grade[@examClassItems.i].class_id" type="hidden" value="@examClassItems.v.class_id">
+                    <input id="students_grade[@examClassItems.i].students_id" name="students_grade[@examClassItems.i].students_id" type="hidden" value="@examClassItems.v.students_id">
+
+                    @*<div class="form-group">
+                        <label class="control-label col-md-2" for="students_grade[@examClassItems.i].class_id">@Html.Raw(examClassItems.v.classes_m.display_name)</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line hidden" id="students_grade[@examClassItems.i].class_id" name="students_grade[@examClassItems.i].class_id" type="number" value="@examClassItems.v.class_id">
+                            <input class="form-control text-box single-line" data-val="true" data-val-number="フィールド 試験点数 には数字を指定してください。" data-val-required="試験点数 フィールドが必要です。" id="students_grade[@examClassItems.i].exam_scores" name="students_grade[@examClassItems.i].exam_scores" type="number" value="@examClassItems.v.exam_scores">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="students_grade[@examClassItems.i].exam_scores" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="students_grade[@examClassItems.i].exam_scores">@Html.Raw(examClassItems.v.classes_m.display_name) 点数</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" data-val="true" data-val-number="フィールド 試験点数 には数字を指定してください。" data-val-required="試験点数 フィールドが必要です。" id="students_grade[@examClassItems.i].exam_scores" name="students_grade[@examClassItems.i].exam_scores" type="number" value="@examClassItems.v.exam_scores">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="students_grade[@examClassItems.i].exam_scores" data-valmsg-replace="true"></span>
+                        </div>
+                        <label class="control-label col-md-2" for="students_grade[@examClassItems.i].exam_precedence">@Html.Raw(examClassItems.v.classes_m.display_name) 席次</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" data-val="true" data-val-number="フィールド 席次 には数字を指定してください。" data-val-required="席次 フィールドが必要です。" id="students_grade[@examClassItems.i].exam_precedence" name="students_grade[@examClassItems.i].exam_precedence" type="number" value="@examClassItems.v.exam_precedence">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="students_grade[@examClassItems.i].exam_precedence" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+            
+                }
+
+            }
+
+        }
+
+
+        @*<h4>生徒成績編集</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.students_grade_id)
+            @Html.HiddenFor(model => model.create_user)
+            @Html.HiddenFor(model => model.create_date)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.exam_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.exam_date, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.exam_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("exam_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.exam_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.class_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("class_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.class_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.exam_scores, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.exam_scores, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.exam_scores, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.exam_precedence, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.exam_precedence, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.exam_precedence, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -59,6 +129,11 @@
     </div>
 }
 
+@{
+    var selectData = Model[0];
+}
+
 <div>
-    @Html.ActionLink("生徒成績一覧へ戻る", "Index")
+    @Html.ActionLink("削除", "Delete", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date, division_id = ViewBag.division_id }) |
+    @Html.ActionLink("生徒成績一覧へ戻る", "Index", new { division_id = ViewBag.division_id })
 </div>

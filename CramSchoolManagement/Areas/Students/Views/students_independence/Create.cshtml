@@ -1,0 +1,181 @@
+﻿@model CramSchoolManagement.Areas.Students.Models.students_independence
+
+@{
+    ViewBag.Title = "自立チェック記入";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>@ViewBag.StudentName</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>@ViewBag.Title</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group" style="display: none;">
+            @Html.LabelFor(model => model.students_id, "students_id", htmlAttributes: new { @class = "control-label col-md-9" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.students_id } })
+                @Html.ValidationMessageFor(model => model.students_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "col-md-9" })
+            <div class="col-md-3">
+                @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.week, htmlAttributes: new { @class = "col-md-9" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.week, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.ToString("yyyy-MM-dd") } })
+                @Html.ValidationMessageFor(model => model.week, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3 class="indep_h3">基本的な事の徹底</h3>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question01, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question01, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question01, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question02, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question02, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question02, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question03, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question03, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question03, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question04, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question04, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question04, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question05, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question05, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question05, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3 class ="indep_h3">基本的な事の習慣化</h3>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question06, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question06, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question06, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question07, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question07, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question07, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question08, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question08, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question08, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question09, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question09, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question09, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3 class="indep_h3">コミュニケーション能力基礎</h3>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question10, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question10, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question10, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question11, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question11, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question11, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question12, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question12, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question12, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question13, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question13, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question13, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3 class="indep_h3">大きな目標を達成する為に必要な事</h3>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question14, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question14, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question14, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.question15, htmlAttributes: new { @class = "col-md-9 counter" })
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.question15, CramSchoolManagement.Commons.Utility.rate(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.question15, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="登録" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("自立チェック一覧へ戻る", "Index")
+</div>

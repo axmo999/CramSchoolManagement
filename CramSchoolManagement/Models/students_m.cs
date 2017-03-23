@@ -16,11 +16,12 @@ using CramSchoolManagement.Commons;
             students_grade = new HashSet<CramSchoolManagement.Areas.Students.Models.students_grade>();
             students_guide = new HashSet<CramSchoolManagement.Areas.Students.Models.students_guide>();
             students_like_dislike = new HashSet<CramSchoolManagement.Areas.Students.Models.students_like_dislike>();
+            students_independence = new HashSet<CramSchoolManagement.Areas.Students.Models.students_independence>();
         }
 
         [Key]
         [Display(Name = "生徒管理番号")]
-        public long students_id { get; set; }
+        public string students_id { get; set; }
 
         [Required]
         [StringLength(2147483647)]
@@ -49,6 +50,13 @@ using CramSchoolManagement.Commons;
         public string birthday { get; set; }
 
         [StringLength(2147483647)]
+        [Display(Name = "部活")]
+        public string club { get; set; }
+
+        [Display(Name = "教室管理番号")]
+        public long office_id { get; set; }
+
+        [StringLength(2147483647)]
         [Display(Name = "郵便番号")]
         public string postal_code { get; set; }
 
@@ -71,6 +79,27 @@ using CramSchoolManagement.Commons;
         [Display(Name = "備考")]
         public string note { get; set; }
 
+        [Display(Name = "月曜日")]
+        public bool attend_mon { get; set; }
+
+        [Display(Name = "火曜日")]
+        public bool attend_tue { get; set; }
+
+        [Display(Name = "水曜日")]
+        public bool attend_wed { get; set; }
+
+        [Display(Name = "木曜日")]
+        public bool attend_thurs { get; set; }
+
+        [Display(Name = "金曜日")]
+        public bool attend_fri { get; set; }
+
+        [Display(Name = "有効フラグ")]
+        public bool validate_flg { get; set; }
+
+        [Display(Name = "週一フラグ")]
+        public bool week_flg { get; set; }
+
         public string create_user { get; set; }
 
         public string create_date { get; set; }
@@ -83,6 +112,8 @@ using CramSchoolManagement.Commons;
 
         public virtual CramSchoolManagement.Areas.Settings.Models.schools_m schools_m { get; set; }
 
+        public virtual CramSchoolManagement.Areas.Settings.Models.offices_m offices_m { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_attendance> students_attendance { get; set; }
 
@@ -94,7 +125,12 @@ using CramSchoolManagement.Commons;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_like_dislike> students_like_dislike { get; set; }
-        
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CramSchoolManagement.Areas.Students.Models.students_independence> students_independence { get; set; }
+
+
+        [NotMapped]
         [Display(Name = "生徒名")]
         public string display_name
         {
@@ -110,6 +146,22 @@ using CramSchoolManagement.Commons;
             get
             {
                 return Utility.GradeCal(Utility.AgeManCal(birthday));
+            }
+        }
+
+        public string hope_school_name
+        {
+            get
+            {
+                return Utility.GetSchoolName(hope_school);
+            }
+        }
+
+        public string enter_school_name
+        {
+            get
+            {
+                return Utility.GetSchoolName(enter_school);
             }
         }
 

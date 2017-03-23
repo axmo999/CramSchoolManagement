@@ -13,11 +13,11 @@
         public long students_guide_id { get; set; }
 
         [Display(Name = "生徒管理番号")]
-        public long students_id { get; set; }
+        public string students_id { get; set; }
 
         [Display(Name = "生徒指導日")]
         [DataType(DataType.Date)]
-        public string guide_date { get; set; }
+        public DateTime guide_date { get; set; }
 
         [Required]
         [StringLength(2147483647)]

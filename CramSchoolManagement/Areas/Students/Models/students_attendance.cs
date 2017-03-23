@@ -13,11 +13,11 @@
         public long students_attendance_id { get; set; }
 
         [Display(Name = "生徒管理番号")]
-        public long students_id { get; set; }
+        public string students_id { get; set; }
 
         [Display(Name = "出席日")]
         [DataType(DataType.Date)]
-        public string attendance_day { get; set; }
+        public DateTime attendance_day { get; set; }
 
         [Display(Name = "開始時間")]
         [DataType(DataType.Time)]
@@ -36,5 +36,13 @@
         public string update_date { get; set; }
 
         public virtual CramSchoolManagement.Models.students_m students_m { get; set; }
+
     }
+
+    public class group
+    {
+        public int count { get; set; }
+        public string Name { get; set; }
+    }
+
 }

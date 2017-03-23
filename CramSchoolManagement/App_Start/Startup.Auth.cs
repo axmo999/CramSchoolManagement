@@ -1,4 +1,5 @@
-﻿using CramSchoolManagement.Models;
+﻿using CramSchoolManagement.App_Start;
+using CramSchoolManagement.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -17,6 +18,8 @@ namespace CramSchoolManagement
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Login/Login")
             });
+
+            //app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
         }
     }
 }

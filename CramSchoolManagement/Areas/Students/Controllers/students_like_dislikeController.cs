@@ -17,7 +17,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         private CramSchoolManagement.Models.students_m studentdb = new CramSchoolManagement.Models.students_m();
 
         // GET: Students/students_like_dislike
-        public ActionResult Index(int? students_id)
+        public ActionResult Index(string students_id)
         {
             var students_like_dislike = db.students_like_dislike.Where(m => m.students_id == students_id).Include(s => s.students_m);
             var students_class = db.students_guide.Include(s => s.classes_m);
@@ -28,7 +28,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_like_dislike/Details/5
-        public ActionResult Details(long? students_id, long? num)
+        public ActionResult Details(string students_id, long? num)
         {
             if (num == null)
             {
@@ -44,7 +44,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_like_dislike/Create
-        public ActionResult Create(int? students_id)
+        public ActionResult Create(string students_id)
         {
             ViewBag.students_id = ViewBag.students_id = students_id;
             ViewBag.class_id = new SelectList(setdb.classes_m, "class_id", "display_name");
@@ -75,7 +75,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_like_dislike/Edit/5
-        public ActionResult Edit(int? students_id, long? num)
+        public ActionResult Edit(string students_id, long? num)
         {
             if (num == null)
             {

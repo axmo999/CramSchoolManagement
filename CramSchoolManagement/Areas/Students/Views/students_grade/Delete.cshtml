@@ -1,4 +1,4 @@
-@model CramSchoolManagement.Areas.Students.Models.students_grade
+@model CramSchoolManagement.Areas.Students.Models.students_grade[]
 
 @{
     ViewBag.Title = "Delete";
@@ -11,47 +11,59 @@
 <div>
     <h4>生徒成績削除</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.exam_date)
-        </dt>
+    @foreach (var deleteItems in Model)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => deleteItems.exam_date)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.exam_date)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => deleteItems.exam_date)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.exams_m.name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => deleteItems.exams_m.name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.exams_m.name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => deleteItems.exams_m.name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.classes_m.display_name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => deleteItems.classes_m.display_name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.classes_m.display_name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => deleteItems.classes_m.display_name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.exam_scores)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => deleteItems.exam_scores)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.exam_scores)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => deleteItems.exam_scores)
+            </dd>
 
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => deleteItems.exam_precedence)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => deleteItems.exam_precedence)
+            </dd>
+
+        </dl>
+    }
+    
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="削除" class="btn btn-default" /> |
-            @Html.ActionLink("生徒成績一覧へ戻る", "Index")
+            @Html.ActionLink("生徒成績一覧へ戻る", "Index", new { division_id = ViewBag.division_id })
         </div>
     }
 </div>

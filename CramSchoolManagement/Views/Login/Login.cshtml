@@ -30,6 +30,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @Html.Label("教室選択", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownList("office_id", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="ログイン" class="btn btn-default" />
                     </div>

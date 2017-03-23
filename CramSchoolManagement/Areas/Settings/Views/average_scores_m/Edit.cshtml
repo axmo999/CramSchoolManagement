@@ -1,0 +1,151 @@
+﻿@model CramSchoolManagement.Areas.Settings.Models.average_scores_m[]
+
+@{
+    ViewBag.Title = "平均点数編集";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+
+    var examSchool_list = Model.GroupBy(x => x.schools_m.name);
+    //var examDate_list = Model.GroupBy(x => x.exam_date);
+    string exam_date;
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @foreach (var examSchoolItems in examSchool_list)
+        {
+            <h3>@examSchoolItems.Key.ToString()</h3>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2" for="exam_date">学校名</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("school_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x[0].school_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            var examDate_list = Model.GroupBy(x => x.exam_date);
+            
+            foreach (var examDateItems in examDate_list)
+            {
+
+                exam_date = examDateItems.Key.ToShortDateString();
+
+                <h4>@examDateItems.Key.Year 年 @examDateItems.Key.Month 月</h4>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="exam_date">試験日</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" data-val="true" data-val-date="フィールド DateTime は日付である必要があります。" data-val-required="DateTime フィールドが必要です。" id="exam_date" name="exam_date" type="date" value="@examDateItems.Key.ToString("yyyy-MM-dd")">
+                        <span class="field-validation-valid text-danger" data-valmsg-for="exam_date" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+
+                foreach (var examIdItems in examDateItems.GroupBy(x => x.exams_m.name))
+                {
+
+                    <h5>@examIdItems.Key</h5>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="exam_id">試験区分</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("exam_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x[0].exam_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    foreach (var examClassItems in examIdItems.Select((v, i) => new { v, i }))
+                    {
+                        <input id="average_scores_m[@examClassItems.i].average_id" name="average_scores_m[@examClassItems.i].average_id" type="hidden" value="@Html.Raw(examClassItems.v.average_id)">
+                        <input id="average_scores_m[@examClassItems.i].create_user" name="average_scores_m[@examClassItems.i].create_user" type="hidden" value="@Html.Raw(examClassItems.v.create_user)">
+                        <input id="average_scores_m[@examClassItems.i].create_date" name="average_scores_m[@examClassItems.i].create_date" type="hidden" value="@Html.Raw(examClassItems.v.create_date)">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="average_scores_m[@examClassItems.i].class_id">@Html.Raw(examClassItems.v.classes_m.display_name)</label>
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line hidden" id="average_scores_m[@examClassItems.i].class_id" name="average_scores_m[@examClassItems.i].class_id" type="number" value="@examClassItems.v.class_id">
+                                <input class="form-control text-box single-line" data-val="true" data-val-number="フィールド 試験点数 には数字を指定してください。" data-val-required="試験点数 フィールドが必要です。" id="average_scores_m[@examClassItems.i].exam_scores" name="average_scores_m[@examClassItems.i].exam_scores" type="number" value="@examClassItems.v.exam_scores">
+                                <span class="field-validation-valid text-danger" data-valmsg-for="average_scores_m[@examClassItems.i].exam_scores" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            }
+        }
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="更新" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+        @*<h2>@Html.DisplayFor(x => x.exam_date) @Html.Raw(Model.exams_m.name)</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>@ViewBag.Title</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.average_id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.exam_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.exam_date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.exam_id, "exam_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("exam_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.exam_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.class_id, "class_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("class_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.class_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.exam_scores, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.exam_scores, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.exam_scores, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="更新" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }*@
+
+        <div>
+            @{
+                var selectData = Model.FirstOrDefault();
+            }
+            @Html.ActionLink("削除", "Delete", new { exam_id = selectData.exam_id, exam_date = selectData.exam_date, school_id = selectData.school_id }) |
+            @Html.ActionLink("平均点数設定一覧へ戻る", "Index")
+        </div>

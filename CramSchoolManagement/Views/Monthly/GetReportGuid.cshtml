@@ -1,0 +1,39 @@
+﻿@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "指導一覧表";
+    Layout = "~/Views/Shared/_Honoka.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@if (ViewBag.Error != null)
+{
+    @Html.Raw(ViewBag.Error)
+}
+@if (ViewBag.Report != null)
+{
+    @Html.ReportViewer(ViewBag.Report as Microsoft.Reporting.WebForms.ReportViewer, new { @width = "100%", @height = "100%" })
+}
+else
+{
+    using (Html.BeginForm("GetReportGuid", "Monthly", null, FormMethod.Get))
+    {
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.DropDownList("year", null, "年を選択してください", new { @onchange = "location.href = '/Monthly/GetReportGuid?Year='+this.value;" })
+            </div>
+
+            @if (ViewBag.month != null)
+            {
+                <div class="form-group">
+                    @Html.DropDownList("month", null, "月を選択してください", new { })
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="月別指導一覧報告書作成" class="btn btn-default" />
+                </div>
+            }
+
+        </div>
+    }
+
+}

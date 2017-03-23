@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+
+    var class_list = ViewBag.classes_list;
+    
 }
 
 <h2>@ViewBag.StudentName</h2>
@@ -19,7 +22,7 @@
         <div class="form-group" style="display: none;">
             @Html.LabelFor(model => model.students_id, "students_id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @value = ViewBag.students_id } })
+                @Html.EditorFor(model => model.students_id, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.students_id } })
                 @Html.ValidationMessageFor(model => model.students_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exam_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.exam_date, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Today.Date.ToString("yyyy-MM-dd") } })
                 @Html.ValidationMessageFor(model => model.exam_date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,7 +43,25 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @for (int x = 0; x < class_list.Count; ++x)
+        {
+            <div class="form-group">
+                <input class="form-control text-box single-line hidden" id="students_grade[@x].students_id" name="students_grade[@x].students_id" type="text" value="@ViewBag.students_id">
+                <input class="form-control text-box single-line hidden" id="students_grade[@x].class_id" name="students_grade[@x].class_id" type="number" value="@class_list[x].class_id">
+                <label class="control-label col-md-2" for="students_grade[@x].exam_scores">@Html.Raw(class_list[x].display_name) 点数</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" data-val-number="フィールド 試験点数 には数字を指定してください。" data-val-required="試験点数 フィールドが必要です。" id="students_grade[@x].exam_scores" name="students_grade[@x].exam_scores" type="number" value="0">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="students_grade[@x].exam_scores" data-valmsg-replace="true"></span>
+                </div>
+                <label class="control-label col-md-2" for="students_grade[@x].exam_precedence">@Html.Raw(class_list[x].display_name) 席次</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" data-val="true" data-val-number="フィールド 席次 には数字を指定してください。" data-val-required="席次 フィールドが必要です。" id="students_grade[@x].exam_precedence" name="students_grade[@x].exam_precedence" type="number" value="0">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="students_grade[@x].exam_precedence" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+        }
+
+        @*<div class="form-group">
             @Html.LabelFor(model => model.class_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("class_id", null, htmlAttributes: new { @class = "form-control" })
@@ -57,6 +78,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.exam_precedence, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exam_precedence, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.exam_precedence, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="登録" class="btn btn-default" />
             </div>
@@ -65,5 +94,5 @@
 }
 
 <div>
-    @Html.ActionLink("生徒成績一覧へ戻る", "Index")
+    @Html.ActionLink("生徒成績一覧へ戻る", "Index", new { division_id = ViewBag.division_id })
 </div>

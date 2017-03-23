@@ -13,7 +13,7 @@
         public long students_like_dislike_id { get; set; }
 
         [Display(Name = "生徒管理番号")]
-        public long students_id { get; set; }
+        public string students_id { get; set; }
 
         [Display(Name = "教科管理番号")]
         public long class_id { get; set; }

@@ -60,6 +60,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.club)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.club)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.offices_m.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.offices_m.name)
+        </dd>
+
+        <dt>
             顔写真
         </dt>
 
@@ -99,7 +115,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.schools_m.name)
+            @Html.DisplayFor(model => model.hope_school_name)
         </dd>
 
         <dt>
@@ -107,7 +123,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.schools_m.name)
+            @Html.DisplayFor(model => model.enter_school_name)
         </dd>
 
         <dt>
@@ -151,6 +167,42 @@
         </dd>
 
     </dl>
+
+    <div class="row row-eq-height btn-group" data-toggle="buttons" style="margin-top: 10px;">
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            <p class="btn">出席可能曜日</p>
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            <label class="control-label btn">
+                @Html.CheckBoxFor(model => model.attend_mon, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+                @Html.DisplayNameFor(model => model.attend_mon)
+            </label>
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            <label class="control-label btn">
+                @Html.CheckBoxFor(model => model.attend_tue, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+                @Html.DisplayNameFor(model => model.attend_tue)
+            </label>
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            <label class="control-label btn">
+                @Html.CheckBoxFor(model => model.attend_wed, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+                @Html.DisplayNameFor(model => model.attend_wed)
+            </label>
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            <label class="control-label btn">
+                @Html.CheckBoxFor(model => model.attend_thurs, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+                @Html.DisplayNameFor(model => model.attend_thurs)
+            </label>
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-2">
+            <label class="control-label btn">
+                @Html.CheckBoxFor(model => model.attend_fri, new { @checked = Model.attend_mon, @class = "", @disabled = "disabled" })
+                @Html.DisplayNameFor(model => model.attend_fri)
+            </label>
+        </div>
+    </div>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()

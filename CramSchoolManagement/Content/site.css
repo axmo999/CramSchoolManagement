@@ -1,0 +1,133 @@
+﻿/* add css*/
+.row-eq-height {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-wrap: wrap;
+}
+
+.grade_border_title{
+    background-color: #F7F7F9;
+    border: 1px solid #E1E1E8;
+    padding: 8px;
+    margin-bottom:0px;
+}
+
+.grade_border_score{
+    background-color: #F0F0F0;
+    border: 1px solid #E1E1E8;
+    padding: 8px;
+    margin-bottom:0px;
+}
+
+.grade_border_precedence{
+    background-color: #F7F7F9;
+    border: 1px solid #E1E1E8;
+    padding: 8px;
+}
+
+.form-group {
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+}
+
+.indep_h3 {
+	padding: .25em 0 .5em .75em;
+	border-left: 6px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.form-group label{
+    margin-top: 6px;
+}
+
+.counter {
+    counter-increment: num;
+}
+
+.counter:before {
+    content: counter(num) ". ";
+}
+
+dl.counterdl dt{
+    counter-increment: num;
+}
+
+dl.counterdl dt:before {
+    content: counter(num) ". ";
+}
+
+body{counter-reset: num;}
+
+input[type=checkbox] {
+  -ms-transform: scale(1.5, 1.5);
+  -webkit-transform: scale(1.5, 1.5);
+  transform: scale(1.5, 1.5);
+}
+
+@media print {
+
+    @page { size: A4 }
+
+    h3 {
+        margin-top: 12px;
+    }
+
+    /*a {
+        display: none;
+    }*/
+
+    .page-header{
+        display: none;
+    }
+
+    a[href]:after {
+        content: "";
+    }
+    
+    abbr[title]:after {
+        content: "";
+    }
+
+    #student_info div.face {
+        display: none;
+    }
+
+    #student_info div.details{
+        display: none;
+    }
+
+    #independent h5{
+        display: none;
+    }
+
+    .print_display_none {
+        display: none;
+    }
+
+    h2{
+        font-size: 24px;
+    }
+
+    h3{
+        font-size: 20px;
+    }
+
+    h4{
+        font-size: 18px;
+    }
+    
+    .lead {
+        font-size: 18px;
+    }
+
+    .table {
+        margin-bottom: 0px;
+    }
+
+    table#independent_table{
+        font-size: 14px;
+    }
+
+}

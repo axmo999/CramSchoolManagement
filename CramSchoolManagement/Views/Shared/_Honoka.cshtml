@@ -8,6 +8,7 @@
 
     <!-- Bootstrap -->
     @Styles.Render("~/Content/honoka/css")
+    @Styles.Render("~/Content/css")
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +33,12 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("生徒一覧", "Index", "students_m")</li>
-                        <li>@Html.ActionLink("設定", "Index", "Settings", new { area = "Settings" }, new { })</li>
+                        <li>@Html.ActionLink("出席一覧", "List", "students_m")</li>
+                        <li>@Html.ActionLink("月次報告書作成", "Index", "Monthly")</li>
+                        @if (CramSchoolManagement.Commons.Utility.GetAdminFlg())
+                        {
+                            <li>@Html.ActionLink("設定", "Index", "Settings", new { area = "Settings" }, new { })</li>
+                        }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -61,6 +67,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Content/honoka/js")
+
     @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

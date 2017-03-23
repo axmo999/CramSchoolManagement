@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.attend_group_m>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.group_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.group_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.age_id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.attend_group_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.attend_group_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.attend_group_id })
+        </td>
+    </tr>
+}
+
+</table>

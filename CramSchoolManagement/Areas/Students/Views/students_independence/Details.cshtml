@@ -1,0 +1,158 @@
+﻿@model CramSchoolManagement.Areas.Students.Models.students_independence
+
+@{
+    ViewBag.Title = "自立チェック詳細";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>@ViewBag.StudentName</h2>
+
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teachers_m.display_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.week)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal counterdl">
+        <dt>
+            @Html.DisplayNameFor(model => model.question01)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question01)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question02)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question02)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question03)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question03)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question04)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question04)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question05)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question05)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question06)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question06)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question07)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question07)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question08)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question08)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question09)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question09)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question10)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question10)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question11)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question11)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question12)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question12)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question13)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question13)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question14)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question14)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question15)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question15)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("編集", "Edit", new { num = Model.independence_id }) |
+    @Html.ActionLink("削除", "Delete", new { num = Model.independence_id }) |
+    @Html.ActionLink("自立チェック一覧へ戻る", "Index")
+</p>

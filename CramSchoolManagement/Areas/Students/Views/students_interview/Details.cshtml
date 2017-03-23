@@ -1,0 +1,45 @@
+@model CramSchoolManagement.Areas.Students.Models.students_interview
+
+@{
+    ViewBag.Title = "生徒面談編集";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>@ViewBag.StudentName</h2>
+
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interview_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interview_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teachers_m.display_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interview_contents)
+        </dt>
+
+        <dd>
+            @Html.Raw(Html.Encode(Model.interview_contents).Replace("\n", "<br />"))
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("編集", "Edit", new { num = Model.students_interview_id }) |
+    @Html.ActionLink("削除", "Delete", new { num = Model.students_interview_id }) |
+    @Html.ActionLink("生徒面談一覧へ戻る", "Index")
+</p>

@@ -17,6 +17,8 @@
 
         public virtual DbSet<students_face> students_face { get; set; }
 
+        public virtual DbSet<tweet> tweet { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<students_m>()
@@ -39,5 +41,7 @@
                 .WithRequired(e => e.students_m)
                 .WillCascadeOnDelete(false);
         }
+
+        public System.Data.Entity.DbSet<CramSchoolManagement.Areas.Settings.Models.teachers_m> teachers_m { get; set; }
     }
 }

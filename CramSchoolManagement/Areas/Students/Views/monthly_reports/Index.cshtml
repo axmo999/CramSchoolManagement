@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CramSchoolManagement.Areas.Students.Models.monthly_reports>
+
+@{
+    ViewBag.Title = "学習生活面一覧";
+    Layout = "~/Areas/Students/Views/Shared/_Students.cshtml";
+}
+
+<h2>@ViewBag.StudentName</h2>
+
+<h3>@ViewBag.Title</h3>
+
+<p>
+    @Html.ActionLink("新規月次学習生活作成", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.students_m.display_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.teachers_m.display_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.monthly_report_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.study_contents)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.life_contents)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.students_m.display_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.teachers_m.display_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.monthly_report_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.study_contents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.life_contents)
+        </td>
+        <td>
+            @Html.ActionLink("編集", "Edit", new { id=item.monthly_report_id }) |
+            @Html.ActionLink("詳細", "Details", new { id=item.monthly_report_id }) |
+            @Html.ActionLink("削除", "Delete", new { id=item.monthly_report_id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.RouteLink("生徒一覧へ戻る", "Default", new { controller = "students_m" })
+</div>

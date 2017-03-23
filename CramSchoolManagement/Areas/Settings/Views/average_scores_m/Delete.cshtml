@@ -1,0 +1,91 @@
+﻿@model CramSchoolManagement.Areas.Settings.Models.average_scores_m[]
+
+@{
+    ViewBag.Title = "平均点数設定削除";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+}
+
+<h3>本当に削除してもよろしいですか？</h3>
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    @foreach (var deleteItems in Model)
+    {
+        <h2>@Html.DisplayFor(x => deleteItems.exam_date) @Html.Raw(deleteItems.exams_m.name)</h2>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.classes_m.name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.classes_m.name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.exams_m.name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.exams_m.name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.exam_date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.exam_date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.exam_scores)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.exam_scores)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.create_user)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.create_user)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.create_date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.create_date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.update_user)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.update_user)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => deleteItems.update_date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => deleteItems.update_date)
+                </dd>
+
+            </dl>
+    }
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="削除" class="btn btn-default" /> |
+            @Html.ActionLink("平均点数設定一覧へ戻る", "Index")
+        </div>
+    }
+</div>

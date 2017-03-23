@@ -16,7 +16,7 @@ namespace CramSchoolManagement.Models
         public string ContentType { get; set; }
         public byte[] Content { get; set; }
         public string FileType { get; set; }
-        public long students_id { get; set; }
+        public string students_id { get; set; }
         public virtual students_m students_m { get; set; }
     }
 }

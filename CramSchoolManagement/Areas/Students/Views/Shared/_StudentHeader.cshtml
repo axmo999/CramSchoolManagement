@@ -2,19 +2,19 @@
 
 @{
     Students_mModel MasterDB = new Students_mModel();
-    long student_id = Convert.ToInt64(this.ViewContext.RouteData.Values["students_id"]);
+    string student_id = this.ViewContext.RouteData.Values["students_id"].ToString();
     var info = MasterDB.students_m.SingleOrDefault(s => s.students_id == student_id);
 }
 @if(info != null)
 {
-    <div class="row">
-        <div class="col-sm-6">
+    <div class="row" id="student_info">
+        <div class="col-sm-6 face">
             @if (info.students_face.Any(f => f.FileType == "Image"))
             {
                 <img src="~/students_face?id=@info.students_face.First(f => f.FileType == "Image").FileId" alt="face_img" class="img-rounded img-responsive" />
             }
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 details">
             <h2>@Html.DisplayFor(model => info.display_name)</h2>
             <h3>@Html.DisplayFor(model => info.schools_m.name)</h3>
             <div class="row">
@@ -22,6 +22,9 @@
                 <h4 class="col-xs-6">誕生日：@DateTime.Parse(info.birthday).ToString("yyyy年MM月dd日")</h4>
                 <h4 class="col-xs-6">年齢：@CramSchoolManagement.Commons.Utility.AgeCal((info.birthday)) 歳</h4>
                 <h4 class="col-xs-6">学年：@Html.DisplayFor(model => info.grade)</h4>
+                <h4 class="col-xs-6">部活：@Html.DisplayFor(model => info.club)</h4>
+                <h4 class="col-xs-6">教室：@Html.DisplayFor(model => info.offices_m.name)</h4>
+                <h4 class="col-xs-12">備考：@Html.DisplayFor(model => info.note)</h4>
             </div>
         </div>
     </div>

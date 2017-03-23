@@ -19,7 +19,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         private CramSchoolManagement.Models.students_m studentdb = new CramSchoolManagement.Models.students_m();
 
         // GET: Students/students_guide
-        public ActionResult Index(int? students_id, string teacher_id, int? class_id)
+        public ActionResult Index(string students_id, string teacher_id, int? class_id)
         {
             var students_guide = db.students_guide.Where(m => m.students_id == students_id).OrderByDescending(m => m.guide_date).Include(s => s.students_m);
             var students_teacher = db.students_guide.Include(s => s.teachers_m);
@@ -40,11 +40,11 @@ namespace CramSchoolManagement.Areas.Students.Controllers
             }
 
 
-            return View(students_guide.ToList());
+            return View(students_guide.OrderBy(m => m.guide_date).ToList());
         }
 
         // GET: Students/students_guide/Details/5
-        public ActionResult Details(long? students_id, long? num)
+        public ActionResult Details(string students_id, long? num)
         {
             if (num == null)
             {
@@ -60,7 +60,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_guide/Create
-        public ActionResult Create(int? students_id)
+        public ActionResult Create(string students_id)
         {
             ViewBag.students_id = students_id;
             ViewBag.Id = new SelectList(setdb.teachers_m, "Id", "display_name", User.Identity.GetUserId());
@@ -91,7 +91,7 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         }
 
         // GET: Students/students_guide/Edit/5
-        public ActionResult Edit(long? students_id, long? num)
+        public ActionResult Edit(string students_id, long? num)
         {
             if (num == null)
             {
@@ -146,9 +146,9 @@ namespace CramSchoolManagement.Areas.Students.Controllers
         // POST: Students/students_guide/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(long num)
         {
-            students_guide students_guide = db.students_guide.Find(id);
+            students_guide students_guide = db.students_guide.Find(num);
             db.students_guide.Remove(students_guide);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -1,0 +1,105 @@
+﻿@*@model IEnumerable<CramSchoolManagement.Areas.Settings.Models.average_scores_m>*@
+@model IPagedList<CramSchoolManagement.Areas.Settings.Models.average_scores_m>
+@using PagedList
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "平均点数設定一覧";
+    Layout = "~/Areas/Settings/Views/Shared/_Settings.cshtml";
+    //var exam_school = Model.GroupBy(x => x.schools_m.name);
+    var date_group = Model.GroupBy(x => x.exam_date);   
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("中学生平均点数設定新規作成", "Create", new { division_id = 3 })
+</p>
+
+@foreach (var date_items in date_group)
+{
+    var exam_school = date_items.GroupBy(x => x.schools_m.name);
+    
+    <div class="row">
+
+    <h3>@date_items.Key.Year 年 @date_items.Key.Month 月</h3>
+
+    @foreach (var school_items in exam_school)
+    {
+        var selectData = school_items.FirstOrDefault(x => x.schools_m.name == school_items.Key);
+
+        <h4>@school_items.Key.ToString() <small>@Html.ActionLink("編集", "Edit", new { exam_date = selectData.exam_date, exam_id = selectData.exam_id, school_id = selectData.school_id })</small></h4>
+
+        var exam_group = school_items.GroupBy(x => x.exams_m.name);
+
+        foreach (var exam_items in exam_group)
+        {
+            <h5>@exam_items.Key</h5>
+
+            <div class="col-xs-12">
+
+                @foreach (var class_items in exam_items)
+                {
+                    <div class="col-sm-2 col-xs-4">
+                        <h5 class="text-center grade_border_title">@Html.Raw(Html.Encode(class_items.classes_m.display_name).Replace("\n", "<br/>"))</h5>
+                        <p class="text-center grade_border_score">@Html.DisplayFor(modelItem => class_items.exam_scores) 点</p>
+                    </div>
+                }
+
+            </div>
+        
+            
+
+        }
+
+    }
+    </div>
+
+    <hr />
+
+}
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.classes_m.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exams_m.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exam_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exam_scores)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.classes_m.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exams_m.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exam_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exam_scores)
+        </td>
+        <td>
+            @Html.ActionLink("編集", "Edit", new { id = item.average_id }) |
+            @Html.ActionLink("詳細", "Details", new { id = item.average_id }) |
+            @Html.ActionLink("削除", "Delete", new { id = item.average_id })
+        </td>
+    </tr>
+}
+
+</table>*@
