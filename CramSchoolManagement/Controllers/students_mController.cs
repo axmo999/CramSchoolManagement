@@ -49,6 +49,7 @@ namespace CramSchoolManagement.Controllers
             if (validate_flg == null || validate_flg == false)
             {
                 student_list = student_list.Where(s => s.validate_flg == false);
+                student_list = student_list.Where(s => s.gradeint < 15);
             }
 
             ViewBag.today = _today;
@@ -109,7 +110,7 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg, week_flg")] students_m students_m, HttpPostedFileBase face_img)
+        public ActionResult Create([Bind(Include = "students_id,last_name,first_name,middle_name,last_name_kana,first_name_kana,middle_name_kana,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg, week_flg")] students_m students_m, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
@@ -177,12 +178,12 @@ namespace CramSchoolManagement.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg, week_flg")] students_m students_m, string id, HttpPostedFileBase face_img)
+        public ActionResult Edit([Bind(Include = "students_id,last_name,first_name,middle_name,last_name_kana,first_name_kana,middle_name_kana,school_id,gender_id,birthday,club,office_id,postal_code,address,phone_number,hope_school,enter_school,note,create_user,create_date,update_user,update_date,attend_mon, attend_tue, attend_wed, attend_thurs, attend_fri, validate_flg, week_flg")] students_m students_m, string id, HttpPostedFileBase face_img)
         {
             if (ModelState.IsValid)
             {
                 var studentToUpdate = db.students_m.Find(id);
-                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date", "attend_mon", "attend_tue", "attend_wed", "attend_thurs", "attend_fri", "validate_flg", "week_flg" }))
+                if (TryUpdateModel(studentToUpdate, "", new string[] { "students_id", "last_name", "first_name", "middle_name", "last_name_kana", "first_name_kana", "middle_name_kana", "school_id", "gender_id", "birthday", "club", "office_id", "postal_code", "address", "phone_number", "hope_school", "enter_school", "note", "create_user", "create_date", "update_user", "update_date", "attend_mon", "attend_tue", "attend_wed", "attend_thurs", "attend_fri", "validate_flg", "week_flg" }))
                 {
                     try
                     {

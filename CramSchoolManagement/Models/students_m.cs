@@ -37,6 +37,18 @@ using CramSchoolManagement.Commons;
         [Display(Name = "ミドルネーム")]
         public string middle_name { get; set; }
 
+        [StringLength(2147483647)]
+        [Display(Name = "姓（かな）")]
+        public string last_name_kana { get; set; }
+
+        [StringLength(2147483647)]
+        [Display(Name = "名（かな）")]
+        public string first_name_kana { get; set; }
+
+        [StringLength(2147483647)]
+        [Display(Name = "ミドルネーム（かな）")]
+        public string middle_name_kana { get; set; }
+
         [Display(Name = "学校管理番号")]
         public long school_id { get; set; }
 
@@ -140,6 +152,15 @@ using CramSchoolManagement.Commons;
             }
         }
 
+        [Display(Name = "生徒名（かな）")]
+        public string display_name_kana
+        {
+            get
+            {
+                return studentNameKana();
+            }
+        }
+
         [Display(Name = "学年")]
         public string grade
         {
@@ -190,6 +211,26 @@ using CramSchoolManagement.Commons;
             if (first_name != null)
             {
                 studentName += " " + first_name.ToString();
+            }
+            return studentName;
+        }
+
+        public string studentNameKana()
+        {
+            string studentName = string.Empty;
+            if (last_name_kana != null)
+            {
+                studentName = last_name_kana.ToString();
+            }
+
+            if (middle_name_kana != null)
+            {
+                studentName += " " + middle_name_kana.ToString();
+            }
+
+            if (first_name_kana != null)
+            {
+                studentName += " " + first_name_kana.ToString();
             }
             return studentName;
         }
