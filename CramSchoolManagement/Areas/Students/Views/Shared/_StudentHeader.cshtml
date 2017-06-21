@@ -15,7 +15,8 @@
             }
         </div>
         <div class="col-sm-6 details">
-            <h2>@Html.DisplayFor(model => info.display_name)</h2>
+            <h2><span style="font-size:smaller">@Html.DisplayFor(model => info.display_name_kana)</span><br />@Html.DisplayFor(model => info.display_name)</h2>
+            @*<h2>@Html.DisplayFor(model => info.display_name)</h2>*@
             <h3>@Html.DisplayFor(model => info.schools_m.name)</h3>
             <div class="row">
                 <h4 class="col-xs-6">性別：@Html.DisplayFor(model => info.gender_m.gender_name)</h4>
