@@ -58,11 +58,17 @@
         public long get_average()
         {
             CramSchoolManagement.Areas.Settings.Models.MastersModel MasterDB = new CramSchoolManagement.Areas.Settings.Models.MastersModel();
+            //var average_score = MasterDB.average_scores_m.SingleOrDefault(
+            //                        x => x.exam_date == exam_date && 
+            //                             x.exam_id == exam_id && 
+            //                             x.class_id == class_id && 
+            //                             x.school_id == students_m.school_id);
+
             var average_score = MasterDB.average_scores_m.SingleOrDefault(
-                                    x => x.exam_date == exam_date && 
-                                         x.exam_id == exam_id && 
-                                         x.class_id == class_id && 
-                                         x.school_id == students_m.school_id);
+                        x => x.exam_date == exam_date &&
+                             x.exam_id == exam_id &&
+                             x.class_id == class_id);
+
             if (average_score != null)
             {
                 return average_score.exam_scores;
